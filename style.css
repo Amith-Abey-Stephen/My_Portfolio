@@ -129,7 +129,7 @@ section{
 
 .two{
     display: inline-block;
-    color: #a49f9f;
+    /* color: #a49f9f; */
     font-size: 20px;
     font-weight: 500;
 }
