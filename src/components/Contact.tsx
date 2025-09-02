@@ -38,8 +38,8 @@ const Contact: React.FC = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'amith@example.com',
-      href: 'mailto:amith@example.com'
+      value: 'amithabey13@gmail.com',
+      href: 'mailto:amithabey13@gmail.com'
     },
     {
       icon: Phone,
@@ -59,19 +59,19 @@ const Contact: React.FC = () => {
     {
       icon: Github,
       label: 'GitHub',
-      href: '#',
+      href: 'https://github.com/Amith-Abey-Stephen',
       color: 'hover:text-gray-900 dark:hover:text-white'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      href: '#',
+      href: 'https://linkedin.com/in/amith-abey-stephen',
       color: 'hover:text-blue-600'
     },
     {
       icon: Twitter,
       label: 'Twitter',
-      href: '#',
+      href: 'https://twitter.com/amith_abey',
       color: 'hover:text-blue-400'
     }
   ];
@@ -120,7 +120,7 @@ const Contact: React.FC = () => {
         message: 'Thank you for your message! I\'ll get back to you soon.' 
       });
       setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error) {
+    } catch {
       setFormStatus({ 
         type: 'error', 
         message: 'Something went wrong. Please try again.' 
@@ -226,14 +226,16 @@ const Contact: React.FC = () => {
               <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm">
                 Download my resume to learn more about my experience and skills.
               </p>
-              <motion.button
+              <motion.a
+                href="/src/assets/CV.pdf"
+                download="Amith_Abey_Stephen_Resume.pdf"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium rounded-lg hover:shadow-lg transition-all duration-300"
               >
                 <Download size={16} />
                 Download Resume
-              </motion.button>
+              </motion.a>
             </motion.div>
           </motion.div>
 

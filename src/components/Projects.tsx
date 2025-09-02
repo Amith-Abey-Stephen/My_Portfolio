@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ExternalLink, Github, Award, Zap, Shield, Globe } from 'lucide-react';
+import ImageWithFallback from './ImageWithFallback';
 
 const Projects: React.FC = () => {
   const [ref, inView] = useInView({
@@ -18,8 +19,8 @@ const Projects: React.FC = () => {
       features: ['Interactive Learning', 'Progress Tracking', 'Community Features'],
       icon: Award,
       color: 'from-purple-500 to-pink-500',
-      demoLink: '#',
-      githubLink: '#'
+      demoLink: 'https://skillnedu-demo.vercel.app',
+      githubLink: 'https://github.com/Amith-Abey-Stephen/SkillnEdu'
     },
     {
       title: 'Smart Irrigation System',
@@ -29,8 +30,8 @@ const Projects: React.FC = () => {
       features: ['Remote Monitoring', 'Water Conservation', 'Data Analytics'],
       icon: Zap,
       color: 'from-green-500 to-emerald-500',
-      demoLink: '#',
-      githubLink: '#'
+      demoLink: 'https://smart-irrigation-demo.netlify.app',
+      githubLink: 'https://github.com/Amith-Abey-Stephen/Smart-Irrigation-System'
     },
     {
       title: 'Pattupeti',
@@ -40,8 +41,8 @@ const Projects: React.FC = () => {
       features: ['E-commerce', 'Artisan Profiles', 'Cultural Stories'],
       icon: Globe,
       color: 'from-blue-500 to-cyan-500',
-      demoLink: '#',
-      githubLink: '#'
+      demoLink: 'https://pattupeti.vercel.app',
+      githubLink: 'https://github.com/Amith-Abey-Stephen/Pattupeti'
     },
     {
       title: 'Australia DC Web3 Certificate Verifier',
@@ -51,8 +52,8 @@ const Projects: React.FC = () => {
       features: ['Blockchain Security', 'Instant Verification', 'Fraud Prevention'],
       icon: Shield,
       color: 'from-orange-500 to-red-500',
-      demoLink: '#',
-      githubLink: '#'
+      demoLink: 'https://certificate-verifier.netlify.app',
+      githubLink: 'https://github.com/Amith-Abey-Stephen/Web3-Certificate-Verifier'
     }
   ];
 
@@ -87,7 +88,7 @@ const Projects: React.FC = () => {
               className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               <div className="relative overflow-hidden">
-                <img
+                <ImageWithFallback
                   src={project.image}
                   alt={project.title}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"

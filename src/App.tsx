@@ -8,6 +8,7 @@ import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -84,28 +85,30 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-      <AnimatePresence>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Header activeSection={activeSection} onSectionClick={scrollToSection} />
-          
-          <main>
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
-            <Experience />
-            <Contact />
-          </main>
-          
-          <Footer onBackToTop={scrollToTop} />
-        </motion.div>
-      </AnimatePresence>
-    </div>
+    <ErrorBoundary>
+      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+        <AnimatePresence>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Header activeSection={activeSection} onSectionClick={scrollToSection} />
+            
+            <main>
+              <Hero />
+              <About />
+              <Skills />
+              <Projects />
+              <Experience />
+              <Contact />
+            </main>
+            
+            <Footer onBackToTop={scrollToTop} />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </ErrorBoundary>
   );
 }
 

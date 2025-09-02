@@ -70,13 +70,13 @@ const Hero: React.FC = () => {
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
             >
-              <a href="src/assets/CV.pdf" download="CV.pdf" className='flex items-center gap-2'>
+              <a href="/src/assets/CV.pdf" download="Amith_Abey_Stephen_Resume.pdf" className='flex items-center gap-2'>
                 <Download size={24} />
                 Download Resume
               </a>
             </motion.button>
 
-            <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/Amith-Abey-Stephen" target="_blank" rel="noopener noreferrer">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
