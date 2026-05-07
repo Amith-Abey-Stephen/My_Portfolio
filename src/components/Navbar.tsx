@@ -44,7 +44,7 @@ export function Navbar() {
           className="text-xl font-heading font-bold text-foreground tracking-tight"
           data-testid="link-home"
         >
-          Amith<span className="text-primary">.SITE</span>
+          AMITH<span className="text-primary">.SITE</span>
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
