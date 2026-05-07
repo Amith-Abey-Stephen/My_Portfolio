@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef} from "react";
 import { motion, useInView, useSpring, useTransform } from "framer-motion";
 import { Users, Calendar, Trophy, Globe } from "lucide-react";
 
@@ -32,7 +32,7 @@ function Counter({ value }: { value: string }) {
 
 const stats = [
   { value: "3+", label: "YEARS OF HACKTOBERFEST", icon: Calendar },
-  { value: "6+", label: "COUNTRIES REACHED", icon: Globe },
+  { value: "75+", label: "OPEN SOURCE CONTRIBUTIONS", icon: Globe },
   { value: "30+", label: "STUDENTS MENTORED", icon: Users },
   { value: "10+", label: "HACKATHONS ORGANIZED", icon: Trophy }
 ];
@@ -66,10 +66,10 @@ export function Community() {
             </h2>
             
             <p className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-xl">
-              As the CEO of INOVUS LABS IEDC, I led initiatives that transformed how
-              students learn and build technology. Beyond writing code, true impact comes
-              from creating environments where innovation thrives and sharing knowledge
-              across borders.
+              As the CEO of Inovus Labs IEDC, I spearheaded innovation-driven technical initiatives,
+              hackathons, and startup programs under the Kerala Startup Mission. I focused on
+              fostering a culture of building, mentoring students, and organizing international
+              technical events across multiple countries.
             </p>
             
             <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm text-sm font-mono text-muted-foreground">

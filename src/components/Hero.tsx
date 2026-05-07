@@ -26,11 +26,11 @@ export function Hero() {
           </h1>
           
           <h2 className="text-xl md:text-2xl font-medium text-foreground/80 mb-4">
-            Builder • Full-Stack Developer • IoT Innovator • Community Leader
+            Full-Stack & IoT Developer • AI-Powered Tools • Community Leader
           </h2>
           
           <p className="text-lg text-muted-foreground max-w-xl mb-10 leading-relaxed">
-            Building digital experiences, cloud-connected systems, and innovation ecosystems that blend software, hardware, and community-driven technology.
+            Specializing in scalable SaaS platforms, AI-powered tools, and cloud-connected IoT solutions. Former CEO of Inovus Labs IEDC with a passion for blending software, hardware, and community technology.
           </p>
           
           <div className="flex flex-wrap items-center gap-4">

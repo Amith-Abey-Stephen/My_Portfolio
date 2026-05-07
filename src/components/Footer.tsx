@@ -14,15 +14,15 @@ export function Footer() {
         </div>
 
         <div className="flex items-center gap-4">
-          <a href="https://github.com/amithabey" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a href="https://github.com/Amith-Abey-Stephen" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
             <Github className="w-4 h-4" />
             <span className="sr-only">GitHub</span>
           </a>
-          <a href="https://linkedin.com/in/amithabeystephen" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a href="https://linkedin.com/in/Amith-Abey-Stephen" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
             <Linkedin className="w-4 h-4" />
             <span className="sr-only">LinkedIn</span>
           </a>
-          <a href="mailto:hi@amithabey.dev" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a href="mailto:amithabey13@gmail.com" className="text-muted-foreground hover:text-foreground transition-colors">
             <Mail className="w-4 h-4" />
             <span className="sr-only">Email</span>
           </a>

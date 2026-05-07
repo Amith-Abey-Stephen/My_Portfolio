@@ -41,7 +41,7 @@ export function Contact() {
 
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
             <a
-              href="mailto:hi@amithabey.dev"
+              href="mailto:amithabey13@gmail.com"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all hover:scale-105 shadow-[0_0_20px_rgba(59,130,246,0.3)]"
               data-testid="link-email-contact"
             >
@@ -51,7 +51,7 @@ export function Contact() {
             
             <div className="flex gap-4">
               <a
-                href="https://github.com/amithabey"
+                href="https://github.com/Amith-Abey-Stephen"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-14 h-14 rounded-full glass-panel flex items-center justify-center text-foreground hover:bg-white/10 hover:text-primary transition-all hover:scale-110"
@@ -61,7 +61,7 @@ export function Contact() {
                 <Github className="w-6 h-6" />
               </a>
               <a
-                href="https://linkedin.com/in/amithabeystephen"
+                href="https://linkedin.com/in/Amith-Abey-Stephen"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-14 h-14 rounded-full glass-panel flex items-center justify-center text-foreground hover:bg-white/10 hover:text-[#0A66C2] transition-all hover:scale-110"
@@ -71,7 +71,7 @@ export function Contact() {
                 <Linkedin className="w-6 h-6" />
               </a>
               <a
-                href="mailto:hi@amithabey.dev"
+                href="mailto:amithabey13@gmail.com"
                 className="w-14 h-14 rounded-full glass-panel flex items-center justify-center text-foreground hover:bg-white/10 hover:text-emerald-500 transition-all hover:scale-110"
                 aria-label="Email"
                 data-testid="link-email-icon"

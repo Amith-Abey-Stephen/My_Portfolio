@@ -3,29 +3,29 @@ import { Users, Code, Lightbulb, GraduationCap } from "lucide-react";
 
 const aboutCards = [
   {
-    title: "Leadership",
-    description: "Former CEO of INOVUS LABS IEDC. Scaled a student innovation lab, fostered tech ecosystems, and organized large-scale hackathons.",
+    title: "Community CEO",
+    description: "Former CEO of Inovus Labs IEDC. Led innovation initiatives, organized international tech events, and scaled student ecosystems.",
     icon: Users,
     color: "text-blue-500",
     bg: "bg-blue-500/10"
   },
   {
-    title: "Development",
-    description: "Full-stack engineer crafting high-performance web applications using Next.js, Node.js, MongoDB, and modern cloud infrastructure.",
+    title: "Full-Stack Dev",
+    description: "Building scalable SaaS and AI-powered platforms. Expert in React, Next.js, and modern backend architectures.",
     icon: Code,
     color: "text-cyan-500",
     bg: "bg-cyan-500/10"
   },
   {
-    title: "Innovation",
-    description: "Bridging the gap between software and hardware. Building AI-powered systems and IoT solutions using ESP32 and real-time data.",
+    title: "IoT Innovator",
+    description: "Architecting cloud-connected hardware solutions. Specializing in ESP32, real-time monitoring, and automation systems.",
     icon: Lightbulb,
     color: "text-violet-500",
     bg: "bg-violet-500/10"
   },
   {
-    title: "Mentorship",
-    description: "Dedicated to technical education. Mentoring students, conducting workshops, and sharing knowledge as a Google Campus Ambassador.",
+    title: "Tech Mentor",
+    description: "Dedicated to community growth. Mentored 30+ students in web dev bootcamps and led Google AI workshops.",
     icon: GraduationCap,
     color: "text-primary",
     bg: "bg-primary/10"

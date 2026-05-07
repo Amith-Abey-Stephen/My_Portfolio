@@ -4,42 +4,42 @@ import { Layout, Server, Cpu, BrainCircuit, Database, TerminalSquare } from "luc
 const skills = [
   {
     title: "Frontend Development",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    items: ["React", "Next.js (App Router)", "TypeScript", "Tailwind CSS", "Zustand", "TanStack Query"],
     icon: Layout,
     color: "from-blue-500/20 to-transparent",
     iconColor: "text-blue-400"
   },
   {
     title: "Backend & APIs",
-    items: ["Node.js", "Express", "REST APIs", "Firebase"],
+    items: ["Node.js", "Express.js", "REST APIs", "JWT Auth", "Queue-Based Systems"],
     icon: Server,
     color: "from-cyan-500/20 to-transparent",
     iconColor: "text-cyan-400"
   },
   {
     title: "IoT & Embedded",
-    items: ["ESP32", "Arduino", "Sensors", "MQTT"],
+    items: ["ESP32", "Arduino", "Raspberry Pi", "MQTT", "ESP-NOW", "Sensor Integration"],
     icon: Cpu,
     color: "from-violet-500/20 to-transparent",
     iconColor: "text-violet-400"
   },
   {
     title: "AI & Automation",
-    items: ["AI APIs", "Prompt Engineering", "Workflows", "Agents"],
+    items: ["AI Content Generation", "Prompt Engineering", "Workflow Automation", "Data Personalization"],
     icon: BrainCircuit,
     color: "from-fuchsia-500/20 to-transparent",
     iconColor: "text-fuchsia-400"
   },
   {
     title: "Databases & Cloud",
-    items: ["MongoDB", "PostgreSQL", "Firebase Cloud", "Hosting"],
+    items: ["MongoDB", "MySQL", "Firebase Firestore", "Vercel", "BullMQ"],
     icon: Database,
     color: "from-emerald-500/20 to-transparent",
     iconColor: "text-emerald-400"
   },
   {
-    title: "DevOps & Tools",
-    items: ["Git", "Docker Basics", "CI/CD", "Linux"],
+    title: "Languages",
+    items: ["JavaScript", "TypeScript", "PHP", "SQL", "C", "C++"],
     icon: TerminalSquare,
     color: "from-orange-500/20 to-transparent",
     iconColor: "text-orange-400"

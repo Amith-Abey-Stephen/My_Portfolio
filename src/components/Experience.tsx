@@ -2,40 +2,40 @@ import { motion } from "framer-motion";
 
 const timeline = [
   {
-    role: "CEO",
-    organization: "INOVUS LABS IEDC",
-    description: "Led a student innovation lab, scaling community engagement, organizing hackathons, and fostering an ecosystem of builders.",
-    year: "Recent"
+    role: "Junior Associate",
+    organization: "μLearn Foundation",
+    description: "Mentoring frontend interns, coordinating remote workflows, and serving as the technical POC for frontend development.",
+    year: "2026 - Present"
   },
   {
-    role: "Leader & Contributor",
-    organization: "µLearn Foundation",
-    description: "Spearheaded learning initiatives, mentored peers, and organized technical workshops for the community.",
-    year: "Past"
-  },
-  {
-    role: "Product & Tech",
+    role: "Frontend Intern",
     organization: "Foodo.AI",
-    description: "Contributed to product development and technical architecture for an AI-driven startup initiative.",
-    year: "Past"
+    description: "Built responsive production-level frontend interfaces from Figma designs, improving UI consistency and cross-device compatibility.",
+    year: "2026"
+  },
+  {
+    role: "CEO",
+    organization: "Inovus Labs IEDC",
+    description: "Led innovation-driven technical initiatives, hackathons, and startup programs. Organized international events and mentored 30+ students.",
+    year: "2025 - 2026"
   },
   {
     role: "Campus Ambassador",
     organization: "Google",
-    description: "Evangelized Google technologies, organized campus events, and bridged the gap between students and industry tools.",
-    year: "Past"
+    description: "Conducted AI-focused workshops and coordinated campus-level technical engagement initiatives.",
+    year: "2025 - 2026"
   },
   {
-    role: "Developer",
+    role: "Frontend Intern",
+    organization: "μLearn Foundation",
+    description: "Contributed to migration of mulearn.org to Next.js using TanStack Query and Zustand. 75+ commits across platforms.",
+    year: "2025"
+  },
+  {
+    role: "Web Development Intern",
     organization: "Zidio Development",
-    description: "Engineered robust software solutions and collaborated on cross-functional development tasks.",
-    year: "Past"
-  },
-  {
-    role: "Innovator",
-    organization: "The Nexus Project",
-    description: "Contributed to foundational innovation initiatives shaping technical ecosystems.",
-    year: "Past"
+    description: "Developed MERN-based web applications and collaborated on real-world development projects.",
+    year: "2024"
   }
 ];
 

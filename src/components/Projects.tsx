@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Database, Cpu, Mail, FileText, Zap } from "lucide-react";
+import { ExternalLink, Database, Cpu, Mail, FileText, Zap, Globe } from "lucide-react";
 
 const projects = [
   {
     id: "inomail",
     title: "InoMail",
-    description: "AI-powered bulk email platform featuring robust queue systems, AI-generated campaign content, advanced analytics, and multi-tenant workspaces.",
-    stack: ["Next.js", "MongoDB", "BullMQ", "AI APIs"],
+    description: "AI-powered bulk email platform featuring robust queue systems, multi-tenant workspaces, analytics, and AI-assisted campaign generation.",
+    stack: ["Next.js", "MongoDB", "BullMQ", "AI"],
     status: "Featured",
     icon: Mail,
     size: "large"
@@ -14,8 +14,8 @@ const projects = [
   {
     id: "mrdocgen",
     title: "Mr DocGen",
-    description: "Intelligent report generation tool utilizing structured templates, AI-assisted documentation, and automated enterprise workflows.",
-    stack: ["React", "Node.js", "AI", "PostgreSQL"],
+    description: "AI report generation tool with customizable templates, structured sections, and keyword-based content automation.",
+    stack: ["React", "Node.js", "AI", "Automated Workflows"],
     status: "Active",
     icon: FileText,
     size: "normal"
@@ -23,8 +23,8 @@ const projects = [
   {
     id: "syncbatch",
     title: "SyncBatch",
-    description: "Bulk contact synchronization platform bridging Excel/CSV to Google Contacts and VCF with intelligent duplicate handling.",
-    stack: ["Next.js", "Google APIs", "MongoDB"],
+    description: "Bulk contact synchronization platform converting Excel/CSV data into phone-ready contacts with Google Contacts integration.",
+    stack: ["Next.js", "Google APIs", "VCF Export"],
     status: "Active",
     icon: Database,
     size: "normal"
@@ -32,8 +32,8 @@ const projects = [
   {
     id: "airloo",
     title: "AirLoo",
-    description: "IoT sanitation monitoring system with live dashboards, heatmaps, and hardware integration.",
-    stack: ["ESP32", "Firebase", "React", "Hardware"],
+    description: "IoT sanitation monitoring system using ESP32 and Firebase for real-time analytics, usage heatmaps, and automated alerts.",
+    stack: ["ESP32", "Firebase", "Real-time Dashboards"],
     status: "IoT",
     icon: Zap,
     size: "normal"
@@ -41,10 +41,19 @@ const projects = [
   {
     id: "firealert",
     title: "Smart Fire Alert",
-    description: "Real-time IoT fire detection platform bridging smoke/flame sensors to remote control dashboards.",
-    stack: ["ESP32", "Sensors", "MQTT", "Node.js"],
+    description: "IoT fire detection system with real-time sensor alerts, smoke/flame detection, and remote dashboard monitoring.",
+    stack: ["ESP32", "Sensors", "Emergency Workflows"],
     status: "IoT",
     icon: Cpu,
+    size: "normal"
+  },
+  {
+    id: "irrigation",
+    title: "Smart Irrigation",
+    description: "Automated irrigation system with moisture sensors, NTP scheduling, and cloud-connected Vue.js dashboard.",
+    stack: ["ESP32", "Firebase", "Vue.js"],
+    status: "IoT",
+    icon: Globe,
     size: "normal"
   }
 ];
