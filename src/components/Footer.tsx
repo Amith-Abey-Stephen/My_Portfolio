@@ -26,6 +26,9 @@ export function Footer() {
             <Mail className="w-4 h-4" />
             <span className="sr-only">Email</span>
           </a>
+          <a href="https://resume.amith.site" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-muted-foreground hover:text-primary transition-colors border-l border-white/10 pl-4 ml-2">
+            RESUME
+          </a>
         </div>
       </div>
     </footer>

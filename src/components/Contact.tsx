@@ -19,12 +19,24 @@ export function Contact() {
           {/* Shine effect */}
           <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-50" />
 
-          <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60">
-            Let's Build Something
+          <motion.div 
+            whileHover={{ scale: 1.1 }}
+            className="text-primary font-mono text-sm mb-6 uppercase tracking-widest flex items-center justify-center gap-2 cursor-default group"
+          >
+            <span className="text-primary/70 group-hover:text-primary transition-colors">//</span> CONTACT
+          </motion.div>
+
+          <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6 flex flex-col gap-2">
+            <span className="text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60">
+              Let's Build Something
+            </span>
+            <span className="text-5xl md:text-7xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-violet-500 pb-2">
+              Extraordinary.
+            </span>
           </h2>
           
           <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-xl mx-auto">
-            Whether you're building a startup, architecting an IoT system, or looking for a technical co-founder — my inbox is open.
+            Currently exploring new opportunities and open for collaborations on innovative projects.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">

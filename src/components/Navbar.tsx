@@ -59,6 +59,15 @@ export function Navbar() {
             </a>
           ))}
           <a
+            href="https://resume.amith.site"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            data-testid="link-resume"
+          >
+            Resume
+          </a>
+          <a
             href="#contact"
             className="text-sm font-medium px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
             data-testid="link-contact"

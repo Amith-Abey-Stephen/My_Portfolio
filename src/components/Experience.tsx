@@ -50,6 +50,12 @@ export function Experience() {
           transition={{ duration: 0.6 }}
           className="mb-16 md:text-center"
         >
+          <motion.div 
+            whileHover={{ x: 10 }}
+            className="text-primary font-mono text-sm mb-4 uppercase tracking-widest flex items-center gap-2 md:justify-center cursor-default group"
+          >
+            <span className="text-primary/70 group-hover:text-primary transition-colors">//</span> JOURNEY
+          </motion.div>
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">Journey Through Innovation</h2>
           <div className="h-1 w-20 bg-gradient-to-r from-violet-500 to-transparent rounded-full md:mx-auto" />
         </motion.div>

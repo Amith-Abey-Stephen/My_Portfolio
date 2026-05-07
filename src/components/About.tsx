@@ -49,7 +49,7 @@ const cardVariants = {
     y: 0,
     transition: { duration: 0.6, ease: "easeOut" }
   }
-};
+} as const;
 
 export function About() {
   return (
@@ -62,6 +62,12 @@ export function About() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
+          <motion.div 
+            whileHover={{ x: 10 }}
+            className="text-primary font-mono text-sm mb-4 uppercase tracking-widest flex items-center gap-2 cursor-default group"
+          >
+            <span className="text-primary/70 group-hover:text-primary transition-colors">//</span> ABOUT
+          </motion.div>
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">About</h2>
           <div className="h-1 w-20 bg-gradient-to-r from-primary to-transparent rounded-full" />
         </motion.div>

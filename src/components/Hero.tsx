@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronRight, Code2, Cpu, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronRight, Code2, Cpu, Sparkles, FileText } from "lucide-react";
 
 export function Hero() {
   return (
@@ -49,6 +49,16 @@ export function Hero() {
             >
               Explore Journey
               <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </a>
+            <a 
+              href="https://resume.amith.site" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-accent/10 border border-accent/20 text-accent font-medium hover:bg-accent hover:text-accent-foreground transition-all group"
+              data-testid="link-resume-hero"
+            >
+              Resume
+              <FileText className="w-4 h-4 transition-transform group-hover:scale-110" />
             </a>
           </div>
         </motion.div>
