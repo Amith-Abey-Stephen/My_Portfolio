@@ -7,7 +7,7 @@ const projects = [
     title: "InoMail",
     description: "AI-powered bulk email platform featuring robust queue systems, multi-tenant workspaces, analytics, and AI-assisted campaign generation.",
     stack: ["Next.js", "MongoDB", "BullMQ", "AI"],
-    status: "Featured",
+    status: "WIP",
     icon: Mail,
     size: "large"
   },
@@ -16,7 +16,7 @@ const projects = [
     title: "Mr DocGen",
     description: "AI report generation tool with customizable templates, structured sections, and keyword-based content automation.",
     stack: ["React", "Node.js", "AI", "Automated Workflows"],
-    status: "Active",
+    status: "WIP",
     icon: FileText,
     size: "normal"
   },
@@ -25,7 +25,7 @@ const projects = [
     title: "SyncBatch",
     description: "Bulk contact synchronization platform converting Excel/CSV data into phone-ready contacts with Google Contacts integration.",
     stack: ["Next.js", "Google APIs", "VCF Export"],
-    status: "Active",
+    status: "WIP",
     icon: Database,
     size: "normal"
   },
@@ -34,7 +34,7 @@ const projects = [
     title: "AirLoo",
     description: "IoT sanitation monitoring system using ESP32 and Firebase for real-time analytics, usage heatmaps, and automated alerts.",
     stack: ["ESP32", "Firebase", "Real-time Dashboards"],
-    status: "IoT",
+    status: "WIP",
     icon: Zap,
     size: "normal"
   },
@@ -43,7 +43,6 @@ const projects = [
     title: "Smart Fire Alert",
     description: "IoT fire detection system with real-time sensor alerts, smoke/flame detection, and remote dashboard monitoring.",
     stack: ["ESP32", "Sensors", "Emergency Workflows"],
-    status: "IoT",
     icon: Cpu,
     size: "normal"
   },
@@ -52,7 +51,6 @@ const projects = [
     title: "Smart Irrigation",
     description: "Automated irrigation system with moisture sensors, NTP scheduling, and cloud-connected Vue.js dashboard.",
     stack: ["ESP32", "Firebase", "Vue.js"],
-    status: "IoT",
     icon: Globe,
     size: "normal"
   }
@@ -108,8 +106,12 @@ export function Projects() {
                       <Icon className="w-6 h-6" />
                     </div>
                     <div className="flex gap-3">
-                      <span className="px-3 py-1 text-xs font-mono rounded-full bg-white/5 border border-white/10 text-muted-foreground uppercase tracking-wider">
-                        {project.status}
+                      <span className={`px-3 py-1 text-xs font-mono rounded-full border tracking-wider uppercase ${
+                        project.status === 'WIP' 
+                          ? 'bg-amber-500/10 border-amber-500/20 text-amber-500' 
+                          : 'bg-white/5 border-white/10 text-muted-foreground'
+                      }`}>
+                        {project.status === 'WIP' ? 'Work In Progress' : project.status}
                       </span>
                       <button className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground hover:text-white hover:bg-white/10 transition-colors">
                         <ExternalLink className="w-4 h-4" />
@@ -139,6 +141,25 @@ export function Projects() {
               </motion.div>
             );
           })}
+
+          {/* WIP / More Projects Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="glass-panel rounded-2xl p-8 border-dashed border-2 border-white/10 flex flex-col items-center justify-center text-center group hover:border-primary/30 transition-all cursor-default"
+          >
+            <div className="w-16 h-16 rounded-full bg-primary/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <Zap className="w-8 h-8 text-primary animate-pulse" />
+            </div>
+            <h3 className="text-xl font-bold mb-2">Something New?</h3>
+            <p className="text-sm text-muted-foreground mb-6">
+              Several ambitious projects are currently in the workshop. Stay tuned for the next release.
+            </p>
+            <div className="px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono uppercase tracking-widest">
+              Work In Progress
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
