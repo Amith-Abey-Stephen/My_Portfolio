@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -11,31 +10,21 @@ const navLinks = [
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { scrollY } = useScroll();
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 50],
-    ["rgba(11, 15, 25, 0)", "rgba(11, 15, 25, 0.8)"]
-  );
-  const borderColor = useTransform(
-    scrollY,
-    [0, 50],
-    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.1)"]
-  );
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <motion.header
-      style={{ backgroundColor, borderColor }}
+    <header
       className={`fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-md transition-all duration-300 ${
-        isScrolled ? "py-4 shadow-lg" : "py-6"
+        isScrolled
+          ? "py-4 shadow-lg bg-[rgba(11,15,25,0.8)] border-[rgba(255,255,255,0.1)]"
+          : "py-6 bg-transparent border-transparent"
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
@@ -47,7 +36,7 @@ export function Navbar() {
           AMITH<span className="text-primary">.SITE</span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -76,6 +65,6 @@ export function Navbar() {
           </a>
         </nav>
       </div>
-    </motion.header>
+    </header>
   );
 }

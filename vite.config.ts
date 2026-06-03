@@ -46,6 +46,16 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules/framer-motion")) return "vendor-framer-motion";
+          if (id.includes("node_modules/react-icons")) return "vendor-icons";
+          if (id.includes("node_modules/recharts")) return "vendor-charts";
+          if (id.includes("node_modules")) return "vendor";
+        },
+      },
+    },
   },
   server: {
     port,

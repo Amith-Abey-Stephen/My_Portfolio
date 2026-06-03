@@ -3,13 +3,22 @@ import { ExternalLink, Database, Cpu, Mail, FileText, Zap, Globe } from "lucide-
 
 const projects = [
   {
+    id: "syncbatch",
+    title: "SyncBatch",
+    description: "Bulk contact synchronization platform converting Excel/CSV data into phone-ready contacts with Google Contacts integration.",
+    stack: ["Next.js", "Google APIs", "VCF Export"],
+    status: "Released",
+    icon: Database,
+    size: "large"
+  },
+  {
     id: "inomail",
     title: "InoMail",
     description: "AI-powered bulk email platform featuring robust queue systems, multi-tenant workspaces, analytics, and AI-assisted campaign generation.",
     stack: ["Next.js", "MongoDB", "BullMQ", "AI"],
     status: "WIP",
     icon: Mail,
-    size: "large"
+    size: "normal"
   },
   {
     id: "mrdocgen",
@@ -18,15 +27,6 @@ const projects = [
     stack: ["React", "Node.js", "AI", "Automated Workflows"],
     status: "WIP",
     icon: FileText,
-    size: "normal"
-  },
-  {
-    id: "syncbatch",
-    title: "SyncBatch",
-    description: "Bulk contact synchronization platform converting Excel/CSV data into phone-ready contacts with Google Contacts integration.",
-    stack: ["Next.js", "Google APIs", "VCF Export"],
-    status: "WIP",
-    icon: Database,
     size: "normal"
   },
   {
@@ -106,14 +106,16 @@ export function Projects() {
                       <Icon className="w-6 h-6" />
                     </div>
                     <div className="flex gap-3">
-                      <span className={`px-3 py-1 text-xs font-mono rounded-full border tracking-wider uppercase ${
-                        project.status === 'WIP' 
-                          ? 'bg-amber-500/10 border-amber-500/20 text-amber-500' 
+                      <span className={`inline-flex items-center justify-center px-3 py-1 text-xs font-mono rounded-full border tracking-wider uppercase ${
+                        project.status === 'WIP'
+                          ? 'bg-amber-500/10 border-amber-500/20 text-amber-500'
+                          : project.status === 'Released'
+                          ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500'
                           : 'bg-white/5 border-white/10 text-muted-foreground'
                       }`}>
-                        {project.status === 'WIP' ? 'Work In Progress' : project.status}
+                        {project.status === 'WIP' ? 'Work In Progress' : project.status === 'Released' ? 'Released' : project.status}
                       </span>
-                      <button className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground hover:text-white hover:bg-white/10 transition-colors">
+                      <button aria-label={`Open ${project.title} in new tab`} className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground hover:text-white hover:bg-white/10 transition-colors">
                         <ExternalLink className="w-4 h-4" />
                       </button>
                     </div>
