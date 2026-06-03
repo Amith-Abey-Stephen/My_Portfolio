@@ -50,7 +50,7 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules/framer-motion")) return "vendor-framer-motion";
-          if (id.includes("node_modules/react-icons")) return "vendor-icons";
+          if (id.includes("node_modules/lucide-react") || id.includes("node_modules/react-icons")) return "vendor-icons";
           if (id.includes("node_modules/recharts")) return "vendor-charts";
           if (id.includes("node_modules")) return "vendor";
         },

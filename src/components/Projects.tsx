@@ -101,12 +101,12 @@ export function Projects() {
                 <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 
                 <div className="relative z-10">
-                  <div className="flex justify-between items-start mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-foreground">
+                  <div className="flex justify-between items-center mb-6 gap-2 sm:gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-foreground flex-shrink-0">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <div className="flex gap-3">
-                      <span className={`inline-flex items-center justify-center px-3 py-1 text-xs font-mono rounded-full border tracking-wider uppercase ${
+                    <div className="flex gap-2 sm:gap-3 items-center">
+                      <span className={`inline-flex items-center justify-center px-2.5 py-1 text-[0.65rem] sm:text-xs font-mono rounded-full border tracking-wider uppercase flex-shrink-0 ${
                         project.status === 'WIP'
                           ? 'bg-amber-500/10 border-amber-500/20 text-amber-500'
                           : project.status === 'Released'
@@ -115,7 +115,7 @@ export function Projects() {
                       }`}>
                         {project.status === 'WIP' ? 'Work In Progress' : project.status === 'Released' ? 'Released' : project.status}
                       </span>
-                      <button aria-label={`Open ${project.title} in new tab`} className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground hover:text-white hover:bg-white/10 transition-colors">
+                      <button aria-label={`Open ${project.title} in new tab`} className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground hover:text-white hover:bg-white/10 transition-colors flex-shrink-0">
                         <ExternalLink className="w-4 h-4" />
                       </button>
                     </div>
