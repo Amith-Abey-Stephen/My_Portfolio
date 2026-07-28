@@ -1,0 +1,186 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/*
+ * amith.site — Design System
+ * Source of truth: docs/02_DESIGN_SYSTEM.md
+ *
+ * Neutrals dominate. Burgundy is reserved for emphasis.
+ * The work should be remembered — not the colors.
+ */
+
+@theme {
+  /* ── Brand ───────────────────────────────────────────── */
+  --color-burgundy: #7a2435;
+  --color-burgundy-hover: #8c2b3f;
+  --color-burgundy-soft: #a03247;
+  --color-burgundy-foreground: #f8f8f7;
+
+  /* ── Neutrals ────────────────────────────────────────── */
+  --color-background: #0c0c0d;
+  --color-surface: #141416;
+  --color-elevated: #1d1d20;
+  --color-border: #2b2b30;
+  --color-border-strong: #3a3a41;
+
+  /* ── Typography colors ───────────────────────────────── */
+  --color-foreground: #f8f8f7;
+  --color-secondary: #b8b8bc;
+  --color-muted: #8a8a91;
+  --color-cream: #f4f1ec;
+
+  /* ── Fonts ───────────────────────────────────────────── */
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  --font-heading:
+    var(--font-geist-sans), var(--font-inter), ui-sans-serif, system-ui,
+    sans-serif;
+  --font-mono:
+    var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* ── Radii (docs 02) ─────────────────────────────────── */
+  --radius-input: 14px;
+  --radius-btn: 16px;
+  --radius-card: 24px;
+
+  /* ── Editorial widths ────────────────────────────────── */
+  --container-page: 1440px;
+  --container-read: 760px;
+  --container-read-wide: 840px;
+
+  /* ── Motion (docs 03) ────────────────────────────────── */
+  --ease-out-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-burgundy) 45%, transparent);
+    color: var(--color-foreground);
+  }
+
+  /* Visible, calm focus states (docs: focus states visible) */
+  :focus-visible {
+    outline: 2px solid var(--color-burgundy-soft);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Thin, quiet scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-background);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-elevated);
+    border-radius: 999px;
+    border: 2px solid var(--color-background);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-border-strong);
+  }
+}
+
+@layer components {
+  /* Section eyebrow — small mono label used above headings */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  /* A hairline burgundy accent used sparingly */
+  .accent-rule {
+    height: 2px;
+    width: 2.5rem;
+    background: var(--color-burgundy);
+    border-radius: 999px;
+  }
+
+  /* Underline-grow link (docs micro-interactions) */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.35s var(--ease-out-editorial);
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+}
+
+/* Editorial prose — magazine reading experience */
+.prose-editorial {
+  --tw-prose-body: var(--color-secondary);
+  --tw-prose-headings: var(--color-foreground);
+  --tw-prose-lead: var(--color-secondary);
+  --tw-prose-links: var(--color-foreground);
+  --tw-prose-bold: var(--color-foreground);
+  --tw-prose-counters: var(--color-muted);
+  --tw-prose-bullets: var(--color-border-strong);
+  --tw-prose-hr: var(--color-border);
+  --tw-prose-quotes: var(--color-foreground);
+  --tw-prose-quote-borders: var(--color-burgundy);
+  --tw-prose-captions: var(--color-muted);
+  --tw-prose-code: var(--color-cream);
+  --tw-prose-pre-code: var(--color-secondary);
+  --tw-prose-pre-bg: var(--color-surface);
+  --tw-prose-th-borders: var(--color-border);
+  --tw-prose-td-borders: var(--color-border);
+}
+
+/* Respect reduced motion everywhere (docs 03 + accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

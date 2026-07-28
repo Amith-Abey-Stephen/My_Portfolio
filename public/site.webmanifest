@@ -1,6 +1,7 @@
 {
-  "name": "Amith Abey Stephen Portfolio",
-  "short_name": "Amith Portfolio",
+  "name": "amith.site — Amith Abey Stephen",
+  "short_name": "amith.site",
+  "description": "A digital home documenting the journey of a builder.",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +16,8 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone"
+  "theme_color": "#0c0c0d",
+  "background_color": "#0c0c0d",
+  "display": "standalone",
+  "start_url": "/"
 }
