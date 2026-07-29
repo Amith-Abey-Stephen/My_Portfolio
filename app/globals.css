@@ -183,6 +183,114 @@
   --tw-prose-td-borders: var(--color-border);
 }
 
+/* ── Ghost article output rendered inside .prose-editorial ─────────── */
+
+/* Headings clear the fixed nav when jumped to from the table of contents */
+.prose-editorial :where(h2, h3) {
+  scroll-margin-top: 6rem;
+}
+
+/* Images & figures (kg-image-card, galleries) */
+.prose-editorial :where(img) {
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+}
+.prose-editorial :where(figure) {
+  margin-top: 2.25rem;
+  margin-bottom: 2.25rem;
+}
+.prose-editorial :where(figcaption) {
+  margin-top: 0.75rem;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+.prose-editorial :where(.kg-card) {
+  margin-top: 2.25rem;
+  margin-bottom: 2.25rem;
+}
+
+/* Ghost "wide"/"full" images stay within the reading column, just bigger */
+.prose-editorial :where(.kg-width-wide, .kg-width-full) img {
+  width: 100%;
+}
+
+/* Embeds & videos → responsive 16:9 */
+.prose-editorial :where(.kg-embed-card, .kg-video-card) {
+  position: relative;
+  width: 100%;
+}
+.prose-editorial :where(iframe) {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+  border-radius: 12px;
+  background: var(--color-surface);
+}
+
+/* Bookmark cards */
+.prose-editorial :where(.kg-bookmark-card) {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.prose-editorial :where(.kg-bookmark-container) {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-surface);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.2s ease;
+}
+.prose-editorial :where(.kg-bookmark-container):hover {
+  border-color: var(--color-border-strong);
+}
+.prose-editorial :where(.kg-bookmark-content) {
+  padding: 1.25rem 1.5rem;
+}
+.prose-editorial :where(.kg-bookmark-title) {
+  color: var(--color-foreground);
+  font-weight: 600;
+}
+.prose-editorial :where(.kg-bookmark-description) {
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+}
+
+/* Code — surface panel, no auto backticks on inline code */
+.prose-editorial :where(pre) {
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  overflow-x: auto;
+}
+.prose-editorial :where(code)::before,
+.prose-editorial :where(code)::after {
+  content: none;
+}
+.prose-editorial :where(:not(pre) > code) {
+  background: var(--color-elevated);
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+  font-size: 0.85em;
+  color: var(--color-cream);
+  font-weight: 500;
+}
+
+/* Blockquote — burgundy rule (border colour comes from the prose var) */
+.prose-editorial :where(blockquote) {
+  font-style: normal;
+  border-left-width: 2px;
+  padding-left: 1.5rem;
+}
+.prose-editorial :where(blockquote p:first-of-type)::before,
+.prose-editorial :where(blockquote p:last-of-type)::after {
+  content: none;
+}
+
 /* Respect reduced motion everywhere (docs 03 + accessibility) */
 @media (prefers-reduced-motion: reduce) {
   *,

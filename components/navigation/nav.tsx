@@ -26,8 +26,11 @@ export function Nav() {
   // Close the mobile menu on route change.
   useEffect(() => setOpen(false), [pathname]);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = (href: string) => {
+    // Hash links (e.g. "/#writing") stay active on their detail routes.
+    if (href.startsWith("/#")) return pathname.startsWith(`/${href.slice(2)}`);
+    return href === "/" ? pathname === "/" : pathname.startsWith(href);
+  };
 
   return (
     <header
@@ -62,7 +65,7 @@ export function Nav() {
               {item.label}
             </Link>
           ))}
-          <ButtonLink href="/contact" variant="primary" size="sm">
+          <ButtonLink href="/#contact" variant="primary" size="sm">
             Get in touch
           </ButtonLink>
         </nav>

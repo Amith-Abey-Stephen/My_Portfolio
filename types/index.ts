@@ -49,14 +49,32 @@ export interface StoryChapter {
   body: string[];
 }
 
+export interface PostTag {
+  name: string;
+  slug: string;
+}
+
+export interface Tag extends PostTag {
+  count: number;
+}
+
 export interface Post {
+  slug: string;
   title: string;
   excerpt: string;
+  /** Rendered article HTML — populated for single posts, "" in list views. */
+  html: string;
   publishedAt: string;
+  updatedAt: string;
+  /** The original Ghost URL (used for canonical + "originally published"). */
   url: string;
   featureImage: string | null;
+  featureImageCaption: string | null;
   readingTime: string;
-  tags: string[];
+  tags: PostTag[];
+  primaryTag: PostTag | null;
+  metaTitle: string | null;
+  metaDescription: string | null;
 }
 
 export interface NowData {

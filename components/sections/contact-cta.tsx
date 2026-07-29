@@ -21,7 +21,7 @@ export function ContactCTA() {
           building something interesting, say hello.
         </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <ButtonLink href="/contact" variant="primary">
+          <ButtonLink href="/#contact" variant="primary">
             Start a conversation
             <ArrowRight className="h-4 w-4" />
           </ButtonLink>

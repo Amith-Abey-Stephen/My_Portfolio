@@ -22,7 +22,7 @@ export const site = {
     { label: "Work", href: "/work" },
     { label: "Journey", href: "/journey" },
     { label: "Capabilities", href: "/capabilities" },
-    { label: "Writing", href: "/writing" },
+    { label: "Writing", href: "/#writing" },
     { label: "About", href: "/about" },
   ],
   // Secondary pages, surfaced in the footer
@@ -32,7 +32,7 @@ export const site = {
     { label: "Uses", href: "/uses" },
     { label: "Playground", href: "/playground" },
     { label: "Resume", href: "/resume" },
-    { label: "Contact", href: "/contact" },
+    { label: "Contact", href: "/#contact" },
   ],
 } as const;
 
