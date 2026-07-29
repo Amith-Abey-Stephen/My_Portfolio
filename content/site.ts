@@ -2,9 +2,11 @@ export const site = {
   name: "amith.site",
   author: "Amith Abey Stephen",
   glyph: "a.",
-  role: "A builder who loves solving real problems.",
+  role: "Product Engineer",
+  purpose: "Building products with purpose.",
+  positioning: "A builder who loves solving real problems.",
   tagline:
-    "I turn ideas into products — software, hardware, and the communities around them — and document the journey openly.",
+    "I enjoy building software that solves real problems and creates meaningful impact.",
   location: "Kerala, India",
   email: "amithabey13@gmail.com",
   url: "https://www.amith.site",
@@ -15,9 +17,9 @@ export const site = {
     linkedin: "https://linkedin.com/in/Amith-Abey-Stephen",
     email: "mailto:amithabey13@gmail.com",
   },
+  // Primary navbar — matches the brand board.
   nav: [
     { label: "Work", href: "/work" },
-    { label: "Story", href: "/story" },
     { label: "Journey", href: "/journey" },
     { label: "Capabilities", href: "/capabilities" },
     { label: "Writing", href: "/writing" },
@@ -25,6 +27,7 @@ export const site = {
   ],
   // Secondary pages, surfaced in the footer
   more: [
+    { label: "Story", href: "/story" },
     { label: "Now", href: "/now" },
     { label: "Uses", href: "/uses" },
     { label: "Playground", href: "/playground" },

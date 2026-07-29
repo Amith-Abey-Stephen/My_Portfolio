@@ -30,7 +30,7 @@ export default function UsesPage() {
               <RevealItem key={group.title}>
                 <div className="h-full rounded-card border border-border bg-surface p-8">
                   <div className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-input border border-border bg-elevated text-burgundy-soft">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-input border border-border bg-elevated text-burgundy-light">
                       <Icon className="h-5 w-5" strokeWidth={1.75} />
                     </span>
                     <h2 className="text-lg font-semibold text-foreground">

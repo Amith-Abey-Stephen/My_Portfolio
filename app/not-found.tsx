@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     <Container className="flex min-h-[80vh] flex-col items-center justify-center py-32 text-center">
       <p className="font-heading text-7xl font-semibold text-elevated md:text-8xl">
-        4<span className="text-burgundy-soft">0</span>4
+        4<span className="text-burgundy-light">0</span>4
       </p>
       <h1 className="mt-6 text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
         Looks like this page hasn&rsquo;t been built yet.

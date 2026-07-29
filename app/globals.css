@@ -12,22 +12,35 @@
 @theme {
   /* ── Brand ───────────────────────────────────────────── */
   --color-burgundy: #7a2435;
-  --color-burgundy-hover: #8c2b3f;
-  --color-burgundy-soft: #a03247;
+  --color-burgundy-dark: #611a2a;
+  --color-burgundy-light: #835d73;
+  --color-burgundy-hover: #611a2a;
   --color-burgundy-foreground: #f8f8f7;
 
   /* ── Neutrals ────────────────────────────────────────── */
-  --color-background: #0c0c0d;
-  --color-surface: #141416;
-  --color-elevated: #1d1d20;
-  --color-border: #2b2b30;
+  --color-background: #0c0c0d; /* Midnight */
+  --color-surface: #141416; /* Canvas */
+  --color-elevated: #1d1d20; /* Elevated */
+  --color-border: #2b2b30; /* Border */
   --color-border-strong: #3a3a41;
 
   /* ── Typography colors ───────────────────────────────── */
-  --color-foreground: #f8f8f7;
-  --color-secondary: #b8b8bc;
-  --color-muted: #8a8a91;
-  --color-cream: #f4f1ec;
+  --color-foreground: #f8f8f7; /* Text Primary */
+  --color-secondary: #b8b8bc; /* Text Secondary */
+  --color-muted: #8a8a91; /* Text Muted */
+  --color-disabled: #5a5a62; /* Text Disabled */
+
+  /* ── Semantic ────────────────────────────────────────── */
+  --color-success: #3fa66b;
+  --color-warning: #d6a343;
+  --color-error: #c84c4c;
+  --color-info: #4e89c7;
+
+  /* ── Accents ─────────────────────────────────────────── */
+  --color-ivory: #f4f1ec;
+  --color-stone: #dbd4cd;
+  --color-slate-blue: #5f6e87;
+  --color-cream: #f4f1ec; /* alias of ivory */
 
   /* ── Fonts ───────────────────────────────────────────── */
   --font-sans:
@@ -96,7 +109,7 @@
 
   /* Visible, calm focus states (docs: focus states visible) */
   :focus-visible {
-    outline: 2px solid var(--color-burgundy-soft);
+    outline: 2px solid var(--color-burgundy-light);
     outline-offset: 3px;
     border-radius: 4px;
   }

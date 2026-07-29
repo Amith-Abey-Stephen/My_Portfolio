@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/content/site";
 
-export const alt = `${site.author} — A builder who loves solving real problems`;
+export const alt = `${site.author} — Building products with purpose`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -15,64 +15,89 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#0c0c0d",
+          background: "linear-gradient(135deg, #0c0c0d 55%, #2c0f16 100%)",
           padding: "80px",
           fontFamily: "sans-serif",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        {/* subtle burgundy wash */}
+        {/* burgundy corner wash */}
         <div
           style={{
             position: "absolute",
-            top: -160,
-            right: -120,
-            width: 520,
-            height: 520,
-            borderRadius: 520,
-            background: "rgba(122,36,53,0.35)",
-            filter: "blur(40px)",
+            top: -180,
+            right: -140,
+            width: 560,
+            height: 560,
+            borderRadius: 560,
+            background: "rgba(122,36,53,0.38)",
+            filter: "blur(50px)",
           }}
         />
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+
+        {/* faded monogram watermark */}
+        <div
+          style={{
+            position: "absolute",
+            right: 40,
+            bottom: -120,
+            display: "flex",
+            alignItems: "flex-end",
+            color: "rgba(248,248,247,0.05)",
+            fontSize: 460,
+            fontWeight: 700,
+            lineHeight: 1,
+          }}
+        >
+          a
           <div
             style={{
-              width: 56,
-              height: 56,
-              borderRadius: 14,
-              background: "#7A2435",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#F8F8F7",
-              fontSize: 34,
-              fontWeight: 600,
+              width: 70,
+              height: 70,
+              marginBottom: 70,
+              marginLeft: 8,
+              borderRadius: 12,
+              background: "rgba(122,36,53,0.5)",
             }}
-          >
-            a.
-          </div>
-          <div style={{ color: "#8A8A91", fontSize: 26, letterSpacing: 2 }}>
-            amith.site
-          </div>
+          />
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        {/* wordmark */}
+        <div style={{ display: "flex", alignItems: "flex-end" }}>
+          <span style={{ color: "#F8F8F7", fontSize: 30, fontWeight: 600 }}>
+            amith.site
+          </span>
+          <div
+            style={{
+              width: 12,
+              height: 12,
+              marginBottom: 6,
+              marginLeft: 6,
+              borderRadius: 3,
+              background: "#7A2435",
+            }}
+          />
+        </div>
+
+        {/* headline */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
           <div
             style={{
               display: "flex",
               flexWrap: "wrap",
               color: "#F8F8F7",
-              fontSize: 76,
+              fontSize: 84,
               fontWeight: 600,
-              lineHeight: 1.05,
-              letterSpacing: -1,
-              maxWidth: 940,
+              lineHeight: 1.03,
+              letterSpacing: -1.5,
+              maxWidth: 820,
             }}
           >
-            <span>A builder who loves&nbsp;</span>
-            <span style={{ color: "#A03247" }}>solving real problems.</span>
+            {site.purpose}
           </div>
           <div style={{ color: "#B8B8BC", fontSize: 30 }}>
-            {`${site.author} · Software · Hardware · Community`}
+            {`${site.author} · ${site.role}`}
           </div>
         </div>
       </div>

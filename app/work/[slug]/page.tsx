@@ -68,7 +68,7 @@ export default async function ProjectPage({
           <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <Reveal>
-                <span className="mb-6 flex h-14 w-14 items-center justify-center rounded-card border border-border bg-surface text-burgundy-soft">
+                <span className="mb-6 flex h-14 w-14 items-center justify-center rounded-card border border-border bg-surface text-burgundy-light">
                   <Icon className="h-6 w-6" strokeWidth={1.5} />
                 </span>
               </Reveal>

@@ -9,6 +9,7 @@ import { site } from "@/content/site";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/layout/container";
 import { ButtonLink } from "@/components/ui/button";
+import { Wordmark } from "@/components/brand/wordmark";
 
 export function Nav() {
   const pathname = usePathname();
@@ -38,15 +39,8 @@ export function Nav() {
       )}
     >
       <Container className="flex items-center justify-between">
-        <Link
-          href="/"
-          className="group flex items-baseline gap-0.5 font-heading text-lg font-semibold tracking-tight"
-          aria-label={`${site.author} — home`}
-        >
-          <span className="text-foreground">amith</span>
-          <span className="text-burgundy-soft transition-colors group-hover:text-burgundy">
-            .site
-          </span>
+        <Link href="/" aria-label={`${site.author} — home`}>
+          <Wordmark className="text-lg" />
         </Link>
 
         {/* Desktop nav */}

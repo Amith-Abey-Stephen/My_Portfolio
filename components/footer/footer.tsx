@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { site } from "@/content/site";
 import { Container } from "@/components/layout/container";
+import { Wordmark } from "@/components/brand/wordmark";
 
 const socialLinks = [
   { label: "GitHub", href: site.socials.github, icon: Github, external: true },
@@ -23,11 +24,8 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
           {/* Signature */}
           <div className="max-w-sm">
-            <Link
-              href="/"
-              className="font-heading text-2xl font-semibold tracking-tight"
-            >
-              amith<span className="text-burgundy-soft">.site</span>
+            <Link href="/" aria-label={`${site.author} — home`}>
+              <Wordmark className="text-2xl" />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-muted">
               Built with curiosity. Made in Kerala. Always learning.

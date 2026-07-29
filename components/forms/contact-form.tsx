@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 type Status = "idle" | "submitting" | "success" | "error";
 
 const field =
-  "w-full rounded-input border border-border bg-surface px-4 py-3 text-foreground placeholder:text-muted transition-colors focus:border-burgundy-soft focus:outline-none focus-visible:outline-none";
+  "w-full rounded-input border border-border bg-surface px-4 py-3 text-foreground placeholder:text-muted transition-colors focus:border-burgundy-light focus:outline-none focus-visible:outline-none";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -47,7 +47,7 @@ export function ContactForm() {
           animate={{ opacity: 1, y: 0 }}
           className="rounded-card border border-border bg-surface p-10 text-center"
         >
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-burgundy/30 bg-burgundy/10 text-burgundy-soft">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-burgundy/30 bg-burgundy/10 text-burgundy-light">
             <Check className="h-5 w-5" />
           </div>
           <h3 className="mt-5 text-xl font-semibold text-foreground">

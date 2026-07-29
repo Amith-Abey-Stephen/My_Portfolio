@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Monogram } from "@/components/brand/wordmark";
 
 /**
  * The arrival moment (docs 03): a. → amith.site → Building… → the site enters.
@@ -43,14 +44,12 @@ export function LoadingScreen() {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col items-center gap-4"
             >
-              <span className="font-heading text-5xl font-semibold text-foreground">
-                a<span className="text-burgundy-soft">.</span>
-              </span>
+              <Monogram className="text-5xl" />
               <span className="font-mono text-xs uppercase tracking-[0.35em] text-muted">
                 amith.site
               </span>
               <span className="mt-1 flex items-center gap-1.5 font-mono text-[0.7rem] uppercase tracking-[0.25em] text-muted/70">
-                Building
+                Loading
                 <span className="inline-flex gap-0.5">
                   {[0, 1, 2].map((i) => (
                     <motion.span

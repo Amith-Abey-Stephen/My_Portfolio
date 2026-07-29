@@ -43,7 +43,7 @@ export default function NowPage() {
                 {section.items.map((item, j) => (
                   <li key={j} className="flex gap-4">
                     <span
-                      className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-burgundy-soft"
+                      className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-burgundy-light"
                       aria-hidden
                     />
                     <span className="text-lg leading-relaxed text-secondary">

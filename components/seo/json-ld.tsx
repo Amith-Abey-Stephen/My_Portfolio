@@ -9,9 +9,9 @@ export function PersonJsonLd() {
     alternateName: "Amith",
     url: site.url,
     email: site.email,
-    jobTitle: "Builder — Product & IoT Engineer",
+    jobTitle: "Product Engineer",
     description:
-      "A builder who loves solving real problems and turning ideas into products.",
+      "A Product Engineer who builds software that solves real problems and creates meaningful impact.",
     homeLocation: {
       "@type": "Place",
       name: site.location,

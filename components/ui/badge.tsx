@@ -22,8 +22,8 @@ export function Badge({
 }
 
 const statusStyles: Record<ProjectStatus, string> = {
-  Released: "border-emerald-500/25 bg-emerald-500/10 text-emerald-300",
-  "In Progress": "border-amber-500/25 bg-amber-500/10 text-amber-300",
+  Released: "border-success/30 bg-success/10 text-success",
+  "In Progress": "border-warning/30 bg-warning/10 text-warning",
   Concept: "border-border bg-elevated text-muted",
 };
 

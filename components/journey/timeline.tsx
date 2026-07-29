@@ -27,7 +27,7 @@ export function Timeline({ items }: { items: JourneyMilestone[] }) {
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
               <p className="font-mono text-xs text-muted">{item.period}</p>
               {item.current && (
-                <span className="rounded-full border border-burgundy/30 bg-burgundy/10 px-2 py-0.5 font-mono text-[0.65rem] uppercase tracking-wider text-burgundy-soft">
+                <span className="rounded-full border border-burgundy/30 bg-burgundy/10 px-2 py-0.5 font-mono text-[0.65rem] uppercase tracking-wider text-burgundy-light">
                   Now
                 </span>
               )}
@@ -36,7 +36,7 @@ export function Timeline({ items }: { items: JourneyMilestone[] }) {
             <h3 className="mt-2 text-xl font-semibold tracking-tight text-foreground">
               {item.role}
             </h3>
-            <p className="text-sm font-medium text-burgundy-soft">
+            <p className="text-sm font-medium text-burgundy-light">
               {item.organization}
             </p>
             <p className="mt-3 max-w-2xl leading-relaxed text-secondary">

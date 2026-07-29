@@ -1,12 +1,13 @@
 import { journey } from "@/content/journey";
-import { communityIntro, stats } from "@/content/community";
+import { communityIntro } from "@/content/community";
 import { pageMetadata } from "@/lib/metadata";
 import { Container } from "@/components/layout/container";
 import { PageHeader } from "@/components/layout/page-header";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { Timeline } from "@/components/journey/timeline";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
+import { Reveal } from "@/components/motion/reveal";
+import { StatsGrid } from "@/components/sections/stats-grid";
 
 export const metadata = pageMetadata({
   title: "Journey",
@@ -45,29 +46,7 @@ export default function JourneyPage() {
             </Reveal>
           </div>
 
-          <RevealGroup className="grid grid-cols-2 gap-px overflow-hidden rounded-card border border-border bg-border">
-            {stats.map((stat) => {
-              const Icon = stat.icon;
-              return (
-                <RevealItem key={stat.label}>
-                  <div className="flex h-full flex-col justify-between gap-6 bg-surface p-6 md:p-8">
-                    <Icon
-                      className="h-5 w-5 text-burgundy-soft"
-                      strokeWidth={1.5}
-                    />
-                    <div>
-                      <div className="font-heading text-4xl font-semibold tracking-tight text-foreground">
-                        {stat.value}
-                      </div>
-                      <div className="mt-1.5 font-mono text-[0.7rem] uppercase tracking-wider text-muted">
-                        {stat.label}
-                      </div>
-                    </div>
-                  </div>
-                </RevealItem>
-              );
-            })}
-          </RevealGroup>
+          <StatsGrid />
         </div>
       </Section>
     </>

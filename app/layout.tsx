@@ -14,11 +14,11 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${site.author} — A builder who loves solving real problems`,
+    default: `${site.author} — Building products with purpose`,
     template: `%s — ${site.author}`,
   },
   description:
-    "amith.site is a digital home documenting the journey of a builder — turning ideas into products across software, hardware, and community.",
+    "amith.site — Amith Abey Stephen, a Product Engineer from Kerala building software that solves real problems and creates meaningful impact.",
   keywords: seoKeywords,
   authors: [{ name: site.author, url: site.url }],
   creator: site.author,
@@ -27,16 +27,16 @@ export const metadata: Metadata = {
     type: "website",
     url: site.url,
     siteName: site.name,
-    title: `${site.author} — A builder who loves solving real problems`,
+    title: `${site.author} — Building products with purpose`,
     description:
-      "A digital home documenting the journey of a builder — software, hardware, and the communities around them.",
+      "Product Engineer from Kerala building software that solves real problems and creates meaningful impact.",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.author} — Builder`,
+    title: `${site.author} — Building products with purpose`,
     description:
-      "A digital home documenting the journey of a builder — software, hardware, and community.",
+      "Product Engineer building software that solves real problems and creates meaningful impact.",
   },
   icons: {
     icon: [

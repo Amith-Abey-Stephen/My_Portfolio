@@ -28,7 +28,7 @@ export default function CapabilitiesPage() {
             return (
               <RevealItem key={group.title}>
                 <div className="flex h-full flex-col rounded-card border border-border bg-surface p-8">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-input border border-border bg-elevated text-burgundy-soft">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-input border border-border bg-elevated text-burgundy-light">
                     <Icon className="h-5 w-5" strokeWidth={1.75} />
                   </span>
                   <h2 className="mt-6 text-xl font-semibold tracking-tight text-foreground">

@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { about } from "@/content/about";
+import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
 import { Container } from "@/components/layout/container";
 import { PageHeader } from "@/components/layout/page-header";
@@ -26,11 +28,28 @@ export default function AboutPage() {
       />
 
       <Container className="pb-8">
-        <Reveal className="max-w-2xl">
-          <p className="text-lg leading-relaxed text-secondary">
-            {about.intro[1]}
-          </p>
-        </Reveal>
+        <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-center md:gap-14">
+          <Reveal y={0}>
+            <div className="relative mx-auto flex aspect-[4/5] w-full max-w-xs items-end justify-center overflow-hidden rounded-card border border-border bg-surface">
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-[radial-gradient(circle_at_50%_28%,rgba(122,36,53,0.3),transparent_62%)]"
+              />
+              <Image
+                src="/portrait.png"
+                alt={`${site.author} — ${site.role}`}
+                width={1065}
+                height={1600}
+                className="relative z-10 h-[112%] w-auto object-contain object-bottom"
+              />
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="text-lg leading-relaxed text-secondary md:text-xl">
+              {about.intro[1]}
+            </p>
+          </Reveal>
+        </div>
       </Container>
 
       {/* Philosophy */}
@@ -109,7 +128,7 @@ export default function AboutPage() {
               {about.funFacts.map((fact, i) => (
                 <Reveal as="li" key={i} delay={i * 0.05} className="flex gap-4">
                   <span
-                    className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-burgundy-soft"
+                    className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-burgundy-light"
                     aria-hidden
                   />
                   <span className="text-lg leading-relaxed text-secondary">

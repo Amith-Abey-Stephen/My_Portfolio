@@ -59,7 +59,7 @@ export default function ContactPage() {
                         className="flex items-center gap-4 bg-surface px-6 py-5 transition-colors hover:bg-elevated"
                       >
                         <Icon
-                          className="h-5 w-5 shrink-0 text-burgundy-soft"
+                          className="h-5 w-5 shrink-0 text-burgundy-light"
                           strokeWidth={1.5}
                         />
                         <span className="min-w-0">
