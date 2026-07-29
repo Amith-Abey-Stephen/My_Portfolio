@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Link2, Linkedin, Twitter } from "lucide-react";
+import { Check, Link2 } from "lucide-react";
+import { Linkedin, Twitter } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
 /** Copy-link + social share for an article. */

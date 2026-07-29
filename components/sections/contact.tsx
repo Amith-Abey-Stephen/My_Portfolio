@@ -1,4 +1,5 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { Github, Linkedin } from "@/components/ui/icons";
 import { site } from "@/content/site";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
+import { Github, Linkedin } from "@/components/ui/icons";
 import { site } from "@/content/site";
 import { Container } from "@/components/layout/container";
 import { Wordmark } from "@/components/brand/wordmark";

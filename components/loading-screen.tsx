@@ -9,13 +9,13 @@ import { Monogram } from "@/components/brand/wordmark";
  * Calm, quiet, and capped at ~1 second. Shown once per session.
  */
 export function LoadingScreen() {
-  const [done, setDone] = useState(false);
+  const [done, setDone] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return Boolean(sessionStorage.getItem("amith:entered"));
+  });
 
   useEffect(() => {
-    if (sessionStorage.getItem("amith:entered")) {
-      setDone(true);
-      return;
-    }
+    if (sessionStorage.getItem("amith:entered")) return;
     const timer = setTimeout(() => {
       sessionStorage.setItem("amith:entered", "1");
       setDone(true);

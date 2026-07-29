@@ -74,6 +74,7 @@ function SlideInCard({
 export function SelectedWork() {
   const reduceMotion = useReducedMotion();
   const [mounted, setMounted] = useState(false);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
 
   const ref = useRef<HTMLDivElement>(null);

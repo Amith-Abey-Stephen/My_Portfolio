@@ -26,6 +26,7 @@ function CountUp({
   useEffect(() => {
     if (!start) return;
     if (reduceMotion) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setN(target);
       return;
     }
