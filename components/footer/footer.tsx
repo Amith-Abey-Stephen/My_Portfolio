@@ -1,8 +1,41 @@
 import Link from "next/link";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import { site } from "@/content/site";
 import { Container } from "@/components/layout/container";
 import { Wordmark } from "@/components/brand/wordmark";
+
+type FooterLink = { label: string; href: string; external?: boolean };
+
+const groups: { title: string; links: FooterLink[] }[] = [
+  {
+    title: "Explore",
+    links: [
+      { label: "Work", href: "/work" },
+      { label: "Journey", href: "/journey" },
+      { label: "Capabilities", href: "/#capabilities" },
+      { label: "Writing", href: "/#writing" },
+    ],
+  },
+  {
+    title: "More",
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Story", href: "/story" },
+      { label: "Now", href: "/now" },
+      { label: "Uses", href: "/uses" },
+      { label: "Playground", href: "/playground" },
+    ],
+  },
+  {
+    title: "Connect",
+    links: [
+      { label: "Contact", href: "/#contact" },
+      { label: "Resume", href: site.resumeUrl, external: true },
+      { label: "Blog", href: site.blogUrl, external: true },
+      { label: "RSS", href: "/writing/rss.xml", external: true },
+    ],
+  },
+];
 
 const socialLinks = [
   { label: "GitHub", href: site.socials.github, icon: Github, external: true },
@@ -15,56 +48,66 @@ const socialLinks = [
   { label: "Email", href: site.socials.email, icon: Mail, external: false },
 ];
 
+function FooterLinkItem({ link }: { link: FooterLink }) {
+  const className =
+    "link-underline inline-flex items-center gap-1 text-sm text-secondary hover:text-foreground";
+  if (link.external) {
+    return (
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+      >
+        {link.label}
+        <ArrowUpRight className="h-3 w-3 text-muted" />
+      </a>
+    );
+  }
+  return (
+    <Link href={link.href} className={className}>
+      {link.label}
+    </Link>
+  );
+}
+
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="border-t border-border bg-background">
       <Container className="py-16 md:py-20">
-        <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
+        <div className="grid gap-12 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
           {/* Signature */}
-          <div className="max-w-sm">
+          <div className="max-w-xs">
             <Link href="/" aria-label={`${site.author} — home`}>
               <Wordmark className="text-2xl" />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-muted">
               Built with curiosity. Made in Kerala. Always learning.
             </p>
+            <span className="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1.5 font-mono text-xs text-secondary">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-burgundy-light/60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-burgundy-light" />
+              </span>
+              Available for work
+            </span>
           </div>
 
-          {/* Explore */}
-          <nav aria-label="Footer — explore">
-            <p className="eyebrow mb-4">Explore</p>
-            <ul className="space-y-2.5">
-              {site.nav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="link-underline text-sm text-secondary hover:text-foreground"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* More */}
-          <nav aria-label="Footer — more">
-            <p className="eyebrow mb-4">More</p>
-            <ul className="space-y-2.5">
-              {site.more.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="link-underline text-sm text-secondary hover:text-foreground"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {/* Link groups */}
+          {groups.map((group) => (
+            <nav key={group.title} aria-label={`Footer — ${group.title}`}>
+              <p className="eyebrow mb-4">{group.title}</p>
+              <ul className="space-y-2.5">
+                {group.links.map((link) => (
+                  <li key={link.label}>
+                    <FooterLinkItem link={link} />
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
         </div>
 
         <div className="mt-16 flex flex-col-reverse items-start justify-between gap-6 border-t border-border pt-8 md:flex-row md:items-center">
