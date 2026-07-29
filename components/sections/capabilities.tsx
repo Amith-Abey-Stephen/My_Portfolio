@@ -2,7 +2,7 @@ import { capabilities } from "@/content/capabilities";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { RevealGroup, RevealItem } from "@/components/motion/reveal";
-import { SpotlightCard } from "@/components/ui/spotlight-card";
+import { RepelCard } from "@/components/ui/repel-card";
 
 /** Capabilities — grouped by intent, not skill bars (docs 04). A landing section. */
 export function Capabilities() {
@@ -20,7 +20,7 @@ export function Capabilities() {
           const Icon = group.icon;
           return (
             <RevealItem key={group.title} className="h-full">
-              <SpotlightCard>
+              <RepelCard>
                 <span className="relative flex h-12 w-12 items-center justify-center rounded-input border border-border bg-elevated text-burgundy-light transition-transform duration-300 ease-out group-hover:scale-110">
                   <Icon className="h-5 w-5" strokeWidth={1.75} />
                 </span>
@@ -40,7 +40,7 @@ export function Capabilities() {
                     </li>
                   ))}
                 </ul>
-              </SpotlightCard>
+              </RepelCard>
             </RevealItem>
           );
         })}

@@ -7,6 +7,7 @@ import { Container } from "@/components/layout/container";
 import { StatusBadge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { ContactCTA } from "@/components/sections/contact-cta";
+import { ProjectJsonLd } from "@/components/seo/json-ld";
 import { Reveal } from "@/components/motion/reveal";
 import type { ProjectCaseStudy } from "@/types";
 
@@ -54,6 +55,7 @@ export default async function ProjectPage({
 
   return (
     <>
+      <ProjectJsonLd project={project} />
       <header className="pt-32 pb-14 md:pt-40 md:pb-16">
         <Container>
           <Reveal>

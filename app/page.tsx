@@ -6,6 +6,11 @@ import { JourneyPreview } from "@/components/sections/journey-preview";
 import { Capabilities } from "@/components/sections/capabilities";
 import { WritingPreview } from "@/components/sections/writing-preview";
 import { Contact } from "@/components/sections/contact";
+import {
+  ProfilePageJsonLd,
+  ProductsJsonLd,
+  FaqJsonLd,
+} from "@/components/seo/json-ld";
 
 export const metadata: Metadata = {
   alternates: {
@@ -17,6 +22,9 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <ProfilePageJsonLd />
+      <ProductsJsonLd />
+      <FaqJsonLd />
       <Hero />
       <SelectedWork />
       <AboutPreview />

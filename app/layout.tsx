@@ -22,7 +22,26 @@ export const metadata: Metadata = {
   keywords: seoKeywords,
   authors: [{ name: site.author, url: site.url }],
   creator: site.author,
-  alternates: { canonical: "/" },
+  publisher: site.author,
+  applicationName: site.name,
+  category: "Technology",
+  referrer: "origin-when-cross-origin",
+  formatDetection: { telephone: false, email: false, address: false },
+  appleWebApp: {
+    capable: true,
+    title: site.name,
+    statusBarStyle: "black-translucent",
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    other: process.env.BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION }
+      : {},
+  },
+  alternates: {
+    canonical: "/",
+    languages: { "en-US": "/", "x-default": "/" },
+  },
   openGraph: {
     type: "website",
     url: site.url,

@@ -36,15 +36,58 @@ export const site = {
   ],
 } as const;
 
+/** A rich, quotable bio — used for meta descriptions, JSON-LD, and llms.txt. */
+export const bio =
+  "Amith Abey Stephen is a Product Engineer and builder from Kerala, India. He turns ideas into products across software and hardware — scalable SaaS platforms, AI-powered tools, and cloud-connected IoT systems. He is the former CEO of Inovus Labs IEDC and currently the frontend technical point of contact at μLearn Foundation. His products include SyncBatch, InoMail, Mr DocGen, AirLoo, and several IoT systems.";
+
+export const education = {
+  name: "Kristu Jyoti College of Management and Technology",
+  shortName: "KJCMT",
+  degree: "BCA (Bachelor of Computer Applications)",
+  location: "Changanassery, Kerala, India",
+};
+
 export const seoKeywords = [
+  // Identity
   "Amith Abey Stephen",
   "Amith",
+  "Amith Stephen",
+  "amith.site",
+  // Roles
+  "Product Engineer",
   "builder",
-  "product engineer",
   "full-stack developer",
+  "frontend developer",
   "IoT developer",
+  "hardware engineer",
+  "community leader",
+  // Affiliations / entities
   "Inovus Labs IEDC",
+  "CEO of Inovus Labs",
+  "μLearn Foundation",
+  "mulearn",
+  "Google Campus Ambassador",
+  "Kristu Jyoti College",
+  "KJCMT",
+  "Kerala Startup Mission",
+  // Location
   "Kerala",
+  "Thiruvalla",
+  "India developer",
+  // Products
   "SyncBatch",
+  "InoMail",
+  "Mr DocGen",
+  "AirLoo",
+  "Smart Irrigation",
+  "Smart Fire Alert",
+  // Tech
   "Next.js developer",
+  "React developer",
+  "TypeScript",
+  "Node.js",
+  "ESP32",
+  "IoT",
+  "AI tools",
+  "SaaS",
 ];

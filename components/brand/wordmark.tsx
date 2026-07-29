@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
  * square — a "micro mark" — not a coloured word. Scales with font-size.
  */
 
-/** Full wordmark: `amith.site` in white + trailing burgundy square. */
+/** Full wordmark: `amith` + burgundy square (the dot) + `site`. */
 export function Wordmark({
   className,
   dotClassName,
@@ -20,14 +20,15 @@ export function Wordmark({
         className,
       )}
     >
-      amith.site
+      amith
       <span
         className={cn(
-          "mb-[0.18em] ml-[0.16em] inline-block h-[0.28em] w-[0.28em] rounded-[2px] bg-burgundy",
+          "mx-[0.06em] mb-[0.07em] inline-block h-[0.2em] w-[0.2em] rounded-[2px] bg-burgundy",
           dotClassName,
         )}
         aria-hidden
       />
+      site
     </span>
   );
 }

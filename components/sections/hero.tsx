@@ -1,21 +1,25 @@
-import Image from "next/image";
 import { ArrowRight, MapPin } from "lucide-react";
 import { site } from "@/content/site";
 import { Container } from "@/components/layout/container";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/reveal";
+import { HeroAmbient } from "@/components/sections/hero-ambient";
+import { HeroPortrait } from "@/components/sections/hero-portrait";
 
 /**
  * The arrival. Calm, editorial, no information overload (docs 03).
- * Headline sets the tone; the portrait reveals naturally on a burgundy wash.
+ * A cursor-tracked burgundy light makes the dark space feel alive; the
+ * headline sets the tone; the portrait parallaxes gently.
  */
 export function Hero() {
   return (
     <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
-      {/* A single, restrained burgundy wash — used sparingly. */}
+      {/* Living backdrop */}
+      <HeroAmbient />
+      {/* Fine film grain for depth */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 right-[-10%] h-[520px] w-[520px] rounded-full bg-burgundy/10 blur-[120px]"
+        className="grain pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-soft-light"
       />
 
       <Container className="relative grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]">
@@ -67,28 +71,9 @@ export function Hero() {
           </Reveal>
         </div>
 
-        {/* Portrait — reveals naturally on a burgundy wash (docs 03). */}
+        {/* Portrait — reveals naturally, parallaxes with the cursor (docs 03). */}
         <Reveal delay={0.15} y={0} className="hidden lg:block">
-          <div className="relative mx-auto flex h-[560px] w-full max-w-md items-end justify-center">
-            {/* Ambient burgundy glow behind the figure */}
-            <div
-              aria-hidden
-              className="absolute left-1/2 top-4 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(122,36,53,0.38),transparent_65%)] blur-2xl"
-            />
-            <Image
-              src="/portrait.png"
-              alt={`${site.author} — ${site.role}`}
-              width={1065}
-              height={1600}
-              priority
-              className="relative z-10 h-full w-auto object-contain object-bottom"
-            />
-            {/* Fade the shoulders into the dark hero */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 bg-gradient-to-t from-background via-background/70 to-transparent"
-            />
-          </div>
+          <HeroPortrait />
         </Reveal>
       </Container>
     </section>
