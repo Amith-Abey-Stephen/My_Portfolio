@@ -5,6 +5,9 @@ import { getPosts, getTags } from "@/lib/api";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+  // Build-time timestamp: signals freshness on each deploy for pages that
+  // have no per-record date (static pages and code-driven project entries).
+  const lastModified = new Date();
 
   const routes = [
     "",
@@ -18,12 +21,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/playground",
   ].map((path) => ({
     url: `${base}${path}`,
+    lastModified,
     changeFrequency: "monthly" as const,
     priority: path === "" ? 1 : 0.7,
   }));
 
   const projectRoutes = projects.map((p) => ({
     url: `${base}/work/${p.slug}`,
+    lastModified,
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));

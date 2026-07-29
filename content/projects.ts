@@ -47,7 +47,7 @@ export const projects: Project[] = [
     year: "2025",
     status: "In Progress",
     category: "Product",
-    stack: ["Next.js", "MongoDB", "BullMQ", "AI"],
+    stack: ["Next.js", "MongoDB", "BullMQ", "Redis", "AI"],
     icon: Mail,
     featured: true,
     caseStudy: {
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     year: "2025",
     status: "In Progress",
     category: "AI Tool",
-    stack: ["React", "Node.js", "AI", "Automation"],
+    stack: ["Next.js", "MongoDB", "Gemini API", "Automation"],
     icon: FileText,
     caseStudy: {
       problem:
@@ -100,7 +100,7 @@ export const projects: Project[] = [
     year: "2024",
     status: "In Progress",
     category: "IoT",
-    stack: ["ESP32", "Firebase", "Realtime Dashboards"],
+    stack: ["ESP32", "Firebase Firestore", "Vue.js"],
     icon: Activity,
     featured: true,
     caseStudy: {

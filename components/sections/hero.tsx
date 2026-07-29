@@ -1,8 +1,10 @@
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, FileText, MapPin } from "lucide-react";
 import { site } from "@/content/site";
 import { Container } from "@/components/layout/container";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/reveal";
+import { RotatingText } from "@/components/motion/rotating-text";
+import { TypewriterText } from "@/components/motion/typewriter-text";
 import { HeroAmbient } from "@/components/sections/hero-ambient";
 import { HeroPortrait } from "@/components/sections/hero-portrait";
 
@@ -37,7 +39,11 @@ export function Hero() {
           <Reveal delay={0.05}>
             <h1 className="text-balance text-5xl font-semibold leading-[1.03] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
               Building products with{" "}
-              <span className="text-burgundy-light">purpose.</span>
+              <RotatingText
+                items={site.headlineWords}
+                srText="purpose."
+                className="text-burgundy-light"
+              />
             </h1>
           </Reveal>
 
@@ -56,6 +62,9 @@ export function Hero() {
               <ButtonLink href="/story" variant="secondary">
                 Read the Story
               </ButtonLink>
+              <ButtonLink href="/resume" variant="ghost">
+                <FileText className="h-4 w-4" /> Résumé
+              </ButtonLink>
             </div>
           </Reveal>
 
@@ -65,8 +74,9 @@ export function Hero() {
                 <MapPin className="h-3.5 w-3.5" /> {site.location}
               </span>
               <span className="inline-flex items-center gap-1.5">
-                {site.role} · Available for work
+                Available for work
               </span>
+              <TypewriterText items={site.roles} className="text-secondary" />
             </div>
           </Reveal>
         </div>

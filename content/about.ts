@@ -34,7 +34,7 @@ export const about = {
     "Community building",
   ],
   currentFocus:
-    "Right now I'm the frontend technical POC at μLearn Foundation, refining InoMail's sending infrastructure, and writing more openly about what I build.",
+    "Right now I'm a Junior Full Stack Developer at FinalApps, building Shopify apps and AI-powered merchant tools — while refining InoMail's sending infrastructure and writing more openly about what I build.",
   funFacts: [
     "My favourite projects start as a chore I got tired of doing by hand.",
     "I like hardware precisely because it refuses to forgive sloppy thinking.",

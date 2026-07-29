@@ -2,6 +2,7 @@ import {
   Compass,
   Layout,
   Server,
+  ShoppingBag,
   Cpu,
   Sparkles,
   Users,
@@ -34,6 +35,7 @@ export const capabilities: CapabilityGroup[] = [
     items: [
       "React",
       "Next.js (App Router)",
+      "Vue.js",
       "TypeScript",
       "Tailwind CSS",
       "TanStack Query",
@@ -41,7 +43,7 @@ export const capabilities: CapabilityGroup[] = [
     ],
   },
   {
-    title: "Backend",
+    title: "Backend & APIs",
     icon: Server,
     summary:
       "APIs and services built to be reliable and legible — queues that drain, auth that holds, data that stays consistent.",
@@ -50,8 +52,22 @@ export const capabilities: CapabilityGroup[] = [
       "Express",
       "REST APIs",
       "JWT auth",
-      "BullMQ queues",
+      "BullMQ & Redis queues",
       "MongoDB / MySQL",
+    ],
+  },
+  {
+    title: "Shopify & Commerce",
+    icon: ShoppingBag,
+    summary:
+      "Full-stack apps for merchants — extending the storefront and admin, and automating the operations behind the shop.",
+    items: [
+      "Admin API",
+      "Storefront API",
+      "Shop Minis",
+      "App Store apps",
+      "App Extensions",
+      "Webhooks",
     ],
   },
   {
@@ -75,7 +91,8 @@ export const capabilities: CapabilityGroup[] = [
     items: [
       "AI content generation",
       "Prompt engineering",
-      "Workflow automation",
+      "Gemini / OpenRouter",
+      "AI agents & workflows",
       "Data personalisation",
     ],
   },

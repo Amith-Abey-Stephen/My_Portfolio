@@ -47,20 +47,20 @@ export function HeroPortrait() {
         style={{ x: px, y: py }}
         className="relative z-10 h-full will-change-transform"
       >
+        {/* The PNG is a clean cut-out (transparent sides) but its bottom row is
+            a hard, opaque slice through the torso. We feather that edge with a
+            mask so the figure dissolves into the REAL background — whatever the
+            cursor-lit ambient is doing behind it — instead of into a fixed
+            colour, which would seam against the live glow. */}
         <Image
           src="/portrait.png"
           alt={`${site.author} — ${site.role}`}
           width={1065}
           height={1600}
           priority
-          className="h-full w-auto object-contain object-bottom"
+          className="h-full w-auto object-contain object-bottom [-webkit-mask-image:linear-gradient(to_top,transparent_0%,#000_28%)] [mask-image:linear-gradient(to_top,transparent_0%,#000_28%)]"
         />
       </motion.div>
-      {/* Fade the shoulders into the dark hero */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 bg-gradient-to-t from-background via-background/70 to-transparent"
-      />
     </div>
   );
 }

@@ -296,6 +296,26 @@
   content: none;
 }
 
+/* Repeat visits this session: the inline layout script flags <html data-entered>
+   so the intro overlay never paints — instant, flash-free, no hydration diff. */
+[data-entered] .loading-screen {
+  display: none !important;
+}
+
+/* Typewriter caret — hard blink (reduced-motion rule below neutralises it). */
+@keyframes caret-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+.caret-blink {
+  animation: caret-blink 1.05s step-end infinite;
+}
+
 /* Respect reduced motion everywhere (docs 03 + accessibility) */
 @media (prefers-reduced-motion: reduce) {
   *,

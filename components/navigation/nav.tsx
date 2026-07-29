@@ -68,9 +68,14 @@ export function Nav() {
               {item.label}
             </Link>
           ))}
-          <ButtonLink href="/#contact" variant="primary" size="sm">
-            Get in touch
-          </ButtonLink>
+          <div className="flex items-center gap-2">
+            <ButtonLink href="/resume" variant="secondary" size="sm">
+              Resume
+            </ButtonLink>
+            <ButtonLink href="/#contact" variant="primary" size="sm">
+              Get in touch
+            </ButtonLink>
+          </div>
         </nav>
 
         {/* Mobile trigger */}

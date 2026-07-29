@@ -10,7 +10,7 @@ export const now: NowData = {
     {
       label: "Working on",
       items: [
-        "Leading frontend as technical POC at μLearn Foundation",
+        "Building Shopify apps and AI merchant tools as a full-stack dev at FinalApps",
         "Refining InoMail's queue and deliverability",
         "Rebuilding this site as a calmer, more editorial home",
       ],

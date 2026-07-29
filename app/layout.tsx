@@ -88,6 +88,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={fontVariables} suppressHydrationWarning>
       <body className="min-h-screen bg-background text-foreground antialiased">
+        {/* Runs before paint: on a repeat visit this session, flag <html> so the
+            intro overlay is hidden via CSS instantly — no flash, no hydration
+            mismatch (the React tree renders identically on server and client). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(sessionStorage.getItem('amith:entered'))document.documentElement.dataset.entered='1'}catch(e){}`,
+          }}
+        />
         <PersonJsonLd />
         <WebsiteJsonLd />
         <MotionProvider>

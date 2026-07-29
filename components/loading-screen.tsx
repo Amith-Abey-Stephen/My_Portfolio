@@ -9,13 +9,19 @@ import { Monogram } from "@/components/brand/wordmark";
  * Calm, quiet, and capped at ~1 second. Shown once per session.
  */
 export function LoadingScreen() {
-  const [done, setDone] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return Boolean(sessionStorage.getItem("amith:entered"));
-  });
+  // Start `false` on BOTH server and client so the rendered tree matches during
+  // hydration (reading sessionStorage in the initializer caused a mismatch that
+  // could blank the page on reload). On a repeat visit the inline script in the
+  // layout has already hidden this overlay via CSS before paint — no flash —
+  // and the effect below unmounts it cleanly.
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
-    if (sessionStorage.getItem("amith:entered")) return;
+    if (sessionStorage.getItem("amith:entered")) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setDone(true);
+      return;
+    }
     const timer = setTimeout(() => {
       sessionStorage.setItem("amith:entered", "1");
       setDone(true);
