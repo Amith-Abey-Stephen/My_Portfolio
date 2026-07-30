@@ -77,6 +77,7 @@ export const projects: Project[] = [
     category: "AI Tool",
     stack: ["Next.js", "MongoDB", "Gemini API", "Automation"],
     icon: FileText,
+    featured: true,
     caseStudy: {
       problem:
         "Reports follow the same shape every time, yet people rewrite the scaffolding from scratch on each one. The structure is repetitive; only the content changes.",
@@ -130,6 +131,7 @@ export const projects: Project[] = [
     category: "IoT",
     stack: ["ESP32", "Sensors", "Emergency Workflows"],
     icon: Flame,
+    featured: true,
     caseStudy: {
       problem:
         "A fire alarm that only screams in an empty room helps no one. Detection needs to reach a person, wherever they are, immediately.",

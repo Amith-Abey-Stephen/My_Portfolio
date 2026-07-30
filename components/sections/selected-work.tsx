@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import {
   motion,
   useScroll,
@@ -19,6 +19,29 @@ import { ProjectCard } from "@/components/cards/project-card";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/reveal";
 
+// Deck timing, in scroll-progress units (0 → 1).
+const SLIDE = 0.34; // how long a card spends sliding in from the right
+const LAST_LAND = 0.9; // last card is settled by here, then the row holds
+const FADE = 0.05; // fade-in span as a card enters
+const ENTER_X = "210%"; // parked off-screen to the right (% of card width)
+
+// Centre-to-centre gap between cards, as a % of one card's width, for a row of
+// `stage` cards. ≥100% leaves a visible gap; <100% overlaps. The first three
+// read as a normal spaced row; each extra card tightens the row into a small
+// overlap so all of them still fit the screen.
+function pitchFor(stage: number) {
+  if (stage <= 3) return 108; // spaced row — no overlap
+  if (stage === 4) return 80; // 4th arrives: gaps close into a small overlap
+  return 60; // 5th: row compresses so the outer cards keep the page margin
+}
+
+// Horizontal position (in % of card width) of card `i` when `stage` cards are
+// on screen. The whole row stays centred, so adding a card nudges the earlier
+// ones inward.
+function slotX(i: number, stage: number) {
+  return (i - (stage - 1) / 2) * pitchFor(stage);
+}
+
 function Header() {
   return (
     <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
@@ -36,62 +59,83 @@ function Header() {
 }
 
 /**
- * One card that slides in from off-screen-right into its placed position,
- * driven by scroll progress. Cards are staggered so they land in sequence.
+ * One card in the horizontal row. It slides in from the right to its slot; then
+ * each time a later card lands, the whole row re-centres a touch tighter, so
+ * this card glides inward and the row goes from spaced (3 cards) to slightly
+ * overlapping (5 cards). (docs 03: motion has purpose.)
  */
-function SlideInCard({
+function DeckCard({
   progress,
   index,
   count,
+  enters,
+  lands,
   project,
-  active,
 }: {
   progress: MotionValue<number>;
   index: number;
   count: number;
+  enters: number[];
+  lands: number[];
   project: Project;
-  active: boolean;
 }) {
-  // Each card animates within its own slice of the scroll, but they overlap
-  // so the motion feels continuous (deal-the-cards cascade). The last card
-  // lands around 90% so there's only a brief hold before the pin releases.
-  const start = index * (0.6 / count);
-  const end = start + 0.5;
-  // Left-most cards begin further right so every card enters from the edge.
-  const startX = 108 - index * (72 / count);
+  // Keyframes: [enter] then a re-settle at every later card's landing.
+  const inputs = [enters[index], ...lands.slice(index)];
+  const positions = [
+    ENTER_X,
+    ...Array.from(
+      { length: count - index },
+      (_, k) => `${slotX(index, index + 1 + k)}%`,
+    ),
+  ];
 
-  const x = useTransform(progress, [start, end], [`${startX}vw`, "0vw"]);
-  const opacity = useTransform(progress, [start, start + 0.08], [0, 1]);
+  const x = useTransform(progress, inputs, positions);
+  const opacity = useTransform(
+    progress,
+    [enters[index], enters[index] + FADE],
+    [0, 1],
+  );
 
-  // Before mount (SSR / no-JS), render placed so the section is never empty.
   return (
-    <motion.div style={active ? { x, opacity } : undefined} className="flex-1">
-      <ProjectCard project={project} className="h-full" />
+    <motion.div
+      style={{ x, opacity, zIndex: index }}
+      className="absolute inset-0"
+    >
+      <ProjectCard
+        project={project}
+        className="h-full shadow-[0_24px_60px_-28px_rgba(0,0,0,0.75)]"
+      />
     </motion.div>
   );
 }
 
 export function SelectedWork() {
   const reduceMotion = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => setMounted(true), []);
 
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],
   });
-  // Smooth the raw scroll for buttery, calm motion (docs: motion has purpose).
+  // Smooth the raw scroll so the deal glides rather than snaps.
   const progress = useSpring(scrollYProgress, {
     stiffness: 120,
     damping: 30,
     restDelta: 0.001,
   });
 
+  // Stagger the cards so they deal in one after another and overlap in motion.
+  const count = featuredProjects.length;
+  const step = count > 1 ? (LAST_LAND - SLIDE) / (count - 1) : 0;
+  const enters = featuredProjects.map((_, k) => k * step);
+  const lands = enters.map((e) => e + SLIDE);
+
   // Static fallback — reduced motion and small screens get the plain grid.
   const staticGrid = (
-    <Section id="work" className={reduceMotion ? undefined : "lg:hidden"}>
+    <Section
+      id={reduceMotion ? "work" : undefined}
+      className={reduceMotion ? undefined : "lg:hidden"}
+    >
       <Header />
       <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {featuredProjects.map((project, i) => (
@@ -107,24 +151,26 @@ export function SelectedWork() {
 
   return (
     <>
-      {/* Desktop: pinned, scroll-driven slide-in */}
+      {/* Desktop: pinned horizontal deal — a spaced row that tightens as cards land */}
       <section
         ref={ref}
+        id="work"
         data-pin="work"
-        className="relative hidden h-[240vh] lg:block"
+        className="relative hidden h-[260vh] lg:block"
       >
-        <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+        <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
           <Container className="w-full">
             <Header />
-            <div className="mt-14 flex gap-6">
+            <div className="relative mx-auto mt-12 h-[26rem] w-[22rem] xl:w-[25rem]">
               {featuredProjects.map((project, i) => (
-                <SlideInCard
+                <DeckCard
                   key={project.slug}
                   progress={progress}
                   index={i}
-                  count={featuredProjects.length}
+                  count={count}
+                  enters={enters}
+                  lands={lands}
                   project={project}
-                  active={mounted}
                 />
               ))}
             </div>
