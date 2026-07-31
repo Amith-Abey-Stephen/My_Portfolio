@@ -4,6 +4,7 @@ import "./globals.css";
 import { site, seoKeywords } from "@/content/site";
 import { Nav } from "@/components/navigation/nav";
 import { Footer } from "@/components/footer/footer";
+import { Cursor } from "@/components/ui/cursor";
 import { LoadingScreen } from "@/components/loading-screen";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { SkipLink } from "@/components/layout/skip-link";
@@ -86,7 +87,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={fontVariables} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={fontVariables}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body className="min-h-screen bg-background text-foreground antialiased">
         {/* Runs before paint: on a repeat visit this session, flag <html> so the
             intro overlay is hidden via CSS instantly — no flash, no hydration
@@ -99,6 +105,7 @@ export default function RootLayout({
         <PersonJsonLd />
         <WebsiteJsonLd />
         <MotionProvider>
+          <Cursor />
           <LoadingScreen />
           <SkipLink />
           <Nav />

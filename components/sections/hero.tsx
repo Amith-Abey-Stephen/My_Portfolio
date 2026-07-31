@@ -55,7 +55,7 @@ export function Hero() {
 
           <Reveal delay={0.18}>
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <ButtonLink href="/work" variant="primary">
+              <ButtonLink href="/#work" variant="primary">
                 View Work
                 <ArrowRight className="h-4 w-4" />
               </ButtonLink>

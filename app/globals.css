@@ -114,6 +114,23 @@
     border-radius: 4px;
   }
 
+  /* Custom cursor (components/ui/cursor.tsx): hide the native pointer while the
+     dot-and-ring follower is active. Text fields keep a native I-beam so typing
+     feels normal; the attribute is only set on fine-pointer, motion-on clients. */
+  html[data-custom-cursor] * {
+    cursor: none !important;
+  }
+  html[data-custom-cursor]
+    :is(
+      input:not([type="button"]):not([type="submit"]):not([type="reset"]):not(
+          [type="checkbox"]
+        ):not([type="radio"]),
+      textarea,
+      [contenteditable="true"]
+    ) {
+    cursor: text !important;
+  }
+
   /* Thin, quiet scrollbar */
   ::-webkit-scrollbar {
     width: 10px;

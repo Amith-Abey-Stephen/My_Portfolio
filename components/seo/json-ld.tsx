@@ -196,7 +196,7 @@ export function ProjectJsonLd({ project }: { project: Project }) {
       <BreadcrumbJsonLd
         items={[
           { name: "Home", path: "/" },
-          { name: "Work", path: "/work" },
+          { name: "Work", path: "/#work" },
           { name: project.title, path: `/work/${project.slug}` },
         ]}
       />

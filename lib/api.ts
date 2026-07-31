@@ -9,7 +9,7 @@ import type { Post, PostTag, Tag } from "@/types";
  * from the Ghost Content API and rendered on-site (headless).
  */
 
-const BASE = process.env.BLOG_API_URL ?? "https://blog.inovuslabs.org";
+const BASE = process.env.BLOG_API_URL ?? "https://blog.inovuslabs.org/author/amith/";
 const KEY = process.env.BLOG_API_KEY;
 const AUTHOR = process.env.BLOG_AUTHOR ?? "amith";
 

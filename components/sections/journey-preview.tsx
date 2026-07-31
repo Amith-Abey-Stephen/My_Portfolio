@@ -9,171 +9,165 @@ import {
   useReducedMotion,
   type MotionValue,
 } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { journey } from "@/content/journey";
 import type { JourneyMilestone } from "@/types";
 import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/layout/section-heading";
-import { Timeline } from "@/components/journey/timeline";
-import { ButtonLink } from "@/components/ui/button";
-import { Reveal } from "@/components/motion/reveal";
-import { cn } from "@/lib/utils";
+import { JourneyTimeline } from "@/components/journey/journey-timeline";
 
-const items = journey.slice(0, 4);
-
-function Header() {
+function Heading() {
   return (
-    <div>
-      <SectionHeading
-        eyebrow="Journey"
-        title="A path built by doing."
-        lede="From student communities to product teams — the short version."
-      />
-      <Reveal delay={0.1}>
-        <ButtonLink href="/journey" variant="ghost" className="mt-6 -ml-2">
-          Full journey
-          <ArrowRight className="h-4 w-4" />
-        </ButtonLink>
-      </Reveal>
-    </div>
+    <SectionHeading
+      eyebrow="Journey"
+      title="A path built by doing."
+      lede="Roles, teams, and the communities that shaped how I build — newest first."
+    />
   );
 }
 
-/** The inner markup of a milestone (shared shape with the static Timeline). */
-function MilestoneBody({ item }: { item: JourneyMilestone }) {
-  return (
-    <div className="relative pb-10 last:pb-0">
-      <span
-        className={cn(
-          "absolute -left-[41px] top-1 flex h-3.5 w-3.5 items-center justify-center rounded-full border-2 md:-left-[49px]",
-          item.current
-            ? "border-burgundy bg-burgundy"
-            : "border-border-strong bg-background",
-        )}
-        aria-hidden
-      >
-        {item.current && (
-          <span className="absolute h-3.5 w-3.5 animate-ping rounded-full bg-burgundy/40" />
-        )}
-      </span>
-      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <p className="font-mono text-xs text-muted">{item.period}</p>
-        {item.current && (
-          <span className="rounded-full border border-burgundy/30 bg-burgundy/10 px-2 py-0.5 font-mono text-[0.65rem] uppercase tracking-wider text-burgundy-light">
-            Now
-          </span>
-        )}
-      </div>
-      <h3 className="mt-2 text-xl font-semibold tracking-tight text-foreground">
-        {item.role}
-      </h3>
-      <p className="text-sm font-medium text-burgundy-light">
-        {item.organization}
-      </p>
-      <p className="mt-3 max-w-2xl leading-relaxed text-secondary">
-        {item.description}
-      </p>
-    </div>
-  );
-}
-
-/** A milestone that rises from below into its slot, driven by scroll. */
-function ScrollMilestone({
+/**
+ * One role on the conveyor: it rises from below to the centre, holds, then
+ * lifts up and out — so roles arrive one at a time rather than all piling in.
+ * Position/opacity are derived from the section's scroll progress.
+ */
+function ConveyorRole({
   item,
   index,
   count,
   progress,
-  active,
+  vp,
 }: {
   item: JourneyMilestone;
   index: number;
   count: number;
   progress: MotionValue<number>;
-  active: boolean;
+  vp: number;
 }) {
-  const start = index * (0.55 / count);
-  const end = start + 0.42;
-  const y = useTransform(progress, [start, end], [110, 0]);
-  const opacity = useTransform(progress, [start, start + 0.12], [0, 1]);
+  const c = (index + 0.5) / count; // progress at which this role is centred
+  const span = 1 / count; // how much scroll it owns
+
+  const y = useTransform(
+    progress,
+    [c - span, c, c + span],
+    [vp * 0.42, 0, -vp * 0.42],
+  );
+  const opacity = useTransform(
+    progress,
+    [c - span * 0.85, c - span * 0.3, c + span * 0.3, c + span * 0.85],
+    [0, 1, 1, 0],
+  );
 
   return (
-    <motion.li style={active ? { y, opacity } : undefined}>
-      <MilestoneBody item={item} />
-    </motion.li>
+    <motion.div
+      style={{ y, opacity }}
+      className="absolute inset-0 flex items-center"
+    >
+      <div className="w-full max-w-xl">
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <p className="font-mono text-xs text-muted">{item.period}</p>
+          {item.current && (
+            <span className="rounded-full border border-burgundy/30 bg-burgundy/10 px-2 py-0.5 font-mono text-[0.65rem] uppercase tracking-wider text-burgundy-light">
+              Now
+            </span>
+          )}
+        </div>
+        <h3 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
+          {item.role}
+        </h3>
+        <p className="mt-1 text-base font-medium text-burgundy-light">
+          {item.organization}
+        </p>
+        <p className="mt-4 max-w-lg leading-relaxed text-secondary">
+          {item.description}
+        </p>
+      </div>
+    </motion.div>
   );
 }
 
+/**
+ * Journey. Desktop: the section pins; the heading sits to the left (and sinks
+ * a little as you go) while the roles rise through the centre one at a time.
+ * Mobile / reduced-motion: a plain stacked timeline. The standalone /journey
+ * page was folded into this section.
+ */
 export function JourneyPreview() {
   const reduceMotion = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => setMounted(true), []);
 
-  const ref = useRef<HTMLDivElement>(null);
+  const pinRef = useRef<HTMLDivElement>(null);
+  const [vp, setVp] = useState(0);
+
+  useEffect(() => {
+    const measure = () => setVp(window.innerHeight);
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: pinRef,
     offset: ["start start", "end end"],
   });
   const progress = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 30,
+    stiffness: 180,
+    damping: 34,
     restDelta: 0.001,
   });
-  // The connecting line draws down as the milestones land.
-  const lineScale = useTransform(progress, [0, 0.85], [0, 1]);
+  const headingY = useTransform(progress, [0, 1], [0, vp * 0.32]);
 
-  const staticVersion = (
-    <Section id="journey" className={reduceMotion ? undefined : "lg:hidden"}>
-      <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <div className="lg:sticky lg:top-28 lg:self-start">
-          <Header />
-        </div>
-        <Timeline items={items} />
+  // Mobile / reduced-motion: a normal stacked layout.
+  const stacked = (
+    <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+      <div className="lg:sticky lg:top-28 lg:self-start">
+        <Heading />
       </div>
-    </Section>
+      <JourneyTimeline items={journey} />
+    </div>
   );
 
-  if (reduceMotion) return staticVersion;
+  if (reduceMotion) {
+    return (
+      <Section id="journey" className="scroll-mt-24">
+        {stacked}
+      </Section>
+    );
+  }
 
   return (
-    <>
-      {/* Desktop: pinned, scroll-driven rise-in */}
-      <section
-        ref={ref}
-        data-pin="journey"
-        className="relative hidden h-[220vh] lg:block"
-      >
-        <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-          <Container className="w-full">
-            <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-              <div>
-                <Header />
+    <section id="journey" className="scroll-mt-24">
+      {/* Desktop: pinned — roles rise through the centre one at a time */}
+      <div ref={pinRef} className="relative hidden h-[360vh] lg:block">
+        <div className="sticky top-0 h-screen overflow-hidden">
+          <Container className="h-full">
+            <div className="grid h-full grid-cols-[0.8fr_1.2fr] gap-16">
+              <div className="flex h-full items-start pt-24 lg:pt-32">
+                <motion.div style={{ y: headingY }}>
+                  <Heading />
+                </motion.div>
               </div>
-              <ol className="relative pl-8 md:pl-10">
-                <motion.span
-                  aria-hidden
-                  style={{ scaleY: mounted ? lineScale : 1 }}
-                  className="absolute inset-y-1 left-0 w-px origin-top bg-border"
-                />
-                {items.map((item, i) => (
-                  <ScrollMilestone
+
+              <div className="relative h-full">
+                {journey.map((item, i) => (
+                  <ConveyorRole
                     key={`${item.organization}-${item.period}`}
                     item={item}
                     index={i}
-                    count={items.length}
+                    count={journey.length}
                     progress={progress}
-                    active={mounted}
+                    vp={vp}
                   />
                 ))}
-              </ol>
+              </div>
             </div>
           </Container>
         </div>
-      </section>
+      </div>
 
-      {/* Mobile: static timeline */}
-      {staticVersion}
-    </>
+      {/* Mobile: static stacked timeline */}
+      <div className="py-20 md:py-28 lg:hidden">
+        <Container>{stacked}</Container>
+      </div>
+    </section>
   );
 }

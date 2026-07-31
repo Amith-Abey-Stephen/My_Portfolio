@@ -36,11 +36,11 @@ ${products}
 
 ## Key pages
 - Home: ${site.url}
-- Work / case studies: ${siteUrl}/work
+- Work / case studies: ${siteUrl}/#work
 - Writing (blog): ${siteUrl}/#writing
 - About: ${siteUrl}/about
 - Story: ${siteUrl}/story
-- Journey: ${siteUrl}/journey
+- Journey: ${siteUrl}/#journey
 - Resume: ${site.resumeUrl}
 
 ## Contact

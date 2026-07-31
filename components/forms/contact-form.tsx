@@ -6,21 +6,75 @@ import { Check, Loader2, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Status = "idle" | "submitting" | "success" | "error";
+type Field = "name" | "email" | "message";
 
-const field =
-  "w-full rounded-input border border-border bg-surface px-4 py-3 text-foreground placeholder:text-muted transition-colors focus:border-burgundy-light focus:outline-none focus-visible:outline-none";
+const FIELDS: Field[] = ["name", "email", "message"];
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Mirror the server's rules (app/api/contact/route.ts) so feedback is instant
+// and matches what the API would say.
+function validateField(name: Field, value: string): string {
+  const v = value.trim();
+  if (name === "name") return v.length < 2 ? "Please add your name." : "";
+  if (name === "email") return !EMAIL_RE.test(v) ? "Please add a valid email." : "";
+  if (v.length < 10) return "Please write a little more.";
+  if (value.length > 5000) return "That message is a bit long.";
+  return "";
+}
+
+const baseField =
+  "w-full rounded-input border bg-surface px-4 py-3 text-foreground placeholder:text-muted transition-colors focus:outline-none focus-visible:outline-none";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Partial<Record<Field, string>>>({});
+
+  const fieldClass = (name: Field) =>
+    cn(
+      baseField,
+      errors[name]
+        ? "border-red-500/60 focus:border-red-500"
+        : "border-border focus:border-burgundy-light",
+    );
+
+  function onBlur(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const name = e.target.name as Field;
+    setErrors((prev) => ({ ...prev, [name]: validateField(name, e.target.value) }));
+  }
+
+  function onChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const name = e.target.name as Field;
+    // Once a field has been flagged, keep its error live as they fix it.
+    setErrors((prev) =>
+      prev[name] ? { ...prev, [name]: validateField(name, e.target.value) } : prev,
+    );
+  }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form).entries()) as Record<
+      string,
+      string
+    >;
+
+    // Validate client-side first; focus the first field with a problem.
+    const next: Partial<Record<Field, string>> = {};
+    for (const f of FIELDS) {
+      const msg = validateField(f, data[f] ?? "");
+      if (msg) next[f] = msg;
+    }
+    if (Object.keys(next).length) {
+      setErrors(next);
+      const first = FIELDS.find((f) => next[f]);
+      if (first) (form.elements.namedItem(first) as HTMLElement | null)?.focus();
+      return;
+    }
+
+    setErrors({});
     setStatus("submitting");
     setError(null);
-
-    const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form).entries());
 
     try {
       const res = await fetch("/api/contact", {
@@ -98,11 +152,19 @@ export function ContactForm() {
                 name="name"
                 type="text"
                 required
-                minLength={2}
                 autoComplete="name"
                 placeholder="Your name"
-                className={field}
+                onBlur={onBlur}
+                onChange={onChange}
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? "name-error" : undefined}
+                className={fieldClass("name")}
               />
+              {errors.name && (
+                <p id="name-error" className="mt-1.5 text-xs text-red-400">
+                  {errors.name}
+                </p>
+              )}
             </div>
             <div>
               <label
@@ -118,8 +180,17 @@ export function ContactForm() {
                 required
                 autoComplete="email"
                 placeholder="you@example.com"
-                className={field}
+                onBlur={onBlur}
+                onChange={onChange}
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "email-error" : undefined}
+                className={fieldClass("email")}
               />
+              {errors.email && (
+                <p id="email-error" className="mt-1.5 text-xs text-red-400">
+                  {errors.email}
+                </p>
+              )}
             </div>
           </div>
 
@@ -134,11 +205,19 @@ export function ContactForm() {
               id="message"
               name="message"
               required
-              minLength={10}
               rows={5}
               placeholder="What are you building?"
-              className={cn(field, "resize-y")}
+              onBlur={onBlur}
+              onChange={onChange}
+              aria-invalid={!!errors.message}
+              aria-describedby={errors.message ? "message-error" : undefined}
+              className={cn(fieldClass("message"), "resize-y")}
             />
+            {errors.message && (
+              <p id="message-error" className="mt-1.5 text-xs text-red-400">
+                {errors.message}
+              </p>
+            )}
           </div>
 
           {status === "error" && error && (

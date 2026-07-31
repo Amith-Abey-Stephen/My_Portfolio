@@ -9,14 +9,12 @@ import {
   useReducedMotion,
   type MotionValue,
 } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { featuredProjects } from "@/content/projects";
 import type { Project } from "@/types";
 import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { ProjectCard } from "@/components/cards/project-card";
-import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/reveal";
 
 // Deck timing, in scroll-progress units (0 → 1).
@@ -50,10 +48,6 @@ function Header() {
         title="A few things I've built."
         lede="Most started as a small problem I couldn't stop thinking about."
       />
-      <ButtonLink href="/work" variant="ghost" className="shrink-0">
-        All work
-        <ArrowRight className="h-4 w-4" />
-      </ButtonLink>
     </div>
   );
 }
@@ -134,7 +128,7 @@ export function SelectedWork() {
   const staticGrid = (
     <Section
       id={reduceMotion ? "work" : undefined}
-      className={reduceMotion ? undefined : "lg:hidden"}
+      className={reduceMotion ? "scroll-mt-24" : "lg:hidden"}
     >
       <Header />
       <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -156,7 +150,7 @@ export function SelectedWork() {
         ref={ref}
         id="work"
         data-pin="work"
-        className="relative hidden h-[260vh] lg:block"
+        className="relative hidden h-[260vh] scroll-mt-24 lg:block"
       >
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
           <Container className="w-full">

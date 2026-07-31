@@ -1,18 +1,20 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getPosts } from "@/lib/api";
 import { site } from "@/content/site";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";
-import { RotatingBento } from "@/components/writing/rotating-bento";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/reveal";
+import { WritingCards } from "@/components/sections/writing-cards";
 
 /**
- * The Writing section on the landing page — a living three-row bento that
- * quietly rotates its posts, with a CTA out to the full blog.
+ * The Writing section on the landing page — a roomy 2×2 of article cards that
+ * slide in from the sides as you scroll (see WritingCards), in the site's card
+ * language. No photo bento, no auto-rotation.
  */
 export async function WritingPreview() {
   const posts = await getPosts();
+  const items = posts.slice(0, 4);
 
   return (
     <Section id="writing" className="scroll-mt-24 border-t border-border">
@@ -29,13 +31,13 @@ export async function WritingPreview() {
             className="shrink-0"
           >
             Read the full blog
-            <ArrowUpRight className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4" />
           </ButtonLink>
         </Reveal>
       </div>
 
-      {posts.length > 0 ? (
-        <RotatingBento posts={posts} />
+      {items.length > 0 ? (
+        <WritingCards posts={items} />
       ) : (
         <Reveal>
           <div className="rounded-card border border-dashed border-border bg-surface/50 p-12 text-center">
@@ -46,7 +48,7 @@ export async function WritingPreview() {
               size="sm"
               className="mt-5"
             >
-              Read the blog <ArrowUpRight className="h-4 w-4" />
+              Read the blog <ArrowRight className="h-4 w-4" />
             </ButtonLink>
           </div>
         </Reveal>

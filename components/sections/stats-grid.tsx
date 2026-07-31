@@ -24,7 +24,11 @@ function CountUp({
   const [n, setN] = useState(0);
 
   useEffect(() => {
-    if (!start) return;
+    if (!start) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setN(0);
+      return;
+    }
     if (reduceMotion) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setN(target);
@@ -50,7 +54,7 @@ function CountUp({
 /** The community-impact stat grid, animated on scroll. */
 export function StatsGrid({ className }: { className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: false, margin: "-80px" });
 
   return (
     <div
@@ -66,7 +70,7 @@ export function StatsGrid({ className }: { className?: string }) {
           <motion.div
             key={stat.label}
             initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : undefined}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
             transition={{
               duration: 0.6,
               delay: i * 0.12,

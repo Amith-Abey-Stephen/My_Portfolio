@@ -60,7 +60,7 @@ export default async function ProjectPage({
         <Container>
           <Reveal>
             <Link
-              href="/work"
+              href="/#work"
               className="link-underline inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted hover:text-foreground"
             >
               <ArrowLeft className="h-3.5 w-3.5" /> All work
