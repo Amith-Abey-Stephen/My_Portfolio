@@ -43,7 +43,7 @@ export function ContactChannels() {
         return (
           <li
             key={label}
-            className="flex items-center gap-2 bg-surface pr-3 transition-colors hover:bg-elevated"
+            className="flex items-center gap-2 bg-surface pr-3 transition-colors hover:bg-elevated active:bg-elevated"
           >
             <a
               href={href}

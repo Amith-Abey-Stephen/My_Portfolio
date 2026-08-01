@@ -211,7 +211,7 @@ export function ContactForm() {
               onChange={onChange}
               aria-invalid={!!errors.message}
               aria-describedby={errors.message ? "message-error" : undefined}
-              className={cn(fieldClass("message"), "resize-y")}
+              className={cn(fieldClass("message"), "resize-none md:resize-y")}
             />
             {errors.message && (
               <p id="message-error" className="mt-1.5 text-xs text-red-400">

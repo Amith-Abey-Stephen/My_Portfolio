@@ -20,13 +20,13 @@ export function ProjectCard({
     <Link
       href={`/work/${project.slug}`}
       className={cn(
-        "group flex flex-col rounded-card border border-border bg-surface p-8 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-border-strong",
+        "group flex flex-col rounded-card border border-border bg-surface p-8 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-border-strong active:-translate-y-1 active:border-border-strong",
         className,
       )}
       data-testid={`project-${project.slug}`}
     >
       <div className="mb-8 flex items-start justify-between gap-4">
-        <span className="flex h-12 w-12 items-center justify-center rounded-input border border-border bg-elevated text-secondary transition-colors group-hover:text-foreground">
+        <span className="flex h-12 w-12 items-center justify-center rounded-input border border-border bg-elevated text-secondary transition-colors group-hover:text-foreground group-active:text-foreground">
           <Icon className="h-5 w-5" strokeWidth={1.75} />
         </span>
         <StatusBadge status={project.status} />
@@ -41,7 +41,7 @@ export function ProjectCard({
       <h3 className="mt-3 flex items-center gap-1.5 text-2xl font-semibold tracking-tight text-foreground">
         {project.title}
         <ArrowUpRight
-          className="h-4 w-4 -translate-y-0.5 text-muted opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100"
+          className="h-4 w-4 -translate-y-0.5 text-muted opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100 group-active:translate-x-0.5 group-active:opacity-100"
           aria-hidden
         />
       </h3>

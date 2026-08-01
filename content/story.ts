@@ -48,7 +48,7 @@ export const story: StoryChapter[] = [
     index: "06",
     title: "Mentors & The Art of Flopping (2024)",
     body: [
-      "In 2024, my web-focused journey went into overdrive with open-source contributions and real projects. I was deeply shaped by mentors like Arjun Krishna (decoded_cipher), Sanju Sunil, and Nikhil T Das.",
+      "In 2024, my web-focused journey went into overdrive with open-source contributions and real projects. I was deeply shaped by mentors like Arjun Krishna (decoded_cipher), Sane Sunil, and Nikhil T Das.",
       "My role model became Badhusha Shaji. I tried hard to replicate how he approached problems — and flopped many times along the way. But failing repeatedly was the fastest teacher, forcing me to refine my craft and make myself better every day.",
     ],
   },

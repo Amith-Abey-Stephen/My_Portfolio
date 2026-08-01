@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import {
+  animate,
   motion,
   useMotionTemplate,
   useMotionValue,
@@ -12,7 +13,8 @@ import {
 /**
  * The hero's living backdrop: a soft burgundy light that follows the cursor
  * across the dark space, plus a slow idle bloom so it breathes even when
- * still. Calm, not flashy (docs 03) — and off for reduced-motion.
+ * still. On touch devices there's no cursor to follow, so the light wanders
+ * on its own instead. Calm, not flashy (docs 03) — and off for reduced-motion.
  */
 export function HeroAmbient() {
   const reduceMotion = useReducedMotion();
@@ -23,6 +25,18 @@ export function HeroAmbient() {
 
   useEffect(() => {
     if (reduceMotion) return;
+
+    // No hover means no cursor to track — let the light wander instead.
+    if (window.matchMedia("(hover: none)").matches) {
+      const opts = { duration: 26, repeat: Infinity, ease: "easeInOut" as const };
+      const ax = animate(mx, [72, 26, 58, 18, 72], opts);
+      const ay = animate(my, [28, 58, 78, 36, 28], opts);
+      return () => {
+        ax.stop();
+        ay.stop();
+      };
+    }
+
     function onMove(e: MouseEvent) {
       mx.set((e.clientX / window.innerWidth) * 100);
       my.set((e.clientY / window.innerHeight) * 100);

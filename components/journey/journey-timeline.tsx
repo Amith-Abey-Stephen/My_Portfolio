@@ -14,10 +14,13 @@ import { cn } from "@/lib/utils";
 /** The milestone visual — node, period, role, org, description. */
 export function MilestoneBody({ item }: { item: JourneyMilestone }) {
   return (
-    <div className="relative pb-12 last:pb-0">
+    // Spacing lives on the <li> wrappers (which are actual siblings) — a
+    // last:pb-0 here would match every item, since this div is always the
+    // only child of its li.
+    <div className="relative">
       <span
         className={cn(
-          "absolute -left-[41px] top-1 flex h-3.5 w-3.5 items-center justify-center rounded-full border-2 md:-left-[49px]",
+          "absolute -left-[39px] top-1 flex h-3.5 w-3.5 items-center justify-center rounded-full border-2 md:-left-[47px]",
           item.current
             ? "border-burgundy bg-burgundy"
             : "border-border-strong bg-background",
@@ -78,7 +81,11 @@ function ScrollMilestone({
   const opacity = useTransform(p, [0, 0.55], [0, 1]);
 
   return (
-    <motion.li ref={ref} style={active ? { y, opacity } : undefined}>
+    <motion.li
+      ref={ref}
+      style={active ? { y, opacity } : undefined}
+      className="pb-12 last:pb-0"
+    >
       <MilestoneBody item={item} />
     </motion.li>
   );

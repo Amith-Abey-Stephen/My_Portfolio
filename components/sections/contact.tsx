@@ -40,12 +40,16 @@ export function Contact() {
           </span>
         </Reveal>
 
+        {/* min-w-0 on the items: grid tracks default to min-content sizing,
+            and the email row's intrinsic width would otherwise stretch the
+            track past the container on narrow phones (right margin bug) —
+            with it, the row's `truncate` can actually engage. */}
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
-          <Reveal>
+          <Reveal className="min-w-0">
             <ContactForm />
           </Reveal>
 
-          <Reveal delay={0.1} className="space-y-8">
+          <Reveal delay={0.1} className="min-w-0 space-y-8">
             <div>
               <p className="eyebrow mb-4">Elsewhere</p>
               <ContactChannels />

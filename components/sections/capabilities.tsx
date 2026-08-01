@@ -60,6 +60,17 @@ function CardBody({ group }: { group: CapabilityGroup }) {
   );
 }
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check, { passive: true });
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return isMobile;
+}
+
 /**
  * A capability card that starts scattered (offset + tilted) and gathers into
  * its grid slot as the section scrolls in, staggered by position — so the page
@@ -76,7 +87,12 @@ function ScrollCard({
   progress: MotionValue<number>;
   active: boolean;
 }) {
+  const isMobile = useIsMobile();
   const s = SCATTER[index % SCATTER.length];
+
+  // Desktop assembly transforms. Created unconditionally — hooks must run in
+  // the same order every render, and `isMobile` flips after mount — even
+  // though the mobile branch below never reads them.
   const start = index * 0.06;
   const range = [start, start + 0.55];
 
@@ -86,8 +102,47 @@ function ScrollCard({
   const scale = useTransform(progress, range, [0.85, 1]);
   const opacity = useTransform(progress, [start, start + 0.12], [0, 1]);
 
+  // Mobile: scrubbed by the card's own scroll position, like the desktop
+  // deal — not time-triggered, so the gather/scatter is visible at any
+  // scroll speed and plays in reverse on the way back up. The card assembles
+  // as its top travels from just below the viewport to 72% of its height.
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: cardScrollY } = useScroll({
+    target: cardRef,
+    offset: ["start 105%", "start 72%"],
+  });
+  const cardP = useSpring(cardScrollY, {
+    stiffness: 150,
+    damping: 26,
+    restDelta: 0.001,
+  });
+  const mOpacity = useTransform(cardP, [0, 1], [0, 1]);
+  const mX = useTransform(cardP, [0, 1], [s.x * 0.4, 0]);
+  const mY = useTransform(cardP, [0, 1], [46, 0]);
+  const mRotate = useTransform(cardP, [0, 1], [s.r, 0]);
+  const mScale = useTransform(cardP, [0, 1], [0.9, 1]);
+
+  // Mobile view: each card gathers in as it scrolls up into the viewport
+  if (isMobile && active) {
+    return (
+      <motion.div
+        ref={cardRef}
+        style={{ opacity: mOpacity, x: mX, y: mY, rotate: mRotate, scale: mScale }}
+        className={CARD_CLASS}
+      >
+        <CardBody group={group} />
+      </motion.div>
+    );
+  }
+
+  // Desktop view: overall scroll progress driven assembly across 3 columns
+
   return (
+    // Same ref as the mobile branch: both branches render a motion.div at
+    // the same tree position, so React keeps one DOM node and the scroll
+    // target stays attached across the isMobile flip.
     <motion.div
+      ref={cardRef}
       style={active ? { x, y, rotate, scale, opacity } : undefined}
       className={CARD_CLASS}
     >

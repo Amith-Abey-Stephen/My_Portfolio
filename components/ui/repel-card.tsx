@@ -16,7 +16,9 @@ const MAX_PUSH = 120; // how far the card blasts away (px)
 /**
  * A card that recoils from the cursor — as the pointer approaches it springs
  * away in the opposite direction and lights up with a burgundy halo, then
- * settles back once the cursor leaves. Disabled for reduced-motion.
+ * settles back once the cursor leaves. Mouse-only by design: on touch the
+ * cards rely on their scroll-driven entrance instead. Disabled for
+ * reduced-motion.
  */
 export function RepelCard({
   children,
@@ -41,9 +43,7 @@ export function RepelCard({
     if (reduceMotion) return;
     let raf = 0;
 
-    function onMove(e: MouseEvent) {
-      const px = e.clientX;
-      const py = e.clientY;
+    function react(px: number, py: number) {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         const el = ref.current;
@@ -67,6 +67,10 @@ export function RepelCard({
           glow.set(0);
         }
       });
+    }
+
+    function onMove(e: MouseEvent) {
+      react(e.clientX, e.clientY);
     }
 
     window.addEventListener("mousemove", onMove, { passive: true });
