@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
+  useMotionTemplate,
   useScroll,
   useSpring,
   useTransform,
@@ -16,6 +17,7 @@ import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { ProjectCard } from "@/components/cards/project-card";
 import { Reveal } from "@/components/motion/reveal";
+import { cn } from "@/lib/utils";
 
 // Deck timing, in scroll-progress units (0 → 1).
 const SLIDE = 0.34; // how long a card spends sliding in from the right
@@ -103,9 +105,44 @@ function DeckCard({
   );
 }
 
+// The mobile card width — must stay in sync between the card class below and
+// the conveyor's translate calc.
+const MOBILE_CARD_W = "min(82vw,340px)";
+
+/**
+ * One card on the mobile conveyor: full opacity and scale while centred,
+ * dimmed and slightly shrunk while waiting in the wings.
+ */
+function MobileDeckCard({
+  project,
+  index,
+  t,
+}: {
+  project: Project;
+  index: number;
+  t: MotionValue<number>;
+}) {
+  const opacity = useTransform(t, [index - 1, index, index + 1], [0.45, 1, 0.45]);
+  const scale = useTransform(t, [index - 1, index, index + 1], [0.94, 1, 0.94]);
+
+  return (
+    <motion.div
+      style={{ opacity, scale }}
+      className="w-[82vw] max-w-[340px] shrink-0"
+    >
+      <ProjectCard
+        project={project}
+        className="h-full shadow-[0_24px_60px_-28px_rgba(0,0,0,0.75)]"
+      />
+    </motion.div>
+  );
+}
+
 export function SelectedWork() {
   const reduceMotion = useReducedMotion();
+  const count = featuredProjects.length;
 
+  // Desktop: pinned horizontal deal.
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -119,38 +156,82 @@ export function SelectedWork() {
   });
 
   // Stagger the cards so they deal in one after another and overlap in motion.
-  const count = featuredProjects.length;
   const step = count > 1 ? (LAST_LAND - SLIDE) / (count - 1) : 0;
   const enters = featuredProjects.map((_, k) => k * step);
   const lands = enters.map((e) => e + SLIDE);
 
-  // Static fallback — reduced motion and small screens get the plain grid.
-  const staticGrid = (
-    <Section
-      id={reduceMotion ? "work" : undefined}
-      className={reduceMotion ? "scroll-mt-24" : "lg:hidden"}
-    >
-      <Header />
-      <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {featuredProjects.map((project, i) => (
-          <Reveal key={project.slug} delay={i * 0.08}>
-            <ProjectCard project={project} className="h-full" />
-          </Reveal>
-        ))}
-      </div>
-    </Section>
-  );
+  // Mobile: the same idea, adapted — the section pins and vertical scroll
+  // scrubs the card row horizontally through the centre, then the page
+  // continues. `t` is the fractional index of the centred card (0 → count-1).
+  const mobileRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: mobileScrollY } = useScroll({
+    target: mobileRef,
+    offset: ["start start", "end end"],
+  });
+  const mobileProgress = useSpring(mobileScrollY, {
+    stiffness: 120,
+    damping: 30,
+    restDelta: 0.001,
+  });
+  const t = useTransform(mobileProgress, [0.06, LAST_LAND], [0, count - 1]);
+  // CSS-calc translate keeps the pitch correct at every viewport width with no
+  // JS measurement: one card width + the 16px flex gap per index step.
+  const rowTransform = useMotionTemplate`translateX(calc(${t} * ((${MOBILE_CARD_W} + 16px) * -1)))`;
 
-  if (reduceMotion) return staticGrid;
+  const [activeCard, setActiveCard] = useState(0);
+  useEffect(() => {
+    const unsubscribe = t.on("change", (v) => {
+      setActiveCard(Math.round(Math.min(count - 1, Math.max(0, v))));
+    });
+    return () => unsubscribe();
+  }, [t, count]);
+
+  const scrollToCard = (idx: number) => {
+    const el = mobileRef.current;
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY;
+    const p =
+      count > 1 ? 0.06 + (idx / (count - 1)) * (LAST_LAND - 0.06) : 0;
+    window.scrollTo({
+      top: top + p * (el.offsetHeight - window.innerHeight),
+      behavior: "smooth",
+    });
+  };
+
+  // Reduced motion (any viewport): a plain swipeable snap row, no pinning.
+  if (reduceMotion) {
+    return (
+      <Section id="work" className="scroll-mt-24">
+        <Header />
+        <div className="-mx-6 mt-8 flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 pb-6 pt-2">
+          {featuredProjects.map((project, i) => (
+            <div
+              key={project.slug}
+              className="w-[85vw] max-w-[320px] shrink-0 snap-center"
+            >
+              <Reveal delay={i * 0.05}>
+                <ProjectCard
+                  project={project}
+                  className="h-full border-border/80 bg-surface/80 shadow-xl"
+                />
+              </Reveal>
+            </div>
+          ))}
+        </div>
+      </Section>
+    );
+  }
 
   return (
-    <>
+    // The anchor lives on this wrapper so "/#work" resolves on every viewport —
+    // the pinned decks inside are display:none off their breakpoints and can't
+    // be scrolled to.
+    <div id="work" className="scroll-mt-24">
       {/* Desktop: pinned horizontal deal — a spaced row that tightens as cards land */}
       <section
         ref={ref}
-        id="work"
         data-pin="work"
-        className="relative hidden h-[260vh] scroll-mt-24 lg:block"
+        className="relative hidden h-[260vh] lg:block"
       >
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
           <Container className="w-full">
@@ -172,8 +253,56 @@ export function SelectedWork() {
         </div>
       </section>
 
-      {/* Mobile: static grid */}
-      {staticGrid}
-    </>
+      {/* Mobile: pinned conveyor — scrolling down slides the cards through, then
+          the page carries on. Lede omitted so the pinned stage fits short phones. */}
+      <section
+        ref={mobileRef}
+        data-pin="work-mobile"
+        className="relative lg:hidden"
+        style={{ height: `${100 + (count - 1) * 45}vh` }}
+      >
+        <div className="sticky top-0 flex h-dvh flex-col justify-center overflow-hidden">
+          <Container className="w-full">
+            <SectionHeading
+              eyebrow="Selected Work"
+              title="A few things I've built."
+            />
+          </Container>
+
+          <motion.div
+            style={{ transform: rowTransform }}
+            className="mt-8 flex gap-4 pl-[calc((100vw-min(82vw,340px))/2)]"
+          >
+            {featuredProjects.map((project, i) => (
+              <MobileDeckCard
+                key={project.slug}
+                project={project}
+                index={i}
+                t={t}
+              />
+            ))}
+          </motion.div>
+
+          {/* Tappable progress dots */}
+          <div className="mt-7 flex items-center justify-center gap-1">
+            {featuredProjects.map((project, i) => (
+              <button
+                key={project.slug}
+                onClick={() => scrollToCard(i)}
+                aria-label={`Go to ${project.title}`}
+                className="flex h-8 w-7 items-center justify-center"
+              >
+                <span
+                  className={cn(
+                    "h-2 rounded-full transition-all duration-300",
+                    i === activeCard ? "w-6 bg-burgundy-light" : "w-2 bg-border",
+                  )}
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

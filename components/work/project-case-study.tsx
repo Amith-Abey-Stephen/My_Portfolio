@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -59,6 +59,7 @@ export function ProjectCaseStudyView({
   nextProject?: Omit<Project, "icon"> & { icon?: React.ElementType };
 }) {
   const [activeSection, setActiveSection] = useState<string>("problem");
+  const railRef = useRef<HTMLDivElement>(null);
 
   const Icon = PROJECT_ICONS[project.slug] || FolderGit2;
 
@@ -92,6 +93,21 @@ export function ProjectCaseStudyView({
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [availableSections]);
+
+  // Keep the active pill visible in the mobile rail as the reader scrolls.
+  // Horizontal-only scroll — scrollIntoView would also drag the page vertically.
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const pill = rail.querySelector<HTMLElement>(
+      `[data-section="${activeSection}"]`,
+    );
+    if (!pill) return;
+    rail.scrollTo({
+      left: pill.offsetLeft - (rail.clientWidth - pill.offsetWidth) / 2,
+      behavior: "smooth",
+    });
+  }, [activeSection]);
 
   return (
     <article className="relative">
@@ -222,9 +238,36 @@ export function ProjectCaseStudyView({
       </header>
 
       {/* Main Dual-Column Case Study Reader */}
-      <Container className="py-16 md:py-24">
+      <Container className="py-12 md:py-24">
+        {/* Mobile Sticky Section Navigation Rail */}
+        <div
+          ref={railRef}
+          className="sticky top-16 z-30 mb-8 block lg:hidden rounded-full border border-border/80 bg-background/90 p-1.5 backdrop-blur-md overflow-x-auto shadow-md"
+        >
+          <div className="flex items-center gap-1.5 min-w-max">
+            {availableSections.map((s) => {
+              const isActive = activeSection === s.key;
+              return (
+                <button
+                  key={s.key}
+                  data-section={s.key}
+                  onClick={() => scrollToSection(s.key)}
+                  className={cn(
+                    "rounded-full px-3 py-1 font-mono text-[0.7rem] font-medium transition-all duration-300",
+                    isActive
+                      ? "bg-burgundy text-white shadow-xs"
+                      : "text-muted hover:text-foreground bg-surface/40",
+                  )}
+                >
+                  {s.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="grid gap-12 lg:grid-cols-[220px_1fr] lg:gap-16">
-          {/* Sticky Table of Contents Navigation */}
+          {/* Sticky Table of Contents Navigation (Desktop) */}
           <aside className="hidden lg:block">
             <div className="sticky top-28 space-y-6">
               <p className="font-mono text-[0.7rem] uppercase tracking-wider text-muted">

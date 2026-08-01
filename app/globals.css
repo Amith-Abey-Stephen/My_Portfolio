@@ -71,9 +71,16 @@
     border-color: var(--color-border);
   }
 
+  /* Horizontal overflow guard: decorative transforms/blooms must never widen
+     the page, or mobile browsers expand the layout viewport and render the
+     whole site zoomed out. `clip` (with `hidden` fallback) on the root is the
+     only variant that reliably prevents that expansion — body-only hidden
+     does not propagate consistently. */
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
@@ -85,6 +92,7 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+    overflow-x: clip;
   }
 
   h1,

@@ -78,9 +78,9 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-background">
       <Container className="py-16 md:py-20">
-        <div className="grid gap-12 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
-          {/* Signature */}
-          <div className="max-w-xs">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-[1.6fr_1fr_1fr_1fr] md:gap-12">
+          {/* Signature — full width on phones, first column from md up */}
+          <div className="col-span-2 max-w-xs md:col-span-1">
             <Link href="/" aria-label={`${site.author} — home`}>
               <Wordmark className="text-2xl" />
             </Link>

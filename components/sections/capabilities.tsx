@@ -121,7 +121,13 @@ export function Capabilities() {
   const active = mounted && !reduceMotion;
 
   return (
-    <Section id="capabilities" className="scroll-mt-24 border-t border-border">
+    // overflow-x-clip: the scattered cards start up to ±210px outside their
+    // slots; unclipped, those transforms widen the page's scrollable overflow
+    // and mobile browsers zoom the whole layout out to fit it.
+    <Section
+      id="capabilities"
+      className="scroll-mt-24 overflow-x-clip border-t border-border"
+    >
       <SectionHeading
         eyebrow="Capabilities"
         title="How I work, and what with."

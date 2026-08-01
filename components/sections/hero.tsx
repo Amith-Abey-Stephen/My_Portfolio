@@ -76,13 +76,18 @@ export function Hero() {
               <span className="inline-flex items-center gap-1.5">
                 Available for work
               </span>
-              <TypewriterText items={site.roles} className="text-secondary" />
+              {/* basis-full: on phones the rotating role takes its own line
+                  instead of wrapping mid-row; from sm it rejoins the row. */}
+              <TypewriterText
+                items={site.roles}
+                className="basis-full text-secondary sm:basis-auto"
+              />
             </div>
           </Reveal>
         </div>
 
-        {/* Portrait — reveals naturally, parallaxes with the cursor (docs 03). */}
-        <Reveal delay={0.15} y={0} className="hidden lg:block">
+        {/* Portrait — reveals naturally, parallaxes with cursor or touch. */}
+        <Reveal delay={0.15} y={0} className="mt-8 flex justify-center lg:mt-0 lg:block">
           <HeroPortrait />
         </Reveal>
       </Container>

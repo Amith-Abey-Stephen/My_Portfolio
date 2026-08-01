@@ -68,7 +68,7 @@ export function InteractiveResume() {
     <div className="relative">
       {/* Editorial Control Toolbar */}
       <Container className="pt-2 pb-12 print:hidden">
-        <div className="flex flex-wrap items-center justify-between gap-4 rounded-full border border-border/80 bg-surface/50 px-6 py-3 backdrop-blur-md">
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 rounded-3xl border border-border/80 bg-surface/50 px-4 py-3 backdrop-blur-md sm:rounded-full sm:px-6">
           <div className="flex items-center gap-2 font-mono text-xs text-muted">
             <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>{site.author}</span>
@@ -77,9 +77,11 @@ export function InteractiveResume() {
           </div>
 
           <div className="flex items-center gap-4 font-mono text-xs">
+            {/* Inline PDF iframes don't render on iOS/Android — small screens
+                use the "Full PDF" link instead. */}
             <button
               onClick={() => setPdfModalOpen(true)}
-              className="flex items-center gap-1.5 text-muted transition-colors hover:text-foreground"
+              className="hidden items-center gap-1.5 text-muted transition-colors hover:text-foreground sm:flex"
             >
               <FileText className="h-3.5 w-3.5" /> Preview PDF
             </button>

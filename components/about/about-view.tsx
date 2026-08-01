@@ -54,7 +54,21 @@ function TiltPortrait() {
     y.set(yPct);
   };
 
-  const handleMouseLeave = () => {
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!cardRef.current || !e.touches[0]) return;
+    const touch = e.touches[0];
+    const rect = cardRef.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const clientX = touch.clientX - rect.left;
+    const clientY = touch.clientY - rect.top;
+    const xPct = clientX / width - 0.5;
+    const yPct = clientY / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleReset = () => {
     x.set(0);
     y.set(0);
   };
@@ -65,35 +79,37 @@ function TiltPortrait() {
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: false, margin: "-60px" }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="perspective-1000 relative mx-auto w-full max-w-sm"
+      className="relative mx-auto w-full max-w-sm [perspective:1000px]"
     >
       {/* Floating 3D Badges */}
       <motion.div
         animate={{ y: [0, -8, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-4 -left-4 z-20 hidden rounded-full border border-border/80 bg-background/80 px-3 py-1 font-mono text-[0.7rem] uppercase tracking-wider text-burgundy-light backdrop-blur-md shadow-lg sm:flex items-center gap-1.5"
+        className="absolute -top-3 -left-2 z-20 flex rounded-full border border-border/80 bg-background/90 px-2.5 py-1 font-mono text-[0.65rem] sm:text-[0.7rem] uppercase tracking-wider text-burgundy-light backdrop-blur-md shadow-lg items-center gap-1.5"
       >
-        <Code2 className="h-3.5 w-3.5" /> Product Engineer
+        <Code2 className="h-3 w-3 sm:h-3.5 sm:w-3.5" /> Product Engineer
       </motion.div>
 
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute -bottom-4 -right-4 z-20 hidden rounded-full border border-border/80 bg-background/80 px-3 py-1 font-mono text-[0.7rem] uppercase tracking-wider text-muted backdrop-blur-md shadow-lg sm:flex items-center gap-1.5"
+        className="absolute -bottom-3 -right-2 z-20 flex rounded-full border border-border/80 bg-background/90 px-2.5 py-1 font-mono text-[0.65rem] sm:text-[0.7rem] uppercase tracking-wider text-muted backdrop-blur-md shadow-lg items-center gap-1.5"
       >
-        <MapPin className="h-3.5 w-3.5 text-burgundy" /> {site.location}
+        <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-burgundy" /> {site.location}
       </motion.div>
 
       <motion.div
         ref={cardRef}
         onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
+        onMouseLeave={handleReset}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleReset}
         style={{
           rotateX,
           rotateY,
           transformStyle: "preserve-3d",
         }}
-        className="group relative flex aspect-[4/5] w-full items-end justify-center overflow-hidden rounded-card border border-border/90 bg-surface shadow-2xl transition-all duration-300 hover:border-burgundy/50"
+        className="group relative flex aspect-[4/5] w-full items-end justify-center overflow-hidden rounded-card border border-border/90 bg-surface shadow-2xl transition-all duration-300 hover:border-burgundy/50 active:border-burgundy/50"
       >
         {/* Radial Ambient Glow */}
         <div
@@ -142,6 +158,17 @@ function SpotlightValueCard({
     });
   };
 
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!e.touches[0]) return;
+    const touch = e.touches[0];
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: touch.clientX - rect.left,
+      y: touch.clientY - rect.top,
+    });
+    setIsHovered(true);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
@@ -151,9 +178,12 @@ function SpotlightValueCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative overflow-hidden rounded-card border border-border/80 bg-surface/40 p-8 shadow-md backdrop-blur-md transition-all duration-500 hover:border-burgundy/50 hover:bg-surface/80 hover:shadow-2xl"
+      onTouchMove={handleTouchMove}
+      onTouchStart={() => setIsHovered(true)}
+      onTouchEnd={() => setIsHovered(false)}
+      className="group relative overflow-hidden rounded-card border border-border/80 bg-surface/40 p-6 sm:p-8 shadow-md backdrop-blur-md transition-all duration-500 hover:border-burgundy/50 hover:bg-surface/80 hover:shadow-2xl"
     >
-      {/* Mouse Tracking Radial Spotlight */}
+      {/* Mouse/Touch Tracking Radial Spotlight */}
       {isHovered && (
         <div
           aria-hidden

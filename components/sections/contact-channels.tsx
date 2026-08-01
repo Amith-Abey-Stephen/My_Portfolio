@@ -69,7 +69,7 @@ export function ContactChannels() {
                 type="button"
                 onClick={copyEmail}
                 aria-label={copied ? "Email copied" : "Copy email address"}
-                className="shrink-0 rounded-input p-2 text-muted transition-colors hover:text-foreground"
+                className="shrink-0 rounded-input p-3 text-muted transition-colors hover:text-foreground"
               >
                 {copied ? (
                   <Check className="h-4 w-4 text-burgundy-light" />

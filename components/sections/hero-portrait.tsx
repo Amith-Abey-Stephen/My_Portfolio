@@ -31,12 +31,22 @@ export function HeroPortrait() {
       mx.set((e.clientX / window.innerWidth) * 2 - 1);
       my.set((e.clientY / window.innerHeight) * 2 - 1);
     }
+    function onTouch(e: TouchEvent) {
+      if (!e.touches[0]) return;
+      const t = e.touches[0];
+      mx.set((t.clientX / window.innerWidth) * 2 - 1);
+      my.set((t.clientY / window.innerHeight) * 2 - 1);
+    }
     window.addEventListener("mousemove", onMove, { passive: true });
-    return () => window.removeEventListener("mousemove", onMove);
+    window.addEventListener("touchmove", onTouch, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("touchmove", onTouch);
+    };
   }, [reduceMotion, mx, my]);
 
   return (
-    <div className="relative mx-auto flex h-[560px] w-full max-w-md items-end justify-center">
+    <div className="relative mx-auto flex h-[400px] w-full max-w-md items-end justify-center sm:h-[480px] lg:h-[560px]">
       {/* Ambient burgundy glow behind the figure (parallaxes opposite) */}
       <motion.div
         aria-hidden
@@ -58,6 +68,7 @@ export function HeroPortrait() {
           width={1065}
           height={1600}
           priority
+          sizes="(max-width: 640px) 266px, (max-width: 1024px) 320px, 373px"
           className="h-full w-auto object-contain object-bottom [-webkit-mask-image:linear-gradient(to_top,transparent_0%,#000_28%)] [mask-image:linear-gradient(to_top,transparent_0%,#000_28%)]"
         />
       </motion.div>
