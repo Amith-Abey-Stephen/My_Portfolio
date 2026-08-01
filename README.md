@@ -1,72 +1,94 @@
-# Amith Abey Stephen - Portfolio
+# amith.site
 
-A cinematic, futuristic portfolio built with React, Vite, TailwindCSS, and TypeScript.
+> A digital home documenting the journey of a builder.
+
+An editorial, magazine-style personal site for **Amith Abey Stephen** — built to
+feel calm, timeless, and story-first. Neutrals dominate; burgundy is reserved for
+emphasis. The work is the hero.
+
+Built from the specification in [`/docs`](./docs), which remains the single source
+of truth for brand, design, experience, content, and architecture.
+
+## Tech Stack
+
+- **Framework** — [Next.js](https://nextjs.org) (App Router) + TypeScript
+- **Styling** — [Tailwind CSS v4](https://tailwindcss.com)
+- **Animation** — [Framer Motion](https://www.framer.com/motion/) (reduced-motion aware)
+- **Icons** — [Lucide](https://lucide.dev)
+- **Fonts** — Geist (headings), Inter (body), Geist Mono (mono) via `next/font`
+- **Email** — [Resend](https://resend.com) for the contact form
+- **Writing** — Ghost Content API (`blog.inovuslabs.org`)
+- **Deploy** — [Vercel](https://vercel.com)
 
 ## Getting Started
 
-### Prerequisites
-
-Ensure you have [Node.js](https://nodejs.org/) and [pnpm](https://pnpm.io/) installed.
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
-
-2. Install dependencies:
-   ```bash
-   pnpm install
-   ```
-
-### Environment Variables
-
-Create a `.env` file in the root of your project based on the provided `.env.example`:
-
 ```bash
-cp .env.example .env
+npm install
+cp .env.example .env.local   # fill in the values you need
+npm run dev                  # http://localhost:3000
 ```
 
-Available environment variables:
-- `PORT` (optional): The port the development server will run on (defaults to 5173).
-- `BASE_PATH` (optional): The base path for the application (defaults to `/`).
-- `VITE_GHOST_API_KEY`: Your Ghost Content API key for fetching dynamic blog posts.
+### Scripts
 
-### Running Locally
+| Command             | Description                          |
+| ------------------- | ------------------------------------ |
+| `npm run dev`       | Start the dev server                 |
+| `npm run build`     | Production build                     |
+| `npm run start`     | Serve the production build           |
+| `npm run lint`      | ESLint                               |
+| `npm run typecheck` | TypeScript, no emit                  |
 
-Start the development server:
+## Environment Variables
 
-```bash
-pnpm run dev
+| Variable               | Purpose                                                        |
+| ---------------------- | -------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL for metadata, sitemap, OpenGraph                 |
+| `RESEND_API_KEY`       | Resend key. If empty, the contact form logs instead of sending |
+| `CONTACT_FROM_EMAIL`   | Verified Resend "from" address                                 |
+| `CONTACT_TO_EMAIL`     | Where contact submissions are delivered                        |
+| `BLOG_API_URL`         | Ghost blog base URL                                            |
+| `BLOG_API_KEY`         | Ghost Content API key (writing is hidden if unset)             |
+| `BLOG_AUTHOR`          | Ghost author slug to filter posts by                           |
+
+The contact form degrades gracefully: with no `RESEND_API_KEY` it validates and
+logs submissions so the UX still works in development.
+
+## Structure
+
+```
+app/            App Router — pages, layout, api, sitemap, robots, OG image
+components/
+  cards/        Project & article cards
+  forms/        Contact form
+  footer/       Footer signature
+  journey/      Timeline
+  layout/       Container, Section, PageHeader, headings, skip link
+  motion/       Reveal primitives + MotionConfig (reduced-motion)
+  navigation/   Sticky nav (transparent → blur)
+  sections/     Homepage sections
+  seo/          JSON-LD structured data
+  ui/           Button, Badge, Card
+content/        Typed content — site, projects, journey, capabilities, about,
+                story, community, now, uses, playground
+lib/            api.ts (data seam), utils, metadata helper
+types/          Shared TypeScript types
+public/         Favicons, manifest, static assets
+docs/           The specification — the source of truth
 ```
 
-The application will be available at `http://localhost:5173` (or the port specified in your `.env` file).
+## Pages
 
-### Building for Production
+Home · About · Story · Work (+ case studies) · Journey · Capabilities · Writing ·
+Resume · Now · Uses · Playground · Contact — plus a friendly 404, dynamic sitemap,
+robots, and a generated OpenGraph image.
 
-Create a production build:
+## Accessibility & Performance
 
-```bash
-pnpm run build
-```
+- Respects `prefers-reduced-motion` globally (CSS + Framer `MotionConfig`)
+- Keyboard navigable with a skip link and visible focus states
+- Semantic HTML, AA+ contrast, static generation, `next/font`, code splitting
 
-This will generate the production-ready assets in the `dist` directory.
+## Deployment
 
-### Tech Stack
-
-- **Framework**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Blog Integration**: [Ghost Content API](https://ghost.org/docs/content-api/)
-- **Package Manager**: [pnpm](https://pnpm.io/)
-
-### Features
-
-- **Cinematic Design**: High-end, developer-focused aesthetic with glassmorphism and ambient glows.
-- **Dynamic Writing Section**: Fetches latest blog posts directly from your Ghost CMS.
-- **Interactive Community Section**: Animated counters and playful hover interactions for impact metrics.
-- **Fully Responsive**: Optimized for all devices from mobile to large desktops.
-- **Resume Integration**: Easy access to your hosted resume via multiple touchpoints.
+Push to GitHub and import into Vercel. Set the environment variables above.
+Production deploys from `main`; pull requests get preview deployments.

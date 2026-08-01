@@ -1,0 +1,17 @@
+/* TEAM */
+  Builder & Product Engineer: Amith Abey Stephen
+  Site: https://www.amith.site
+  Location: Kerala, India
+  Contact: amithabey13@gmail.com
+  GitHub: https://github.com/Amith-Abey-Stephen
+  LinkedIn: https://linkedin.com/in/Amith-Abey-Stephen
+
+/* SITE */
+  Last update: 2026
+  Language: English
+  Doctype: HTML5
+  Standards: HTML5, CSS3, JSON-LD, RSS, PWA
+  Stack: Next.js, React, TypeScript, Tailwind CSS, Framer Motion
+  Content: Ghost (headless) for writing, Resend for contact
+
+  “Built with curiosity. Made in Kerala. Always learning.”
