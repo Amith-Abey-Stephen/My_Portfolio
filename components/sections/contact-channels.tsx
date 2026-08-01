@@ -15,7 +15,7 @@ const channels = [
   },
   {
     label: "LinkedIn",
-    value: "Amith Abey Stephen",
+    value: "Amith-Abey-Stephen",
     href: site.socials.linkedin,
     icon: Linkedin,
   },

@@ -12,16 +12,16 @@ const groups: { title: string; links: FooterLink[] }[] = [
     title: "Explore",
     links: [
       { label: "Work", href: "/#work" },
-      { label: "Journey", href: "/#journey" },
-      { label: "Capabilities", href: "/#capabilities" },
+      { label: "About", href: "/about" },
+      { label: "Story", href: "/story" },
       { label: "Writing", href: "/#writing" },
     ],
   },
   {
     title: "More",
     links: [
-      { label: "About", href: "/about" },
-      { label: "Story", href: "/story" },
+      { label: "Journey", href: "/#journey" },
+      { label: "Capabilities", href: "/#capabilities" },
       { label: "Now", href: "/now" },
       { label: "Uses", href: "/uses" },
       { label: "Playground", href: "/playground" },
@@ -31,8 +31,8 @@ const groups: { title: string; links: FooterLink[] }[] = [
     title: "Connect",
     links: [
       { label: "Contact", href: "/#contact" },
-      { label: "Resume", href: site.resumeUrl, external: true },
-      { label: "Blog", href: site.blogUrl, external: true },
+      { label: "Resume", href: "/resume" },
+      { label: "PDF Resume", href: site.resumeUrl, external: true },
       { label: "RSS", href: "/writing/rss.xml", external: true },
     ],
   },

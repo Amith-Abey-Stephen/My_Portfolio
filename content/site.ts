@@ -32,18 +32,18 @@ export const site = {
   // Primary navbar — matches the brand board.
   nav: [
     { label: "Work", href: "/#work" },
-    { label: "Journey", href: "/#journey" },
-    { label: "Capabilities", href: "/#capabilities" },
-    { label: "Writing", href: "/#writing" },
     { label: "About", href: "/about" },
+    { label: "Story", href: "/story" },
+    { label: "Resume", href: "/resume" },
+    { label: "Writing", href: "/#writing" },
   ],
   // Secondary pages, surfaced in the footer
   more: [
-    { label: "Story", href: "/story" },
+    { label: "Journey", href: "/#journey" },
+    { label: "Capabilities", href: "/#capabilities" },
     { label: "Now", href: "/now" },
     { label: "Uses", href: "/uses" },
     { label: "Playground", href: "/playground" },
-    { label: "Resume", href: "/resume" },
     { label: "Contact", href: "/#contact" },
   ],
 } as const;

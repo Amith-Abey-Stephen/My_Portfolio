@@ -20,6 +20,8 @@ export const projects: Project[] = [
     stack: ["Next.js", "Google People API", "VCF Export"],
     icon: Database,
     featured: true,
+    link: "https://syncbatch.amith.site",
+    repo: "https://github.com/Amith-Abey-Stephen/SyncBatch",
     caseStudy: {
       problem:
         "Anyone who runs events or communities knows the ritual: a form fills up with hundreds of names and numbers, and then someone has to type each one into a phone. It is slow, error-prone, and quietly demoralising.",
@@ -50,6 +52,8 @@ export const projects: Project[] = [
     stack: ["Next.js", "MongoDB", "BullMQ", "Redis", "AI"],
     icon: Mail,
     featured: true,
+    link: "https://inomail.amith.site",
+    repo: "https://github.com/Amith-Abey-Stephen/InoMail",
     caseStudy: {
       problem:
         "Small teams and communities need to send real email — announcements, newsletters, updates — without paying enterprise prices or fighting clunky tools built for marketers.",
@@ -78,6 +82,8 @@ export const projects: Project[] = [
     stack: ["Next.js", "MongoDB", "Gemini API", "Automation"],
     icon: FileText,
     featured: true,
+    link: "https://docgen.amith.site",
+    repo: "https://github.com/Amith-Abey-Stephen/Mr-DocGen",
     caseStudy: {
       problem:
         "Reports follow the same shape every time, yet people rewrite the scaffolding from scratch on each one. The structure is repetitive; only the content changes.",
@@ -104,6 +110,8 @@ export const projects: Project[] = [
     stack: ["ESP32", "Firebase Firestore", "Vue.js"],
     icon: Activity,
     featured: true,
+    link: "https://airloo.amith.site",
+    repo: "https://github.com/Amith-Abey-Stephen/AirLoo",
     caseStudy: {
       problem:
         "Public restrooms are maintained on guesswork — cleaned on a fixed schedule whether they need it or not. That means both wasted effort and missed messes.",
@@ -132,6 +140,8 @@ export const projects: Project[] = [
     stack: ["ESP32", "Sensors", "Emergency Workflows"],
     icon: Flame,
     featured: true,
+    link: "https://fire-alert.amith.site",
+    repo: "https://github.com/Amith-Abey-Stephen/Smart-Fire-Alert",
     caseStudy: {
       problem:
         "A fire alarm that only screams in an empty room helps no one. Detection needs to reach a person, wherever they are, immediately.",
@@ -157,6 +167,8 @@ export const projects: Project[] = [
     category: "IoT",
     stack: ["ESP32", "Firebase", "Vue.js"],
     icon: Sprout,
+    link: "https://irrigation.amith.site",
+    repo: "https://github.com/Amith-Abey-Stephen/Smart-Irrigation",
     caseStudy: {
       problem:
         "Watering on a fixed timer ignores what plants actually need — it drowns them after rain and starves them in heat.",

@@ -1,87 +1,87 @@
 import type { StoryChapter } from "@/types";
 
 export const storyIntro =
-  "This is the long version — the one that isn't on the résumé. It's less a career timeline than a record of the moments that turned curiosity into a habit of building.";
+  "This is the real version — the one that isn't formatted for a resume. A record of being dragged into a room by a classmate at Kristu Jyoti, flopping repeatedly, learning from mentors, and slowly becoming a builder.";
 
 export const story: StoryChapter[] = [
   {
     index: "01",
-    title: "Curiosity",
+    title: "The Nudge at Kristu Jyoti",
     body: [
-      "Before any of it had a name, there was just the itch to know how things worked. Taking something apart to see inside was never about breaking it — it was about the reveal.",
-      "That impulse never really went away. It just found bigger things to take apart.",
+      "Everything started at Kristu Jyoti College. Back then, I was just a regular student going through the motions, with no grand master plan or childhood dream of tech leadership.",
+      "The turning point was a classmate who practically forced me to enter Inovus Labs IEDC for an event. I resisted at first, but once I walked through that door, something clicked. Afterwards, showing up became a daily habit.",
     ],
   },
   {
     index: "02",
-    title: "The First Computer",
+    title: "Figma & Hard Truths",
     body: [
-      "A computer is an invitation disguised as an appliance. Once I realised it would do whatever I could learn to ask of it, everything else got more interesting.",
-      "The first small program that actually ran felt like a door opening. I've been walking through it ever since.",
+      "As I spent more time at Inovus Labs, I joined as an intern helping the team organize campus events. Around this time, I was pushed to learn UI design using Figma.",
+      "I gave it a solid try, but as time went on, I came to an honest realization: visual design wasn't my strong suit. Instead of forcing something that wasn't landing, I stopped designing and shifted my energy toward code.",
     ],
   },
   {
     index: "03",
-    title: "The First Arduino",
+    title: "HTML, CSS & The Open Web",
     body: [
-      "Software is patient; hardware is honest. The first time a line of code made a real LED blink, the abstract became physical — and unforgiving.",
-      "Microcontrollers taught me to respect the gap between 'works on my screen' and 'works in the world.'",
+      "Web development felt right immediately. Armed with HTML, CSS, and JavaScript, I started making small things. Nothing massive — just small scripts and simple web pages — but making a browser respond to code was addictive.",
+      "Building for the web gave me a sandbox where feedback was instantaneous and the possibilities kept expanding.",
     ],
   },
   {
     index: "04",
-    title: "The First Website",
+    title: "Tinkering with IoT (2023)",
     body: [
-      "Publishing something to the open web is a peculiar thrill — a thing you made, reachable by anyone, anywhere.",
-      "It reframed building as communication. Not just 'does it run,' but 'does it land.'",
+      "By 2023, as I got comfortable on the web, I wanted a new challenge. That's when I started tinkering with IoT and hardware microcontrollers.",
+      "Making code interact with sensors, LEDs, and physical components taught me patience. Hardware is unforgiving: there is no hot-reloading when a circuit is wired wrong.",
     ],
   },
   {
     index: "05",
-    title: "INOVUS Labs",
+    title: "From Stock Manager to CEO",
     body: [
-      "Inovus Labs is where building stopped being solitary. It's an innovation and entrepreneurship community, and it became the place I learned that ideas move faster with other people around them.",
-      "I eventually led it as CEO — running technical initiatives, hackathons, and startup programs under the Kerala Startup Mission, and helping organise events that reached beyond our campus and country.",
+      "Transitioning from 2023 into 2024, my role inside Inovus Labs evolved rapidly. I started in the extended team, took charge as Stock Manager managing inventory and lab resources, and eventually became CEO.",
+      "Every single role forced me to learn new skills — from logistics and resource management to leading technical hackathons and international events under the Kerala Startup Mission.",
     ],
   },
   {
     index: "06",
-    title: "Community Building",
+    title: "Mentors & The Art of Flopping (2024)",
     body: [
-      "Leading a community is mostly building the conditions for other people to do their best work — clearing obstacles, making introductions, holding a standard.",
-      "Mentoring 30+ students taught me more than any single project. Explaining something clearly is the fastest way to find out whether you actually understand it.",
+      "In 2024, my web-focused journey went into overdrive with open-source contributions and real projects. I was deeply shaped by mentors like Arjun Krishna (decoded_cipher), Sanju Sunil, and Nikhil T Das.",
+      "My role model became Badhusha Shaji. I tried hard to replicate how he approached problems — and flopped many times along the way. But failing repeatedly was the fastest teacher, forcing me to refine my craft and make myself better every day.",
     ],
   },
   {
     index: "07",
-    title: "Building Products",
+    title: "Growing into μLearn",
     body: [
-      "Somewhere along the way, the projects got more serious. SyncBatch, InoMail, AirLoo — each started as a real annoyance and grew into something people could use.",
-      "Shipping to real users changes how you build. You stop optimising for elegance and start optimising for whether it helps.",
+      "As my experience grew, I expanded beyond campus into statewide communities, eventually joining the μLearn Foundation.",
+      "Starting as a frontend intern building reusable component libraries across μLearn platforms, I eventually rose to Junior Associate — serving as a technical point of contact and mentoring students before eventually stepping out to take on new horizons.",
     ],
   },
   {
     index: "08",
-    title: "A Professional Craft",
+    title: "Google Ambassador & AI",
     body: [
-      "Internships and roles — Zidio, μLearn, Foodo.AI, Google — turned instinct into craft. Working inside real teams, on real deadlines, with real users on the other end.",
-      "As frontend POC at μLearn, I care as much about how the people around me work as about what I ship myself.",
+      "Alongside community roles, I served as a Campus Ambassador for Google (Gemini program), leading AI-focused workshops and campus-wide technical engagement.",
+      "Teaching others how to leverage LLMs and modern AI tools deepened my own understanding of where software is heading.",
     ],
   },
   {
     index: "09",
-    title: "Today",
+    title: "Today: Full-Stack Craft",
     body: [
-      "I'm still doing the same thing I did as a kid taking things apart — just with bigger systems and higher stakes. Software, hardware, community, all of it.",
-      "The through-line is unchanged: find a real problem, build the smallest thing that helps, learn, repeat.",
+      "Today, I'm building Shop Minis and Shopify App Store applications at FinalApps — shipping full-stack e-commerce software for merchants worldwide.",
+      "Looking back at the student who had to be forced into his first event, the through-line is clear: curiosity, resilience through failure, and great mentors.",
     ],
   },
   {
     index: "10",
     title: "What's Next",
     body: [
-      "More products, built more openly. More writing about the messy middle of building, not just the finished result.",
-      "This page — like the work — is unfinished on purpose. It should still feel true whether I'm building startups, leading teams, designing, or mentoring years from now.",
+      "More products, built in the open. More open-source contributions, and more honest writing about the messy process of building.",
+      "This story isn't finished — it's just the foundation for whatever comes next.",
     ],
   },
 ];
