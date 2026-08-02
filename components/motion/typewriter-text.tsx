@@ -32,12 +32,17 @@ export function TypewriterText({
   gapMs = 450,
 }: TypewriterTextProps) {
   const reduceMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
   const [index, setIndex] = useState(0);
   const [text, setText] = useState(items[0] ?? "");
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    if (reduceMotion || items.length === 0) return;
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted || reduceMotion || items.length === 0) return;
     if (document.hidden) return;
     const word = items[index % items.length];
 
@@ -63,7 +68,7 @@ export function TypewriterText({
       deleting ? deleteMs : typeMs,
     );
     return () => clearTimeout(t);
-  }, [text, deleting, index, items, reduceMotion, typeMs, deleteMs, holdMs, gapMs]);
+  }, [mounted, text, deleting, index, items, reduceMotion, typeMs, deleteMs, holdMs, gapMs]);
 
   return (
     <span

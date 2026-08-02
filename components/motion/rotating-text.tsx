@@ -28,16 +28,21 @@ export function RotatingText({
   srText,
 }: RotatingTextProps) {
   const reduceMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (reduceMotion || items.length <= 1) return;
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted || reduceMotion || items.length <= 1) return;
     const id = setInterval(() => {
       if (document.hidden) return;
       setIndex((i) => (i + 1) % items.length);
     }, interval);
     return () => clearInterval(id);
-  }, [items.length, interval, reduceMotion]);
+  }, [mounted, items.length, interval, reduceMotion]);
 
   const active = items[index] ?? items[0];
 
