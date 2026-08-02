@@ -42,8 +42,6 @@ export const site = {
     { label: "Journey", href: "/#journey" },
     { label: "Capabilities", href: "/#capabilities" },
     { label: "Now", href: "/now" },
-    { label: "Uses", href: "/uses" },
-    { label: "Playground", href: "/playground" },
     { label: "Contact", href: "/#contact" },
   ],
 } as const;

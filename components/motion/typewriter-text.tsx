@@ -73,6 +73,7 @@ export function TypewriterText({
   return (
     <span
       className={cn("inline-flex items-baseline whitespace-nowrap", className)}
+      role="text"
       aria-label={items[index % items.length]}
     >
       <span aria-hidden>{text}</span>

@@ -5,33 +5,36 @@ import type { NowData } from "@/types";
  * Inspired by nownownow.com. Updated roughly monthly.
  */
 export const now: NowData = {
-  updated: "July 2026",
+  updated: "August 2026",
   sections: [
     {
       label: "Working on",
       items: [
-        "Building Shopify apps and AI merchant tools as a full-stack dev at FinalApps",
-        "Refining InoMail's queue and deliverability",
-        "Rebuilding this site as a calmer, more editorial home",
+        "Building Shopify apps, Shop Minis, and upcoming Reddit apps — focused on crafting products with superior user experience",
+        "Diving deep into DevOps & self-hosting: managing custom servers, running cloud infrastructure, and shipping products that matter",
+        "Refining queue systems, background workers, and email deliverability for InoMail",
       ],
     },
     {
       label: "Learning",
       items: [
-        "Deeper systems design for reliable background work",
-        "Writing that reflects instead of impresses",
-        "Getting better at saying no to keep scope small",
+        "Self-hosted infrastructure orchestration, server hardening, and lean Linux deployments",
+        "Deeper systems architecture for reliable background work and low-latency APIs",
+        "Writing that reflects intent instead of noise",
       ],
     },
     {
       label: "Reading",
-      items: ["Essays on craft and product", "Docs, changelogs, and source code"],
+      items: [
+        "Essays on software craft and product engineering",
+        "DevOps documentation, Linux server specs, and open-source changelogs",
+      ],
     },
     {
       label: "Thinking about",
       items: [
-        "How to document building in public without the noise",
-        "Where AI genuinely earns a place in the tools I make",
+        "How to architect systems in the most inexpensive, hyper-optimized, and resource-efficient way possible",
+        "Where AI and native platform apps genuinely create delightful, high-touch user experiences",
       ],
     },
   ],

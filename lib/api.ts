@@ -1,6 +1,5 @@
 import { projects } from "@/content/projects";
 import { now } from "@/content/now";
-import { uses } from "@/content/uses";
 import type { Post, PostTag, Tag } from "@/types";
 
 /**
@@ -142,8 +141,4 @@ export function getProjects() {
 
 export function getNow() {
   return now;
-}
-
-export function getUses() {
-  return uses;
 }

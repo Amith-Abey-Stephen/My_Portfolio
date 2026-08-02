@@ -49,6 +49,7 @@ export function RotatingText({
   return (
     <span
       className={cn("relative inline-grid align-baseline", className)}
+      role="text"
       aria-label={srText ?? items[0]}
     >
       {/* Invisible sizers — the grid cell grows to the widest phrase. */}
