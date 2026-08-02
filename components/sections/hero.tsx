@@ -36,16 +36,14 @@ export function Hero() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.05}>
-            <h1 className="text-balance text-5xl font-semibold leading-[1.03] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-              Building products with{" "}
-              <RotatingText
-                items={site.headlineWords}
-                srText="purpose."
-                className="text-burgundy-light"
-              />
-            </h1>
-          </Reveal>
+          <h1 className="text-balance text-5xl font-semibold leading-[1.03] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+            Building products with{" "}
+            <RotatingText
+              items={site.headlineWords}
+              srText="purpose."
+              className="text-burgundy-light"
+            />
+          </h1>
 
           <Reveal delay={0.12}>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-secondary md:text-xl">
@@ -65,7 +63,7 @@ export function Hero() {
                     <Sparkles className="h-3 w-3 animate-pulse text-burgundy-light" /> Desktop Recommended
                   </span>
                   <span className="mt-0.5 text-xs font-bold text-foreground">
-                    Best viewed on web for full 3D physics ↗
+                    Best viewed on Web ↗
                   </span>
                 </div>
               </div>
@@ -94,9 +92,6 @@ export function Hero() {
               </span>
               <span className="inline-flex items-center gap-1.5">
                 Available for work
-              </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-burgundy/30 bg-burgundy/10 px-2.5 py-0.5 text-[0.7rem] text-burgundy-light sm:hidden">
-                <Monitor className="h-3 w-3" /> Best on web view
               </span>
               {/* basis-full: on phones the rotating role takes its own line
                   instead of wrapping mid-row; from sm it rejoins the row. */}

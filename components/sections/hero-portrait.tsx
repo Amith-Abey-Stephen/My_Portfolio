@@ -58,7 +58,8 @@ export function HeroPortrait() {
           width={1065}
           height={1600}
           priority
-          sizes="(max-width: 640px) 266px, (max-width: 1024px) 320px, 373px"
+          quality={75}
+          sizes="(max-width: 640px) 240px, (max-width: 1024px) 320px, 373px"
           className="h-full w-auto object-contain object-bottom [-webkit-mask-image:linear-gradient(to_top,transparent_0%,#000_28%)] [mask-image:linear-gradient(to_top,transparent_0%,#000_28%)]"
         />
       </motion.div>

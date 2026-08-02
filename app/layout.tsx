@@ -97,6 +97,14 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="min-h-screen bg-background text-foreground antialiased">
         {/* Runs before paint: on a repeat visit this session, flag <html> so the
             intro overlay is hidden via CSS instantly — no flash, no hydration
