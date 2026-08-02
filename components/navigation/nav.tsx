@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, Monitor, X } from "lucide-react";
 import { site } from "@/content/site";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/layout/container";
@@ -102,12 +102,12 @@ export function Nav() {
             className="overflow-hidden border-t border-border bg-background/95 backdrop-blur-xl md:hidden"
           >
             <Container className="flex flex-col gap-1 py-4">
-              {[...site.nav, ...site.more].map((item) => (
+              {site.nav.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "rounded-input px-3 py-2.5 text-base transition-colors",
+                    "rounded-input px-3.5 py-2.5 text-base font-medium transition-colors",
                     isActive(item.href)
                       ? "bg-elevated text-foreground"
                       : "text-secondary hover:bg-surface hover:text-foreground",
@@ -116,6 +116,15 @@ export function Nav() {
                   {item.label}
                 </Link>
               ))}
+
+              <div className="mt-3 grid grid-cols-2 gap-2.5 border-t border-border pt-4">
+                <ButtonLink href="/resume" variant="secondary" size="md" className="w-full justify-center">
+                  Resume
+                </ButtonLink>
+                <ButtonLink href="/#contact" variant="primary" size="md" className="w-full justify-center">
+                  Get in touch
+                </ButtonLink>
+              </div>
             </Container>
           </motion.nav>
         )}

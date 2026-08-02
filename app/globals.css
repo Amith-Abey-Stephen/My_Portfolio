@@ -139,21 +139,22 @@
     cursor: text !important;
   }
 
-  /* Thin, quiet scrollbar */
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+  /* Lenis smooth inertia scroll support */
+  html.lenis,
+  html.lenis body {
+    height: auto;
   }
-  ::-webkit-scrollbar-track {
-    background: var(--color-background);
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
   }
-  ::-webkit-scrollbar-thumb {
-    background: var(--color-elevated);
-    border-radius: 999px;
-    border: 2px solid var(--color-background);
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-border-strong);
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
   }
 }
 

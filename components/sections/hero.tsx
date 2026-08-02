@@ -1,4 +1,4 @@
-import { ArrowRight, FileText, MapPin } from "lucide-react";
+import { ArrowRight, FileText, MapPin, Monitor, Sparkles } from "lucide-react";
 import { site } from "@/content/site";
 import { Container } from "@/components/layout/container";
 import { ButtonLink } from "@/components/ui/button";
@@ -53,6 +53,25 @@ export function Hero() {
             </p>
           </Reveal>
 
+          {/* Prominent High-Visibility Mobile Notice Banner Card */}
+          <Reveal delay={0.15}>
+            <div className="mt-6 flex items-center justify-between gap-3.5 rounded-2xl border border-burgundy/40 bg-gradient-to-r from-burgundy/25 via-burgundy/15 to-surface p-4 shadow-xl backdrop-blur-md sm:hidden">
+              <div className="flex items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-burgundy/40 bg-burgundy/20 text-burgundy-light shadow-inner">
+                  <Monitor className="h-5 w-5" />
+                </span>
+                <div className="flex flex-col">
+                  <span className="font-mono text-[0.68rem] font-bold uppercase tracking-wider text-burgundy-light flex items-center gap-1">
+                    <Sparkles className="h-3 w-3 animate-pulse text-burgundy-light" /> Desktop Recommended
+                  </span>
+                  <span className="mt-0.5 text-xs font-bold text-foreground">
+                    Best viewed on web for full 3D physics ↗
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
           <Reveal delay={0.18}>
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <ButtonLink href="/#work" variant="primary">
@@ -69,12 +88,15 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={0.24}>
-            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs text-muted">
+            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2.5 font-mono text-xs text-muted">
               <span className="inline-flex items-center gap-1.5">
                 <MapPin className="h-3.5 w-3.5" /> {site.location}
               </span>
               <span className="inline-flex items-center gap-1.5">
                 Available for work
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-burgundy/30 bg-burgundy/10 px-2.5 py-0.5 text-[0.7rem] text-burgundy-light sm:hidden">
+                <Monitor className="h-3 w-3" /> Best on web view
               </span>
               {/* basis-full: on phones the rotating role takes its own line
                   instead of wrapping mid-row; from sm it rejoins the row. */}

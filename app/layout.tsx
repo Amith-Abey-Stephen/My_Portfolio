@@ -81,6 +81,10 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+import { SmoothScroll } from "@/components/motion/smooth-scroll";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { DesktopHintToast } from "@/components/ui/desktop-hint-toast";
+
 export default function RootLayout({
   children,
 }: {
@@ -105,12 +109,15 @@ export default function RootLayout({
         <PersonJsonLd />
         <WebsiteJsonLd />
         <MotionProvider>
-          <Cursor />
-          <LoadingScreen />
-          <SkipLink />
-          <Nav />
-          <main id="main">{children}</main>
-          <Footer />
+          <SmoothScroll>
+            <ScrollProgress />
+            <Cursor />
+            <LoadingScreen />
+            <SkipLink />
+            <Nav />
+            <main id="main">{children}</main>
+            <Footer />
+          </SmoothScroll>
         </MotionProvider>
       </body>
     </html>
