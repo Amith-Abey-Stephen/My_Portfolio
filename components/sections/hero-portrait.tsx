@@ -31,18 +31,8 @@ export function HeroPortrait() {
       mx.set((e.clientX / window.innerWidth) * 2 - 1);
       my.set((e.clientY / window.innerHeight) * 2 - 1);
     }
-    function onTouch(e: TouchEvent) {
-      if (!e.touches[0]) return;
-      const t = e.touches[0];
-      mx.set((t.clientX / window.innerWidth) * 2 - 1);
-      my.set((t.clientY / window.innerHeight) * 2 - 1);
-    }
     window.addEventListener("mousemove", onMove, { passive: true });
-    window.addEventListener("touchmove", onTouch, { passive: true });
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("touchmove", onTouch);
-    };
+    return () => window.removeEventListener("mousemove", onMove);
   }, [reduceMotion, mx, my]);
 
   return (

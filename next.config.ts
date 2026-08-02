@@ -36,6 +36,7 @@ const nextConfig: NextConfig = {
       { source: "/journey", destination: "/#journey", permanent: false },
     ];
   },
+  allowedDevOrigins: ['10.183.253.123'],
 };
 
 export default nextConfig;

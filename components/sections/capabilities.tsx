@@ -15,14 +15,9 @@ import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { RepelCard } from "@/components/ui/repel-card";
 
-// Each card's basis fills one column so full rows stay flush, but a lone last
-// card centres instead of hugging the left.
 const CARD_CLASS =
   "h-full basis-full md:basis-[calc(50%_-_0.75rem)] lg:basis-[calc((100%/3)_-_1rem)]";
 
-// Where each card starts before it gathers into its grid slot — offset from the
-// sides/below with a slight tilt, so they read as scattered and then assemble
-// (TRIONN-style). Indexed 1:1 with the seven capability groups.
 const SCATTER = [
   { x: -190, y: 70, r: -9 },
   { x: 170, y: 120, r: 8 },
@@ -71,11 +66,6 @@ function useIsMobile() {
   return isMobile;
 }
 
-/**
- * A capability card that starts scattered (offset + tilted) and gathers into
- * its grid slot as the section scrolls in, staggered by position — so the page
- * doesn't go dead after the Journey timeline. (docs 03: motion has purpose.)
- */
 function ScrollCard({
   group,
   index,
@@ -90,9 +80,7 @@ function ScrollCard({
   const isMobile = useIsMobile();
   const s = SCATTER[index % SCATTER.length];
 
-  // Desktop assembly transforms. Created unconditionally — hooks must run in
-  // the same order every render, and `isMobile` flips after mount — even
-  // though the mobile branch below never reads them.
+  // Desktop assembly transforms
   const start = index * 0.06;
   const range = [start, start + 0.55];
 
@@ -102,47 +90,23 @@ function ScrollCard({
   const scale = useTransform(progress, range, [0.85, 1]);
   const opacity = useTransform(progress, [start, start + 0.12], [0, 1]);
 
-  // Mobile: scrubbed by the card's own scroll position, like the desktop
-  // deal — not time-triggered, so the gather/scatter is visible at any
-  // scroll speed and plays in reverse on the way back up. The card assembles
-  // as its top travels from just below the viewport to 72% of its height.
-  const cardRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: cardScrollY } = useScroll({
-    target: cardRef,
-    offset: ["start 105%", "start 72%"],
-  });
-  const cardP = useSpring(cardScrollY, {
-    stiffness: 150,
-    damping: 26,
-    restDelta: 0.001,
-  });
-  const mOpacity = useTransform(cardP, [0, 1], [0, 1]);
-  const mX = useTransform(cardP, [0, 1], [s.x * 0.4, 0]);
-  const mY = useTransform(cardP, [0, 1], [46, 0]);
-  const mRotate = useTransform(cardP, [0, 1], [s.r, 0]);
-  const mScale = useTransform(cardP, [0, 1], [0.9, 1]);
-
-  // Mobile view: each card gathers in as it scrolls up into the viewport
+  // Mobile: Buttery smooth GPU-accelerated viewport entrance (zero JS scroll-loop overhead)
   if (isMobile && active) {
     return (
       <motion.div
-        ref={cardRef}
-        style={{ opacity: mOpacity, x: mX, y: mY, rotate: mRotate, scale: mScale }}
-        className={CARD_CLASS}
+        initial={{ opacity: 0, x: s.x * 0.3, y: 35, rotate: s.r, scale: 0.9 }}
+        whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
+        viewport={{ once: false, margin: "-40px" }}
+        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+        className={`${CARD_CLASS} will-change-transform`}
       >
         <CardBody group={group} />
       </motion.div>
     );
   }
 
-  // Desktop view: overall scroll progress driven assembly across 3 columns
-
   return (
-    // Same ref as the mobile branch: both branches render a motion.div at
-    // the same tree position, so React keeps one DOM node and the scroll
-    // target stays attached across the isMobile flip.
     <motion.div
-      ref={cardRef}
       style={active ? { x, y, rotate, scale, opacity } : undefined}
       className={CARD_CLASS}
     >
@@ -151,20 +115,15 @@ function ScrollCard({
   );
 }
 
-/** Capabilities — grouped by intent, not skill bars (docs 04). A landing section. */
 export function Capabilities() {
   const reduceMotion = useReducedMotion();
   const [mounted, setMounted] = useState(false);
-  // eslint-disable-next-line react-hooks/set-state-in-effect
+
   useEffect(() => setMounted(true), []);
 
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    // The window the cards gather over (scroll down) and scatter/split over (scroll
-    // up). Completing at "end 90%" — when the bottom card reaches near the base —
-    // ensures that on reverse scroll (scrolling back up), cards start splitting right as
-    // the bottom card hits or gets close to the base of the viewport.
     offset: ["start end", "end 90%"],
   });
   const progress = useSpring(scrollYProgress, {
@@ -176,9 +135,6 @@ export function Capabilities() {
   const active = mounted && !reduceMotion;
 
   return (
-    // overflow-x-clip: the scattered cards start up to ±210px outside their
-    // slots; unclipped, those transforms widen the page's scrollable overflow
-    // and mobile browsers zoom the whole layout out to fit it.
     <Section
       id="capabilities"
       className="scroll-mt-24 overflow-x-clip border-t border-border"
