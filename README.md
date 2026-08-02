@@ -12,6 +12,7 @@ Built from the specification in [`/docs`](./docs), which remains the single sour
 
 - **Framework** — [Next.js](https://nextjs.org) 16 (App Router) + TypeScript
 - **Styling** — [Tailwind CSS v4](https://tailwindcss.com) + Custom Design System
+- **Single Copy Master File** — [`content/index.ts`](./content/index.ts) (Single Source of Truth for all site text, projects, bio, journey, capabilities, and story)
 - **Desktop Smooth Inertia Scroll** — [Lenis](https://lenis.darkroom.engineering) (gated to fine pointer devices; deferred to idle time via `requestIdleCallback`)
 - **Mobile Touch Momentum** — Uninterrupted native 60FPS vertical momentum touch flow (zero horizontal touch traps or scroll locking)
 - **Animation** — [Framer Motion](https://www.framer.com/motion/) (reduced-motion aware & hydration safe)
@@ -21,6 +22,19 @@ Built from the specification in [`/docs`](./docs), which remains the single sour
 - **Writing** — Ghost Content API (`blog.inovuslabs.org`)
 - **AI Knowledge & GEO Protocol** — [`/llms.txt`](./app/llms.txt/route.ts), [`/llms-full.txt`](./app/llms-full.txt/route.ts), [`/geo.md`](./app/geo.md/route.ts)
 - **Deploy** — [Vercel](https://vercel.com)
+
+---
+
+## Single Copy Master File (`content/index.ts`)
+
+All site copy, metadata, project case studies, journey milestones, capabilities matrix, and origin story chapters are consolidated into **one single master file**:
+
+👉 **[`content/index.ts`](./content/index.ts)**
+
+To update any text on the website:
+1. Open `content/index.ts`.
+2. Edit the corresponding section (`site`, `about`, `projects`, `journey`, `capabilities`, `story`, `now`, `stats`).
+3. Save — Next.js static site generation (SSG) automatically pre-renders the changes at compile time with 0ms runtime overhead.
 
 ---
 
@@ -81,8 +95,16 @@ components/
   navigation/   Streamlined mobile & desktop navigation
   sections/     Homepage sections & Hero
   seo/          JSON-LD structured data
-  ui/           Button, Badge, Card, DesktopHintToast
-content/        Typed content — site, projects, journey, capabilities, about, story, community, now
+  ui/           Button, Badge, Card
+content/
+  index.ts      MASTER COPY FILE — Single source of truth for all site text & data
+  site.ts       Re-exports site metadata
+  about.ts      Re-exports about & philosophy
+  projects.ts   Re-exports project case studies
+  journey.ts    Re-exports work timeline
+  capabilities.ts Re-exports capability groups
+  story.ts      Re-exports origin story
+  now.ts        Re-exports current focus
 lib/            api.ts (data seam), utils, metadata helper
 types/          Shared TypeScript types
 public/         Favicons, manifest, static assets
