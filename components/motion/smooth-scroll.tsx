@@ -1,11 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Lenis from "lenis";
+import { useEffect } from "react";
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
-  const [lenis, setLenis] = useState<Lenis | null>(null);
-
   useEffect(() => {
     // Only initialize custom smooth inertia scrolling on desktop (fine pointers)
     // Mobile touch devices preserve native 60fps touch momentum
@@ -16,29 +13,45 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     if (isTouchDevice) return;
 
-    const instance = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.5,
-    });
+    let instance: any = null;
+    let rafId: number;
 
-    setLenis(instance);
+    const init = () => {
+      import("lenis").then(({ default: Lenis }) => {
+        instance = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: "vertical",
+          gestureOrientation: "vertical",
+          smoothWheel: true,
+          wheelMultiplier: 0.95,
+          touchMultiplier: 1.5,
+        });
 
-    function raf(time: number) {
-      instance.raf(time);
-      requestAnimationFrame(raf);
-    }
+        function raf(time: number) {
+          instance?.raf(time);
+          rafId = requestAnimationFrame(raf);
+        }
 
-    const rafId = requestAnimationFrame(raf);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      instance.destroy();
+        rafId = requestAnimationFrame(raf);
+      });
     };
+
+    if ("requestIdleCallback" in window) {
+      const idleId = (window as any).requestIdleCallback(init);
+      return () => {
+        (window as any).cancelIdleCallback(idleId);
+        if (rafId) cancelAnimationFrame(rafId);
+        instance?.destroy();
+      };
+    } else {
+      const timerId = setTimeout(init, 100);
+      return () => {
+        clearTimeout(timerId);
+        if (rafId) cancelAnimationFrame(rafId);
+        instance?.destroy();
+      };
+    }
   }, []);
 
   return <>{children}</>;
