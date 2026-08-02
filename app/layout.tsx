@@ -9,6 +9,7 @@ import { LoadingScreen } from "@/components/loading-screen";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { SkipLink } from "@/components/layout/skip-link";
 import { PersonJsonLd, WebsiteJsonLd } from "@/components/seo/json-ld";
+import { Analytics } from "@/components/seo/analytics";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
 
@@ -32,12 +33,6 @@ export const metadata: Metadata = {
     capable: true,
     title: site.name,
     statusBarStyle: "black-translucent",
-  },
-  verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION,
-    other: process.env.BING_SITE_VERIFICATION
-      ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION }
-      : {},
   },
   alternates: {
     canonical: "/",
@@ -116,6 +111,7 @@ export default function RootLayout({
         />
         <PersonJsonLd />
         <WebsiteJsonLd />
+        <Analytics />
         <MotionProvider>
           <SmoothScroll>
             <ScrollProgress />
