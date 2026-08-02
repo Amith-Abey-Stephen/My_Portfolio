@@ -3,21 +3,18 @@ export const site = {
   author: "Amith Abey Stephen",
   glyph: "a.",
   role: "Product Engineer",
-  // Rotating identity, cycled in the hero. `role` stays the canonical one
-  // used for SEO, JSON-LD, and meta descriptions.
   roles: [
     "Product Engineer",
     "Full-Stack Developer",
-    "Shopify App Developer",
-    "IoT Tinkerer",
-    "Community Builder",
+    "Shopify & Reddit App Developer",
+    "DevOps & Self-Hosting Engineer",
+    "IoT Systems Builder",
   ],
-  // Rotating accent for the hero headline — "Building products with ___".
-  headlineWords: ["purpose.", "impact.", "intent.", "care."],
-  purpose: "Building products with purpose.",
-  positioning: "A builder who loves solving real problems.",
+  headlineWords: ["purpose.", "impact.", "clarity.", "speed."],
+  purpose: "Building software that solves real work.",
+  positioning: "Product Engineer building web apps, developer tools, and self-hosted infrastructure.",
   tagline:
-    "I enjoy building software that solves real problems and creates meaningful impact.",
+    "I build web products, Shopify apps, and self-hosted tools that simplify real work for real people.",
   location: "Kerala, India",
   email: "amithabey13@gmail.com",
   phone: "+91 9188550674",
@@ -29,7 +26,6 @@ export const site = {
     linkedin: "https://linkedin.com/in/Amith-Abey-Stephen",
     email: "mailto:amithabey13@gmail.com",
   },
-  // Primary navbar — matches the brand board.
   nav: [
     { label: "Work", href: "/#work" },
     { label: "About", href: "/about" },
@@ -37,7 +33,6 @@ export const site = {
     { label: "Resume", href: "/resume" },
     { label: "Writing", href: "/#writing" },
   ],
-  // Secondary pages, surfaced in the footer
   more: [
     { label: "Journey", href: "/#journey" },
     { label: "Capabilities", href: "/#capabilities" },
@@ -46,9 +41,8 @@ export const site = {
   ],
 } as const;
 
-/** A rich, quotable bio — used for meta descriptions, JSON-LD, and llms.txt. */
 export const bio =
-  "Amith Abey Stephen is a full-stack developer and builder from Kerala, India. He turns ideas into products across software and hardware — scalable SaaS platforms, AI-powered tools, automation systems, and cloud-connected IoT solutions built with Next.js, React, MongoDB, and ESP32. He is a Junior Full Stack Developer at FinalApps building Shopify apps (Shop Minis and App Store) and AI-powered merchant tools, the former CEO of Inovus Labs IEDC, and a frontend technical point of contact at μLearn Foundation with 75+ commits across its platforms. His products include SyncBatch, InoMail, Mr DocGen, and AirLoo.";
+  "Amith Abey Stephen is a Product Engineer and Full-Stack Developer based in Kerala, India. He builds Shopify apps, Shop Minis, Reddit apps, self-hosted DevOps infrastructure, and IoT hardware systems using Next.js, TypeScript, React, Node.js, and ESP32. He works at FinalApps, previously served as CEO of Inovus Labs IEDC, and leads frontend architecture at μLearn Foundation. Creator of SyncBatch, InoMail, Mr DocGen, and AirLoo.";
 
 export const education = {
   name: "Kristu Jyoti College of Management and Technology",
@@ -58,61 +52,32 @@ export const education = {
 };
 
 export const seoKeywords = [
-  // Identity
   "Amith Abey Stephen",
   "Amith",
-  "Amith Stephen",
   "amith.site",
-  // Roles
   "Product Engineer",
-  "builder",
-  "full-stack developer",
-  "frontend developer",
-  "Shopify app developer",
-  "Shopify developer",
-  "IoT developer",
-  "hardware engineer",
-  "community leader",
-  // Affiliations / entities
+  "Full-Stack Developer",
+  "Shopify App Developer",
+  "Shop Minis Developer",
+  "Reddit App Developer",
+  "DevOps Engineer",
+  "Self-Hosting",
+  "IoT Developer",
+  "Next.js Developer",
+  "TypeScript Developer",
+  "React Developer",
+  "Node.js Developer",
+  "MongoDB",
+  "ESP32",
+  "Kerala Developer",
+  "Thiruvalla",
   "FinalApps",
   "Inovus Labs IEDC",
-  "CEO of Inovus Labs",
   "μLearn Foundation",
-  "mulearn",
-  "Foodo.AI",
-  "Google Campus Ambassador",
-  "Kristu Jyoti College",
-  "KJCMT",
-  "Kerala Startup Mission",
-  // Location
-  "Kerala",
-  "Thiruvalla",
-  "India developer",
-  // Products
   "SyncBatch",
   "InoMail",
   "Mr DocGen",
   "AirLoo",
   "Smart Irrigation",
   "Smart Fire Alert",
-  // Tech
-  "Next.js developer",
-  "React developer",
-  "Vue.js",
-  "TypeScript",
-  "Node.js",
-  "MongoDB",
-  "BullMQ",
-  "Redis",
-  "Shopify Admin API",
-  "Shopify Storefront API",
-  "Shop Minis",
-  "Gemini API",
-  "OpenRouter",
-  "MERN",
-  "ESP32",
-  "IoT",
-  "AI tools",
-  "AI agents",
-  "SaaS",
 ];

@@ -6,107 +6,119 @@ import {
   Cpu,
   Sparkles,
   Users,
+  HardDrive,
 } from "lucide-react";
 import type { CapabilityGroup } from "@/types";
 
-/**
- * Grouped by intent, not by skill bar (docs 04: "Avoid skill bars").
- * These describe how I work, followed by the tools I reach for.
- */
 export const capabilities: CapabilityGroup[] = [
   {
-    title: "Product Thinking",
+    title: "Product Engineering",
     icon: Compass,
     summary:
-      "Start from the problem and the person, not the feature list. Ship the smallest thing that actually helps, then learn from it.",
+      "Framing real user bottlenecks and building lean, reliable web products that deliver immediate value without unnecessary complexity.",
     items: [
-      "Problem framing",
-      "Scoping & MVPs",
-      "User research",
-      "Prioritisation",
-      "Iteration",
+      "Problem Framing",
+      "MVP Scoping",
+      "User Experience",
+      "Feature Prioritization",
+      "Iterative Shipping",
     ],
   },
   {
-    title: "Frontend",
+    title: "Frontend Engineering",
     icon: Layout,
     summary:
-      "Interfaces that feel calm and considered — accessible, responsive, and fast on real devices.",
+      "Crafting responsive, high-performance web user interfaces with clean accessibility standards, instant load times, and fluid 60FPS motion.",
     items: [
-      "React",
       "Next.js (App Router)",
-      "Vue.js",
+      "React",
       "TypeScript",
       "Tailwind CSS",
+      "Vue.js",
       "TanStack Query",
       "Zustand",
     ],
   },
   {
-    title: "Backend & APIs",
+    title: "Backend & Systems Architecture",
     icon: Server,
     summary:
-      "APIs and services built to be reliable and legible — queues that drain, auth that holds, data that stays consistent.",
+      "Architecting reliable backend APIs, data pipelines, queue workers, and multi-tenant database infrastructure.",
     items: [
       "Node.js",
       "Express",
       "REST APIs",
-      "JWT auth",
-      "BullMQ & Redis queues",
-      "MongoDB / MySQL",
+      "BullMQ & Redis Queues",
+      "MongoDB",
+      "PostgreSQL / MySQL",
+      "JWT & Auth Workflows",
     ],
   },
   {
-    title: "Shopify & Commerce",
+    title: "DevOps & Self-Hosting",
+    icon: HardDrive,
+    summary:
+      "Configuring custom server infrastructure, self-hosting web services, and optimizing workloads for maximum speed at minimal cost.",
+    items: [
+      "Docker & Containers",
+      "Linux Server Administration",
+      "Nginx & Reverse Proxies",
+      "Self-Hosted Infrastructure",
+      "Resource & Cost Optimization",
+      "CI/CD Pipelines",
+    ],
+  },
+  {
+    title: "Shopify & E-Commerce",
     icon: ShoppingBag,
     summary:
-      "Full-stack apps for merchants — extending the storefront and admin, and automating the operations behind the shop.",
+      "Building full-stack Shopify App Store apps, Shop Minis, and upcoming Reddit apps — automating e-commerce merchant workflows.",
     items: [
-      "Admin API",
+      "Shopify Admin API",
       "Storefront API",
       "Shop Minis",
-      "App Store apps",
+      "Shopify App Store Apps",
       "App Extensions",
       "Webhooks",
     ],
   },
   {
-    title: "IoT & Hardware",
+    title: "IoT & Embedded Hardware",
     icon: Cpu,
     summary:
-      "Cloud-connected devices that survive the physical world — sensing, monitoring, and automating the real environment.",
+      "Designing fault-tolerant microcontroller hardware and telemetry pipelines that bridge physical sensors to cloud web dashboards.",
     items: [
-      "ESP32 / Arduino",
+      "ESP32 & C++ Firmware",
+      "Arduino Microcontrollers",
       "Raspberry Pi",
-      "MQTT / ESP-NOW",
-      "Sensor integration",
-      "Firebase realtime",
+      "Sensor Telemetry Fusion",
+      "Firebase Realtime Database",
     ],
   },
   {
     title: "AI & Automation",
     icon: Sparkles,
     summary:
-      "Using models where they earn their place — bounded by structure, in service of a real task, never as decoration.",
+      "Integrating LLM models and automated section schemas to solve bounded text generation and data synthesis tasks.",
     items: [
-      "AI content generation",
-      "Prompt engineering",
-      "Gemini / OpenRouter",
-      "AI agents & workflows",
-      "Data personalisation",
+      "AI Content Automation",
+      "Gemini API & OpenRouter",
+      "Structured Output Schemas",
+      "AI Merchant Tools",
+      "Prompt Engineering",
     ],
   },
   {
     title: "Leadership & Community",
     icon: Users,
     summary:
-      "Building the conditions for other people to build — mentoring, organising, and growing ecosystems that outlast any one event.",
+      "Fostering developer communities, organizing international tech hackathons under KSUM, and mentoring 30+ open-source developers.",
     items: [
-      "Mentoring",
-      "Event organising",
-      "Team leadership",
-      "Open source",
-      "Public speaking",
+      "Developer Mentorship",
+      "Hackathon Organization",
+      "Open Source Leadership",
+      "Team Management",
+      "Public Speaking",
     ],
   },
 ];

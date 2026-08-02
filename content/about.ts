@@ -1,43 +1,43 @@
 export const about = {
   intro: [
-    "I'm Amith — a builder based in Kerala who enjoys solving real problems and turning ideas into products. Software, hardware, and the communities around them all interest me for the same reason: they're all about making something useful exist where it didn't before.",
-    "I care less about frameworks and job titles than about the thing being built and whether it genuinely helps someone. Most of what I make starts as a small annoyance I couldn't stop thinking about.",
+    "I'm Amith — a Product Engineer based in Kerala, India. I build web applications, Shopify apps, self-hosted developer infrastructure, and connected IoT hardware. Software and hardware interest me for one reason: turning real problems into simple, working tools.",
+    "I focus on shipping clean products rather than collecting frameworks. Most of what I build starts from a task I got tired of doing manually — like bulk contact conversion, automated email queues, or IoT sensor dashboards.",
   ],
   philosophy: [
-    "Build the smallest thing that actually helps, put it in front of a real person, and let what you learn decide what comes next.",
-    "Design should disappear behind the experience. The work is the hero — not the tools, not the cleverness, and definitely not me.",
+    "Ship the leanest version that solves the problem, test it with real users, and refine based on real feedback.",
+    "Great UX should feel effortless. The product should shine — not the underlying complexity or hype.",
   ],
   values: [
     {
       title: "Curiosity",
-      body: "Following the question further than strictly necessary — that's usually where the interesting work is.",
+      body: "Digging deeper into systems, Linux kernels, and APIs — that is where real engineering happens.",
     },
     {
       title: "Craftsmanship",
-      body: "Caring about the parts no one sees, because they're what make the parts everyone sees feel right.",
+      body: "Building reliable backends and fast user interfaces, caring about code quality and user experience.",
     },
     {
-      title: "Purpose",
-      body: "Building things that improve an everyday experience, not things that merely impress.",
+      title: "Efficiency",
+      body: "Architecting software in the most cost-effective, hyper-optimized, and performant way possible.",
     },
     {
       title: "Community",
-      body: "The best work happens in the open, with other people, teaching as you go.",
+      body: "Building in the open, mentoring fellow developers, and sharing knowledge through open source.",
     },
   ],
   interests: [
-    "Product design",
-    "Embedded systems",
-    "Developer tools",
-    "Open source",
-    "Writing",
-    "Community building",
+    "Product Engineering",
+    "Shopify & Reddit Apps",
+    "DevOps & Self-Hosting",
+    "Embedded Systems & ESP32",
+    "Developer Tools",
+    "Open Source & Mentorship",
   ],
   currentFocus:
-    "Right now I'm a Junior Full Stack Developer at FinalApps, building Shopify apps and AI-powered merchant tools — while refining InoMail's sending infrastructure and writing more openly about what I build.",
+    "Building Shopify apps, Shop Minis, and upcoming Reddit apps as a Full-Stack Developer at FinalApps, while managing custom self-hosted DevOps servers and refining InoMail's email queues.",
   funFacts: [
-    "My favourite projects start as a chore I got tired of doing by hand.",
-    "I like hardware precisely because it refuses to forgive sloppy thinking.",
-    "Made in Kerala — I write, build, and mentor from here.",
+    "Most of my favourite tools started as a manual chore I refused to keep doing by hand.",
+    "Self-hosting my own servers taught me more about Linux and networking than any course.",
+    "Based in Kerala, India — building products and mentoring developers locally and globally.",
   ],
 } as const;
