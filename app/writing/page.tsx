@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
+import { site } from "@/content/site";
 
-// The writing index now lives in the landing page's Writing section.
 export default function WritingPage() {
-  redirect("/#writing");
+  redirect(site.blogUrl);
 }

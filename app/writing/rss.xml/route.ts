@@ -18,7 +18,7 @@ export async function GET() {
 
   const items = posts
     .map((p) => {
-      const link = `${siteUrl}/writing/${p.slug}`;
+      const link = p.url;
       const categories = p.tags
         .map((t) => `<category>${esc(t.name)}</category>`)
         .join("");
