@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowUpRight, Clock } from "lucide-react";
 import type { Post } from "@/types";
 import { formatDate } from "@/lib/utils";
@@ -7,8 +6,10 @@ import { formatDate } from "@/lib/utils";
 /** A writing card — typography-first, reading time shown (docs 03/04). */
 export function ArticleCard({ post }: { post: Post }) {
   return (
-    <Link
-      href={`/writing/${post.slug}`}
+    <a
+      href={post.url}
+      target="_blank"
+      rel="noopener noreferrer"
       className="group flex flex-col overflow-hidden rounded-card border border-border bg-surface transition-[transform,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-border-strong"
     >
       {post.featureImage && (
@@ -52,6 +53,6 @@ export function ArticleCard({ post }: { post: Post }) {
           <ArrowUpRight className="h-4 w-4 opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100" />
         </span>
       </div>
-    </Link>
+    </a>
   );
 }
