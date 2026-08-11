@@ -1,5 +1,13 @@
 import type { NextConfig } from "next";
 
+const linkHeaderValue = [
+  '</.well-known/api-catalog>; rel="api-catalog"',
+  '</openapi.json>; rel="service-desc"; type="application/json"',
+  '</about>; rel="service-doc"; type="text/html"',
+  '</llms.txt>; rel="describedby"; type="text/plain"',
+  '</auth.md>; rel="describedby"; type="text/markdown"',
+].join(", ");
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
@@ -19,6 +27,7 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: [
+          { key: "Link", value: linkHeaderValue },
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },

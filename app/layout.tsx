@@ -10,6 +10,7 @@ import { MotionProvider } from "@/components/motion/motion-provider";
 import { SkipLink } from "@/components/layout/skip-link";
 import { PersonJsonLd, WebsiteJsonLd } from "@/components/seo/json-ld";
 import { Analytics } from "@/components/seo/analytics";
+import { WebMCPProvider } from "@/components/webmcp-provider";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
 
@@ -112,6 +113,7 @@ export default function RootLayout({
         <PersonJsonLd />
         <WebsiteJsonLd />
         <Analytics />
+        <WebMCPProvider />
         <MotionProvider>
           <SmoothScroll>
             <ScrollProgress />
