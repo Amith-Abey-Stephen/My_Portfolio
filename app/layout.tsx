@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: `%s — ${site.author}`,
   },
   description:
-    "amith.site — Amith Abey Stephen, a Product Engineer from Kerala building software that solves real problems and creates meaningful impact.",
+    "amith.site: Amith Abey Stephen, a Product Engineer from Kerala building software that solves real problems.",
   keywords: seoKeywords,
   authors: [{ name: site.author, url: site.url }],
   creator: site.author,
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${site.author} — Building products with purpose`,
     description:
-      "Product Engineer building software that solves real problems and creates meaningful impact.",
+      "Product Engineer from Kerala building software that solves real problems and creates meaningful impact.",
   },
   icons: {
     icon: [

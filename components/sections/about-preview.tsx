@@ -21,7 +21,7 @@ export function AboutPreview() {
           <RevealGroup className="space-y-6">
             <RevealItem>
               <ScrollQuote
-                text="I care less about frameworks and titles than about the thing being built — and whether it genuinely helps someone."
+                text="I care less about frameworks and titles than about the thing being built, and whether it actually helps someone."
                 className="text-2xl font-medium leading-snug tracking-tight text-foreground md:text-[1.75rem]"
               />
             </RevealItem>

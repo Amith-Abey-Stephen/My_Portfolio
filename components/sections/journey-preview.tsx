@@ -21,7 +21,7 @@ function Heading() {
     <SectionHeading
       eyebrow="Journey"
       title="A path built by doing."
-      lede="Roles, teams, and the communities that shaped how I build — newest first."
+      lede="Roles, teams, and the communities that shaped how I build, newest first."
     />
   );
 }

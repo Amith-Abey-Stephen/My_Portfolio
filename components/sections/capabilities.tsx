@@ -163,7 +163,7 @@ export function Capabilities() {
       <SectionHeading
         eyebrow="Capabilities"
         title="How I work, and what with."
-        lede="Grouped by intent, not proficiency — the description matters more than the logo list."
+        lede="Grouped by intent, not proficiency - the description matters more than the logo list."
         className="mb-14"
       />
 
