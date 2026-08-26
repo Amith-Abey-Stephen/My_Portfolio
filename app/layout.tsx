@@ -9,6 +9,7 @@ import { LoadingScreen } from "@/components/loading-screen";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { SkipLink } from "@/components/layout/skip-link";
 import { PersonJsonLd, WebsiteJsonLd } from "@/components/seo/json-ld";
+import { GenZProvider } from "@/components/genz/genz-mode";
 import { Analytics } from "@/components/seo/analytics";
 import { WebMCPProvider } from "@/components/webmcp-provider";
 
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     template: `%s — ${site.author}`,
   },
   description:
-    "amith.site — Amith Abey Stephen, a Product Engineer from Kerala building software that solves real problems and creates meaningful impact.",
+    "amith.site: Amith Abey Stephen, a Product Engineer from Kerala building software that solves real problems.",
   keywords: seoKeywords,
   authors: [{ name: site.author, url: site.url }],
   creator: site.author,
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${site.author} — Building products with purpose`,
     description:
-      "Product Engineer building software that solves real problems and creates meaningful impact.",
+      "Product Engineer from Kerala building software that solves real problems and creates meaningful impact.",
   },
   icons: {
     icon: [
@@ -114,17 +115,19 @@ export default function RootLayout({
         <WebsiteJsonLd />
         <Analytics />
         <WebMCPProvider />
-        <MotionProvider>
-          <SmoothScroll>
-            <ScrollProgress />
-            <Cursor />
-            <LoadingScreen />
-            <SkipLink />
-            <Nav />
-            <main id="main">{children}</main>
-            <Footer />
-          </SmoothScroll>
-        </MotionProvider>
+        <GenZProvider>
+          <MotionProvider>
+            <SmoothScroll>
+              <ScrollProgress />
+              <Cursor />
+              <LoadingScreen />
+              <SkipLink />
+              <Nav />
+              <main id="main">{children}</main>
+              <Footer />
+            </SmoothScroll>
+          </MotionProvider>
+        </GenZProvider>
       </body>
     </html>
   );

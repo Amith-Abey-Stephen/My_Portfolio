@@ -7,7 +7,7 @@ import { Reveal } from "@/components/motion/reveal";
 export const metadata = pageMetadata({
   title: "Now",
   description:
-    "What Amith is focused on right now — working on, learning, reading, and thinking about.",
+    "What I am focused on right now is: working on, learning, reading, and thinking about.",
   path: "/now",
 });
 

@@ -18,7 +18,14 @@ export function GET() {
   const productDetails = projects
     .map((p) => {
       const caseStudyText = p.caseStudy
-        ? `\n- **Problem**: ${p.caseStudy.problem}\n- **Solution**: ${p.caseStudy.solution}\n- **Outcome**: ${p.caseStudy.outcome}\n- **Key Lesson**: ${p.caseStudy.lessons}`
+        ? [
+            `\n- **Problem**: ${p.caseStudy.problem}`,
+            `- **Solution**: ${p.caseStudy.solution}`,
+            p.caseStudy.outcome && `- **Outcome**: ${p.caseStudy.outcome}`,
+            p.caseStudy.lessons && `- **Key Lesson**: ${p.caseStudy.lessons}`,
+          ]
+            .filter(Boolean)
+            .join("\n")
         : "";
 
       return `### ${p.title} (${p.slug})
@@ -64,7 +71,7 @@ ${bio}
 ${about.intro.join("\n\n")}
 
 ### Current Work & Role Focus
-- **Current Position**: Junior Full-Stack Developer at FinalApps (building Shopify apps & AI merchant tools).
+- **Current Position**: Junior Full-Stack Developer at FinalApps (building Shopify apps, Shop Minis, iOS apps, and AI merchant tools).
 - **Current Focus**: ${about.currentFocus}
 
 ### Engineering & Design Philosophy
@@ -82,10 +89,10 @@ ${valuesDetails}
 - **Geographic Location**: ${site.location} (Thiruvalla, Kerala, India)
 - **Education**: ${education.degree} in Computer Applications, ${education.name} (${education.shortName})
 - **Leadership Roles & Milestones**:
-  - Junior Full-Stack Developer at FinalApps
+  - Junior Full-Stack Developer at FinalApps (current)
   - Former CEO of Inovus Labs IEDC
-  - Frontend Technical Point of Contact at μLearn Foundation
-  - Google Campus Ambassador
+  - Former Frontend Technical Point of Contact at μLearn Foundation
+  - Former Google Campus Ambassador
   - 3+ Years Hacktoberfest Open Source Maintainer & Mentor
 - **Website**: ${site.url}
 - **Email**: ${site.email}

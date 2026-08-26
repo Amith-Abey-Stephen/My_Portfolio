@@ -91,13 +91,32 @@ function ScrollMilestone({
   );
 }
 
-/** Vertical timeline whose milestones slide up one by one on scroll. */
+/** Vertical timeline whose milestones slide up one by one on scroll, while the
+ * burgundy spine draws itself down the page alongside them. */
 export function JourneyTimeline({ items }: { items: JourneyMilestone[] }) {
   const reduceMotion = useReducedMotion();
   const active = !reduceMotion;
 
+  const ref = useRef<HTMLOListElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 85%", "end 65%"],
+  });
+  const line = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 28,
+    restDelta: 0.001,
+  });
+
   return (
-    <ol className="relative border-l border-border pl-8 md:pl-10">
+    <ol ref={ref} className="relative border-l border-border pl-8 md:pl-10">
+      {active && (
+        <motion.span
+          aria-hidden
+          style={{ scaleY: line }}
+          className="absolute -left-px top-0 h-full w-px origin-top bg-gradient-to-b from-burgundy via-burgundy-light to-burgundy shadow-[0_0_12px_rgba(122,36,53,0.8)] will-change-transform"
+        />
+      )}
       {items.map((item) => (
         <ScrollMilestone
           key={`${item.organization}-${item.period}`}

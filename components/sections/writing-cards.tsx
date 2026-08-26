@@ -74,12 +74,15 @@ function ParallaxCard({
   progress,
   active,
   entrance,
+  tilt,
 }: {
   post: Post;
   index: number;
   progress: MotionValue<number>;
   active: boolean;
   entrance: boolean;
+  /** Single-column (mobile): cards lie back and stand up in perspective. */
+  tilt: boolean;
 }) {
   const isLeft = index % 2 === 0;
   const y = useTransform(
@@ -100,11 +103,26 @@ function ParallaxCard({
   });
   const eOpacity = useTransform(cardP, [0, 1], [0, 1]);
   const eY = useTransform(cardP, [0, 1], [36, 0]);
+  const eRotateX = useTransform(cardP, [0, 1], [16, 0]);
+  const eScale = useTransform(cardP, [0, 1], [0.95, 1]);
 
   return (
     <motion.div
       ref={ref}
-      style={entrance ? { opacity: eOpacity, y: eY } : undefined}
+      style={
+        entrance
+          ? tilt
+            ? {
+                opacity: eOpacity,
+                y: eY,
+                rotateX: eRotateX,
+                scale: eScale,
+                transformPerspective: 900,
+                transformOrigin: "50% 100%",
+              }
+            : { opacity: eOpacity, y: eY }
+          : undefined
+      }
       className="h-full"
     >
       <motion.div style={active ? { y } : undefined} className="h-full">
@@ -152,6 +170,7 @@ export function WritingCards({ posts }: { posts: Post[] }) {
           progress={progress}
           active={active}
           entrance={!reduceMotion}
+          tilt={!twoCol && !reduceMotion}
         />
       ))}
     </div>

@@ -25,11 +25,12 @@ ${bio}
 
 ## About
 - Name: ${site.author} (also known as "Amith")
-- Role: Product Engineer — a builder of software, hardware, and communities
+- Role: Product Engineer, a builder of software, hardware, and communities
 - Location: ${site.location} (Thiruvalla)
 - Education: ${education.degree} at ${education.name} (${education.shortName})
-- Former CEO of Inovus Labs IEDC; currently the frontend technical point of contact at μLearn Foundation
-- Also: Google Campus Ambassador; 3+ years of Hacktoberfest; mentored 30+ students
+- Currently: Full-Stack Developer at FinalApps, building Shopify apps, Shop Minis, and iOS apps
+- Previously: CEO of Inovus Labs IEDC; Frontend Tech Lead (Junior Associate) at μLearn Foundation
+- Also: Google Campus Ambassador; 3+ years of Hacktoberfest; mentored 30+ students; runs self-hosted Docker infrastructure with a focus on security
 
 ## Products
 ${products}
@@ -49,6 +50,10 @@ ${products}
 - LinkedIn: ${site.socials.linkedin}
 - Blog: ${site.blogUrl}
 - Feed: ${siteUrl}/writing/rss.xml
+
+## More context for AI models
+- Full knowledge file: ${siteUrl}/llms-full.txt
+- Entity / GEO document: ${siteUrl}/geo.md
 `;
 
   return new Response(body, {

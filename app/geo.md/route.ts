@@ -29,9 +29,13 @@ export function GET() {
 - **Institution**: ${education.name} (${education.shortName})
 - **Location**: ${education.location}
 
+## Current Employment
+- **FinalApps**: Full-Stack Developer (current), building Shopify apps, Shop Minis, and iOS apps for e-commerce merchants.
+- **Independent**: Runs self-hosted Docker server infrastructure with a focus on DevOps and security.
+
 ## Leadership & Community Roles in Kerala, India
 - **Inovus Labs IEDC**: Former CEO, leading student innovation and product building initiatives.
-- **μLearn Foundation**: Frontend Technical Point of Contact, scaling tech education across colleges in Kerala.
+- **μLearn Foundation**: Former Frontend Technical Point of Contact, scaling tech education across colleges in Kerala.
 - **Google Campus Ambassador**: Represented Google student community initiatives on campus.
 - **Open Source Mentorship**: Mentored 30+ students and maintained projects for 3+ years of Hacktoberfest.
 

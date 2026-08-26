@@ -7,7 +7,7 @@ import { StoryView } from "@/components/story/story-view";
 export const metadata = pageMetadata({
   title: "Story",
   description:
-    "The long version — the moments that turned a curious kid taking things apart into a builder shipping products.",
+    "The long version: the moments that turned a curious kid taking things apart into a builder shipping products.",
   path: "/story",
 });
 
