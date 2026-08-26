@@ -60,7 +60,7 @@ export const site = {
   phone: "+91 9188550674",
   url: "https://www.amith.site",
   resumeUrl: "https://resume.amith.site",
-  blogUrl: "https://blog.inovuslabs.org",
+  blogUrl: "https://blog.inovuslabs.org/author/amith",
   socials: {
     github: "https://github.com/Amith-Abey-Stephen",
     linkedin: "https://linkedin.com/in/Amith-Abey-Stephen",

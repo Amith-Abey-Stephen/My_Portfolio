@@ -19,6 +19,7 @@ export function ProjectCard({
   return (
     <Link
       href={`/work/${project.slug}`}
+      aria-label={`View ${project.title} case study — ${project.summary}`}
       className={cn(
         "group flex flex-col rounded-card border border-border bg-surface p-8 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-border-strong active:-translate-y-1 active:border-border-strong",
         className,

@@ -31,7 +31,7 @@ const groups: { title: string; links: FooterLink[] }[] = [
       { label: "Contact", href: "/#contact" },
       { label: "Resume", href: "/resume" },
       { label: "PDF Resume", href: site.resumeUrl, external: true },
-      { label: "RSS", href: "/writing/rss.xml", external: true },
+      { label: "RSS Feed", href: `${site.blogUrl}/rss/`, external: true },
     ],
   },
 ];
