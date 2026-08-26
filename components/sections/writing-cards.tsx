@@ -23,6 +23,7 @@ function CardInner({ post }: { post: Post }) {
       href={post.url}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={`Read article: ${post.title}`}
       data-testid={`article-${post.slug}`}
       className="group relative flex h-full flex-col overflow-hidden rounded-card border border-border bg-surface p-6 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-border-strong active:-translate-y-1 active:border-border-strong sm:p-8 md:p-9"
     >

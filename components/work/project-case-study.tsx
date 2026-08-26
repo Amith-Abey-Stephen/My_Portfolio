@@ -161,6 +161,7 @@ export function ProjectCaseStudyView({
           <Reveal>
             <Link
               href="/#work"
+              aria-label="Back to Selected Work section"
               className="link-underline inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted hover:text-foreground"
             >
               <ArrowLeft className="h-3.5 w-3.5" /> Back to Selected Work
@@ -378,6 +379,7 @@ export function ProjectCaseStudyView({
               {prevProject ? (
                 <Link
                   href={`/work/${prevProject.slug}`}
+                  aria-label={`Previous project: ${prevProject.title} — ${prevProject.summary}`}
                   className="group rounded-card border border-border bg-surface/40 p-6 transition-all duration-300 hover:border-burgundy/40 hover:bg-surface/70"
                 >
                   <span className="font-mono text-xs text-muted">
@@ -397,6 +399,7 @@ export function ProjectCaseStudyView({
               {nextProject && (
                 <Link
                   href={`/work/${nextProject.slug}`}
+                  aria-label={`Next project: ${nextProject.title} — ${nextProject.summary}`}
                   className="group text-right rounded-card border border-border bg-surface/40 p-6 transition-all duration-300 hover:border-burgundy/40 hover:bg-surface/70"
                 >
                   <span className="font-mono text-xs text-muted">
