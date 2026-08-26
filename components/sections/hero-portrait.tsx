@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import {
   motion,
   useMotionValue,
+  useScroll,
   useSpring,
   useTransform,
   useReducedMotion,
@@ -12,7 +13,9 @@ import {
 import { site } from "@/content/site";
 
 /** The portrait with a gentle cursor parallax — the figure and its glow drift
- * on opposite axes for depth. Reduced-motion renders it static. */
+ * on opposite axes for depth. Scrolling adds the same depth cue on touch
+ * devices (no cursor): the figure lags the scroll while the glow sinks the
+ * other way. Reduced-motion renders it static. */
 export function HeroPortrait() {
   const reduceMotion = useReducedMotion();
   const mx = useMotionValue(0);
@@ -25,6 +28,18 @@ export function HeroPortrait() {
   const gx = useTransform(sx, [-1, 1], [24, -24]);
   const gy = useTransform(sy, [-1, 1], [20, -20]);
 
+  // Scroll parallax, scrubbed — composes with the cursor drift instead of
+  // fighting it (the two sums live on the same y).
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: wrapRef,
+    offset: ["start 75%", "end start"],
+  });
+  const drift = useTransform(scrollYProgress, [0, 1], reduceMotion ? [0, 0] : [0, -44]);
+  const glowDrift = useTransform(scrollYProgress, [0, 1], reduceMotion ? [0, 0] : [0, 40]);
+  const figY = useTransform([py, drift], ([a, b]: number[]) => a + b);
+  const glowY = useTransform([gy, glowDrift], ([a, b]: number[]) => a + b);
+
   useEffect(() => {
     if (reduceMotion) return;
     function onMove(e: MouseEvent) {
@@ -36,15 +51,18 @@ export function HeroPortrait() {
   }, [reduceMotion, mx, my]);
 
   return (
-    <div className="relative mx-auto flex h-[400px] w-full max-w-md items-end justify-center sm:h-[480px] lg:h-[560px]">
+    <div
+      ref={wrapRef}
+      className="relative mx-auto flex h-[400px] w-full max-w-md items-end justify-center sm:h-[480px] lg:h-[560px]"
+    >
       {/* Ambient burgundy glow behind the figure (parallaxes opposite) */}
       <motion.div
         aria-hidden
-        style={{ x: gx, y: gy }}
+        style={{ x: gx, y: glowY }}
         className="absolute left-1/2 top-4 ml-[-200px] h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(122,36,53,0.4),transparent_65%)] blur-2xl"
       />
       <motion.div
-        style={{ x: px, y: py }}
+        style={{ x: px, y: figY }}
         className="relative z-10 h-full will-change-transform"
       >
         {/* The PNG is a clean cut-out (transparent sides) but its bottom row is
