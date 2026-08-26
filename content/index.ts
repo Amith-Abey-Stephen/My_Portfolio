@@ -82,7 +82,7 @@ export const site = {
 } as const;
 
 export const bio =
-  "Amith Abey Stephen is a Product Engineer and Full-Stack Developer based in Kerala, India. He builds Shopify apps, Shop Minis, iOS apps, self-hosted DevOps infrastructure, and IoT hardware systems using Next.js, TypeScript, React, Node.js, and ESP32. He works at FinalApps, previously served as CEO of Inovus Labs IEDC, and leads frontend architecture at μLearn Foundation. Creator of SyncBatch, InoMail, Mr DocGen, and AirLoo.";
+  "Amith Abey Stephen is a Product Engineer and Full-Stack Developer based in Kerala, India. He builds Shopify apps, Shop Minis, iOS apps, self-hosted DevOps infrastructure, and IoT hardware systems using Next.js, TypeScript, React, Node.js, PostgreSQL, Docker, and ESP32. He works as a Full-Stack Developer at FinalApps, previously served as CEO of Inovus Labs IEDC, and formerly led frontend architecture at μLearn Foundation. Creator of SyncBatch, InoMail, Mr DocGen, AirLoo, and Inovus Profiles.";
 
 export const education = {
   name: "Kristu Jyoti College of Management and Technology",
@@ -118,8 +118,12 @@ export const seoKeywords = [
   "InoMail",
   "Mr DocGen",
   "AirLoo",
+  "Inovus Profiles",
   "Smart Irrigation",
   "Smart Fire Alert",
+  "Docker",
+  "PostgreSQL",
+  "Server Security",
 ];
 
 // ============================================================================

@@ -6,6 +6,7 @@ import {
   ArrowLeft,
   ArrowUpRight,
   ArrowRight,
+  Hourglass,
   Sparkles,
   Layers,
   Code2,
@@ -25,9 +26,49 @@ import type { Project, ProjectCaseStudy } from "@/types";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { StatusBadge } from "@/components/ui/badge";
-import { ButtonLink } from "@/components/ui/button";
+import { ButtonLink, buttonVariants } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/reveal";
 import { cn } from "@/lib/utils";
+
+/** The live-app action: a real link once released, a quiet non-clickable
+ * "Coming Soon" pill while the app is still in progress. */
+function LiveAction({
+  project,
+  size = "md",
+  className,
+}: {
+  project: Omit<Project, "icon"> & { icon?: React.ElementType };
+  size?: "sm" | "md";
+  className?: string;
+}) {
+  if (!project.link) return null;
+  if (project.status === "In Progress") {
+    return (
+      <span
+        title="Still in development"
+        aria-disabled="true"
+        className={cn(
+          buttonVariants({ variant: "secondary", size, className }),
+          "cursor-not-allowed select-none border-dashed text-muted hover:border-border-strong hover:bg-transparent",
+        )}
+      >
+        <Hourglass className="h-4 w-4" /> Coming Soon
+      </span>
+    );
+  }
+  return (
+    <ButtonLink
+      href={project.link}
+      target="_blank"
+      rel="noreferrer"
+      variant="primary"
+      size={size}
+      className={className}
+    >
+      Open Now <ArrowUpRight className="h-4 w-4" />
+    </ButtonLink>
+  );
+}
 
 const PROJECT_ICONS: Record<string, React.ElementType> = {
   syncbatch: Database,
@@ -62,6 +103,9 @@ export function ProjectCaseStudyView({
   const railRef = useRef<HTMLDivElement>(null);
 
   const Icon = PROJECT_ICONS[project.slug] || FolderGit2;
+
+  // Source code is public only for the IoT builds; app repos stay unlisted.
+  const showRepo = Boolean(project.repo) && project.category === "IoT";
 
   const availableSections = SECTIONS.filter(
     (s) => project.caseStudy[s.key] !== undefined,
@@ -159,19 +203,10 @@ export function ProjectCaseStudyView({
                 ))}
               </Reveal>
 
-              {(Boolean(project.link) || Boolean(project.repo)) && (
+              {(Boolean(project.link) || showRepo) && (
                 <Reveal delay={0.2} className="mt-8 flex flex-wrap items-center gap-3">
-                  {Boolean(project.link) && (
-                    <ButtonLink
-                      href={project.link!}
-                      target="_blank"
-                      rel="noreferrer"
-                      variant="primary"
-                    >
-                      Open Now <ArrowUpRight className="h-4 w-4" />
-                    </ButtonLink>
-                  )}
-                  {Boolean(project.repo) && (
+                  <LiveAction project={project} />
+                  {showRepo && (
                     <ButtonLink
                       href={project.repo!}
                       target="_blank"
@@ -203,21 +238,14 @@ export function ProjectCaseStudyView({
                   <span className="text-foreground">{project.category}</span>
                 </div>
 
-                {(Boolean(project.link) || Boolean(project.repo)) && (
+                {(Boolean(project.link) || showRepo) && (
                   <div className="pt-3 border-t border-border/40 flex flex-col gap-2">
-                    {Boolean(project.link) && (
-                      <ButtonLink
-                        href={project.link!}
-                        target="_blank"
-                        rel="noreferrer"
-                        variant="primary"
-                        size="sm"
-                        className="w-full justify-center"
-                      >
-                        Open Now <ArrowUpRight className="h-4 w-4" />
-                      </ButtonLink>
-                    )}
-                    {Boolean(project.repo) && (
+                    <LiveAction
+                      project={project}
+                      size="sm"
+                      className="w-full justify-center"
+                    />
+                    {showRepo && (
                       <ButtonLink
                         href={project.repo!}
                         target="_blank"
