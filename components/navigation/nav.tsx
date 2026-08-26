@@ -10,6 +10,57 @@ import { cn } from "@/lib/utils";
 import { Container } from "@/components/layout/container";
 import { ButtonLink } from "@/components/ui/button";
 import { Wordmark } from "@/components/brand/wordmark";
+import { useGenZ } from "@/components/genz/genz-mode";
+
+/**
+ * Language switch for "english (chronically online)" — a mono, segmented
+ * en / gen z pill with a sliding burgundy thumb, in the site's badge language.
+ */
+function GenZToggle({ className }: { className?: string }) {
+  const { enabled, toggle } = useGenZ();
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      data-genz-skip
+      role="switch"
+      aria-checked={enabled}
+      aria-label={enabled ? "Switch back to english" : "Switch to gen z mode"}
+      title="english (chronically online)"
+      className={cn(
+        "relative flex h-9 items-center rounded-full border p-1 font-mono text-[0.62rem] uppercase tracking-wider transition-all duration-300",
+        enabled
+          ? "border-burgundy/60 bg-burgundy/10 shadow-[0_0_14px_rgba(122,36,53,0.35)]"
+          : "border-border bg-surface hover:border-burgundy/40",
+        className,
+      )}
+    >
+      <span
+        aria-hidden
+        className={cn(
+          "absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-full bg-burgundy transition-transform duration-300 ease-out",
+          enabled && "translate-x-full",
+        )}
+      />
+      <span
+        className={cn(
+          "relative z-10 w-12 text-center transition-colors duration-300",
+          enabled ? "text-muted" : "text-burgundy-foreground",
+        )}
+      >
+        en
+      </span>
+      <span
+        className={cn(
+          "relative z-10 w-12 text-center transition-colors duration-300",
+          enabled ? "text-burgundy-foreground" : "text-muted",
+        )}
+      >
+        gen z
+      </span>
+    </button>
+  );
+}
 
 export function Nav() {
   const pathname = usePathname();
@@ -69,6 +120,7 @@ export function Nav() {
             </Link>
           ))}
           <div className="flex items-center gap-2">
+            <GenZToggle />
             <ButtonLink href="/resume" variant="secondary" size="sm">
               Resume
             </ButtonLink>
@@ -116,6 +168,16 @@ export function Nav() {
                   {item.label}
                 </Link>
               ))}
+
+              <div
+                data-genz-skip
+                className="mt-3 flex items-center justify-between rounded-input border border-border bg-surface py-2.5 pl-3.5 pr-2.5"
+              >
+                <span className="text-base font-medium text-secondary">
+                  Language
+                </span>
+                <GenZToggle />
+              </div>
 
               <div className="mt-3 grid grid-cols-2 gap-2.5 border-t border-border pt-4">
                 <ButtonLink href="/resume" variant="secondary" size="md" className="w-full justify-center">

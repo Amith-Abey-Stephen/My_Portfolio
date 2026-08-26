@@ -9,6 +9,7 @@ import { LoadingScreen } from "@/components/loading-screen";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { SkipLink } from "@/components/layout/skip-link";
 import { PersonJsonLd, WebsiteJsonLd } from "@/components/seo/json-ld";
+import { GenZProvider } from "@/components/genz/genz-mode";
 import { Analytics } from "@/components/seo/analytics";
 import { WebMCPProvider } from "@/components/webmcp-provider";
 
@@ -114,17 +115,19 @@ export default function RootLayout({
         <WebsiteJsonLd />
         <Analytics />
         <WebMCPProvider />
-        <MotionProvider>
-          <SmoothScroll>
-            <ScrollProgress />
-            <Cursor />
-            <LoadingScreen />
-            <SkipLink />
-            <Nav />
-            <main id="main">{children}</main>
-            <Footer />
-          </SmoothScroll>
-        </MotionProvider>
+        <GenZProvider>
+          <MotionProvider>
+            <SmoothScroll>
+              <ScrollProgress />
+              <Cursor />
+              <LoadingScreen />
+              <SkipLink />
+              <Nav />
+              <main id="main">{children}</main>
+              <Footer />
+            </SmoothScroll>
+          </MotionProvider>
+        </GenZProvider>
       </body>
     </html>
   );
