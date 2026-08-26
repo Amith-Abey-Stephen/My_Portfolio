@@ -4,6 +4,7 @@ import { Section } from "@/components/layout/section";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
 import { StatsGrid } from "@/components/sections/stats-grid";
+import { ScrollQuote } from "@/components/sections/about-quote";
 
 /** About preview — staggered typography; text and stats never compete (docs 03). */
 export function AboutPreview() {
@@ -19,10 +20,10 @@ export function AboutPreview() {
           </Reveal>
           <RevealGroup className="space-y-6">
             <RevealItem>
-              <p className="text-2xl font-medium leading-snug tracking-tight text-foreground md:text-[1.75rem]">
-                I care less about frameworks and titles than about the thing
-                being built — and whether it genuinely helps someone.
-              </p>
+              <ScrollQuote
+                text="I care less about frameworks and titles than about the thing being built, and whether it actually helps someone."
+                className="text-2xl font-medium leading-snug tracking-tight text-foreground md:text-[1.75rem]"
+              />
             </RevealItem>
             <RevealItem>
               <p className="max-w-xl leading-relaxed text-secondary">

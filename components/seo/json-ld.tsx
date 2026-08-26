@@ -54,17 +54,23 @@ export function PersonJsonLd() {
           addressCountry: "IN",
         },
         homeLocation: { "@type": "Place", name: site.location },
-        worksFor: { "@type": "Organization", name: "μLearn Foundation" },
+        worksFor: { "@type": "Organization", name: "FinalApps" },
         alumniOf: {
           "@type": "CollegeOrUniversity",
           name: education.name,
           address: education.location,
         },
-        affiliation: {
-          "@type": "Organization",
-          name: "Inovus Labs IEDC",
-          url: "https://inovuslabs.org",
-        },
+        affiliation: [
+          {
+            "@type": "Organization",
+            name: "Inovus Labs IEDC",
+            url: "https://inovuslabs.org",
+          },
+          { "@type": "Organization", 
+            name: "μLearn Foundation",
+            url: "https://mulearn.org",
+           },
+        ],
         hasOccupation: {
           "@type": "Occupation",
           name: "Product Engineer",

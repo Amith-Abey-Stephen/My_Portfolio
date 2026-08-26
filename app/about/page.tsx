@@ -7,7 +7,7 @@ import { AboutView } from "@/components/about/about-view";
 export const metadata = pageMetadata({
   title: "About",
   description:
-    "Who Amith is today — a builder from Kerala who turns ideas into products across software, hardware, and community.",
+    "Who Amith is today: a builder from Kerala who turns ideas into products across software, hardware, and community.",
   path: "/about",
 });
 

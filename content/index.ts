@@ -45,7 +45,7 @@ export const site = {
   roles: [
     "Product Engineer",
     "Full-Stack Developer",
-    "Shopify & Reddit App Developer",
+    "Shopify & iOS App Developer",
     "DevOps & Self-Hosting Engineer",
     "IoT Systems Builder",
   ],
@@ -82,7 +82,7 @@ export const site = {
 } as const;
 
 export const bio =
-  "Amith Abey Stephen is a Product Engineer and Full-Stack Developer based in Kerala, India. He builds Shopify apps, Shop Minis, Reddit apps, self-hosted DevOps infrastructure, and IoT hardware systems using Next.js, TypeScript, React, Node.js, and ESP32. He works at FinalApps, previously served as CEO of Inovus Labs IEDC, and leads frontend architecture at μLearn Foundation. Creator of SyncBatch, InoMail, Mr DocGen, and AirLoo.";
+  "Amith Abey Stephen is a Product Engineer and Full-Stack Developer based in Kerala, India. He builds Shopify apps, Shop Minis, iOS apps, self-hosted DevOps infrastructure, and IoT hardware systems using Next.js, TypeScript, React, Node.js, PostgreSQL, Docker, and ESP32. He works as a Full-Stack Developer at FinalApps, previously served as CEO of Inovus Labs IEDC, and formerly led frontend architecture at μLearn Foundation. Creator of SyncBatch, InoMail, Mr DocGen, AirLoo, and Inovus Profiles.";
 
 export const education = {
   name: "Kristu Jyoti College of Management and Technology",
@@ -99,7 +99,7 @@ export const seoKeywords = [
   "Full-Stack Developer",
   "Shopify App Developer",
   "Shop Minis Developer",
-  "Reddit App Developer",
+  "iOS App Developer",
   "DevOps Engineer",
   "Self-Hosting",
   "IoT Developer",
@@ -118,8 +118,12 @@ export const seoKeywords = [
   "InoMail",
   "Mr DocGen",
   "AirLoo",
+  "Inovus Profiles",
   "Smart Irrigation",
   "Smart Fire Alert",
+  "Docker",
+  "PostgreSQL",
+  "Server Security",
 ];
 
 // ============================================================================
@@ -128,17 +132,17 @@ export const seoKeywords = [
 
 export const about = {
   intro: [
-    "I'm Amith — a Product Engineer based in Kerala, India. I build web applications, Shopify apps, self-hosted developer infrastructure, and connected IoT hardware. Software and hardware interest me for one reason: turning real problems into simple, working tools.",
-    "I focus on shipping clean products rather than collecting frameworks. Most of what I build starts from a task I got tired of doing manually — like bulk contact conversion, automated email queues, or IoT sensor dashboards.",
+    "I'm Amith, a Product Engineer based in Kerala, India. I build web applications, Shopify apps, self-hosted developer infrastructure, and connected IoT hardware. Software and hardware interest me for one reason: turning real problems into simple, working tools.",
+    "I focus on shipping clean products rather than collecting frameworks. Most of what I build starts from a task I got tired of doing manually, like bulk contact conversion, automated email queues, or IoT sensor dashboards.",
   ],
   philosophy: [
     "Ship the leanest version that solves the problem, test it with real users, and refine based on real feedback.",
-    "Great UX should feel effortless. The product should shine — not the underlying complexity or hype.",
+    "Great UX should feel effortless. The product should shine, not the underlying complexity or hype.",
   ],
   values: [
     {
       title: "Curiosity",
-      body: "Digging deeper into systems, Linux kernels, and APIs — that is where real engineering happens.",
+      body: "Digging deeper into systems, Linux kernels, and APIs. That is where real engineering happens.",
     },
     {
       title: "Craftsmanship",
@@ -155,18 +159,18 @@ export const about = {
   ],
   interests: [
     "Product Engineering",
-    "Shopify & Reddit Apps",
+    "Shopify & iOS Apps",
     "DevOps & Self-Hosting",
     "Embedded Systems & ESP32",
     "Developer Tools",
     "Open Source & Mentorship",
   ],
   currentFocus:
-    "Building Shopify apps, Shop Minis, and upcoming Reddit apps as a Full-Stack Developer at FinalApps, while managing custom self-hosted DevOps servers and refining InoMail's email queues.",
+    "Building Shopify apps, Shop Minis, and iOS apps as a Full-Stack Developer at FinalApps, while setting up self-hosted Docker servers, going deep on DevOps, and keeping everything locked down securely.",
   funFacts: [
     "Most of my favourite tools started as a manual chore I refused to keep doing by hand.",
     "Self-hosting my own servers taught me more about Linux and networking than any course.",
-    "Based in Kerala, India — building products and mentoring developers locally and globally.",
+    "Based in Kerala, India, building products and mentoring developers locally and globally.",
   ],
 } as const;
 
@@ -175,6 +179,36 @@ export const about = {
 // ============================================================================
 
 export const projects: Project[] = [
+  {
+    slug: "inovus-profiles",
+    title: "Inovus Profiles",
+    summary:
+      "A profile page for every Inovus Labs fellow that connects their platforms in one place and doubles as a portfolio.",
+    year: "2026",
+    status: "In Progress",
+    category: "Product",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "PostgreSQL",
+      "Docker",
+    ],
+    icon: Users,
+    featured: true,
+    link: "https://profile.inovuslabs.org",
+    caseStudy: {
+      problem:
+        "Fellows at Inovus Labs scatter their work across GitHub, LinkedIn, and personal links, and there is no single page that shows who they are and what they have built.",
+      solution:
+        "Inovus Profiles gives every fellow one page that connects their platforms in a single place and doubles as a lightweight portfolio they can share anywhere.",
+      development:
+        "Built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui on PostgreSQL, deployed with Docker.",
+      outcome:
+        "Work in progress. The profile system is taking shape at profile.inovuslabs.org.",
+    },
+  },
   {
     slug: "syncbatch",
     title: "SyncBatch",
@@ -368,7 +402,7 @@ export const journey: JourneyMilestone[] = [
     organization: "FinalApps",
     period: "2026 — Present",
     description:
-      "Building Shopify apps, Shop Minis, and upcoming Reddit apps — developing scalable full-stack e-commerce software for merchants. Integrating Shopify Admin API, Storefront API, and webhooks while building AI automation tools and managing self-hosted infrastructure.",
+      "Building Shopify apps, Shop Minis, and iOS apps: scalable full-stack e-commerce software for merchants. Integrating Shopify Admin API, Storefront API, and webhooks while building AI automation tools and managing self-hosted infrastructure.",
     current: true,
   },
   {
@@ -376,14 +410,14 @@ export const journey: JourneyMilestone[] = [
     organization: "μLearn Foundation",
     period: "2026",
     description:
-      "Served as technical point of contact for frontend architecture across μLearn platforms — leading code reviews, mentoring junior developers, and coordinating remote feature delivery.",
+      "Served as technical point of contact for frontend architecture across μLearn platforms, leading code reviews, mentoring junior developers, and coordinating remote feature delivery.",
   },
   {
     role: "Frontend Intern",
     organization: "Foodo.AI",
     period: "2026",
     description:
-      "Built responsive, high-performance web interfaces from Figma designs for a London-based AI team — ensuring cross-device compatibility and UI consistency.",
+      "Built responsive, high-performance web interfaces from Figma designs for a London-based AI team, ensuring cross-device compatibility and UI consistency.",
   },
   {
     role: "Chief Executive Officer",
@@ -404,7 +438,7 @@ export const journey: JourneyMilestone[] = [
     organization: "μLearn Foundation",
     period: "2025",
     description:
-      "Contributed to migrating mulearn.org to Next.js, TypeScript, TanStack Query, and Zustand — shipping 75+ commits across open-source education platforms.",
+      "Contributed to migrating mulearn.org to Next.js, TypeScript, TanStack Query, and Zustand, shipping 75+ commits across open-source education platforms.",
   },
   {
     role: "Web Development Intern",
@@ -480,6 +514,7 @@ export const capabilities: CapabilityGroup[] = [
       "Linux Server Administration",
       "Nginx & Reverse Proxies",
       "Self-Hosted Infrastructure",
+      "Server Security & Hardening",
       "Resource & Cost Optimization",
       "CI/CD Pipelines",
     ],
@@ -488,7 +523,7 @@ export const capabilities: CapabilityGroup[] = [
     title: "Shopify & E-Commerce",
     icon: ShoppingBag,
     summary:
-      "Building full-stack Shopify App Store apps, Shop Minis, and upcoming Reddit apps — automating e-commerce merchant workflows.",
+      "Building full-stack Shopify App Store apps, Shop Minis, and iOS apps that automate e-commerce merchant workflows.",
     items: [
       "Shopify Admin API",
       "Storefront API",
@@ -544,7 +579,7 @@ export const capabilities: CapabilityGroup[] = [
 // ============================================================================
 
 export const storyIntro =
-  "This is the real version — the one that isn't formatted for a resume. A record of being dragged into a room by a classmate at Kristu Jyoti, flopping repeatedly, learning from mentors, and slowly becoming a builder.";
+  "This is the real version, the one that isn't formatted for a resume. A record of being dragged into a room by a classmate at Kristu Jyoti, flopping repeatedly, learning from mentors, and slowly becoming a builder.";
 
 export const story: StoryChapter[] = [
   {
@@ -567,7 +602,7 @@ export const story: StoryChapter[] = [
     index: "03",
     title: "HTML, CSS & The Open Web",
     body: [
-      "Web development felt right immediately. Armed with HTML, CSS, and JavaScript, I started making small things. Nothing massive — just small scripts and simple web pages — but making a browser respond to code was addictive.",
+      "Web development felt right immediately. Armed with HTML, CSS, and JavaScript, I started making small things. Nothing massive, just small scripts and simple web pages, but making a browser respond to code was addictive.",
       "Building for the web gave me a sandbox where feedback was instantaneous and the possibilities kept expanding.",
     ],
   },
@@ -584,7 +619,7 @@ export const story: StoryChapter[] = [
     title: "From Stock Manager to CEO",
     body: [
       "Transitioning from 2023 into 2024, my role inside Inovus Labs evolved rapidly. I started in the extended team, took charge as Stock Manager managing inventory and lab resources, and eventually became CEO.",
-      "Every single role forced me to learn new skills — from logistics and resource management to leading technical hackathons and international events under the Kerala Startup Mission.",
+      "Every single role forced me to learn new skills, from logistics and resource management to leading technical hackathons and international events under the Kerala Startup Mission.",
     ],
   },
   {
@@ -592,7 +627,7 @@ export const story: StoryChapter[] = [
     title: "Mentors & The Art of Learning Through Code (2024)",
     body: [
       "In 2024, my web-focused journey went into overdrive with open-source contributions and real projects. I was deeply shaped by mentors like Arjun Krishna (decoded_cipher), Sane Sunil, and Nikhil T Das.",
-      "My role model became Badhusha Shaji. I tried hard to replicate how he approached problems — and failed many times along the way. But iterating repeatedly was the fastest teacher, forcing me to refine my craft and make myself better every day.",
+      "My role model became Badhusha Shaji. I tried hard to replicate how he approached problems, and failed many times along the way. But iterating repeatedly was the fastest teacher, forcing me to refine my craft and make myself better every day.",
     ],
   },
   {
@@ -600,7 +635,7 @@ export const story: StoryChapter[] = [
     title: "Growing into μLearn",
     body: [
       "As my experience grew, I expanded beyond campus into statewide communities, eventually joining the μLearn Foundation.",
-      "Starting as a frontend intern building reusable component libraries across μLearn platforms, I eventually rose to Junior Associate — serving as a technical point of contact and mentoring students before eventually stepping out to take on new horizons.",
+      "Starting as a frontend intern building reusable component libraries across μLearn platforms, I eventually rose to Junior Associate, serving as a technical point of contact and mentoring students before eventually stepping out to take on new horizons.",
     ],
   },
   {
@@ -615,7 +650,7 @@ export const story: StoryChapter[] = [
     index: "09",
     title: "Today: Full-Stack Craft",
     body: [
-      "Today, I'm building Shop Minis and Shopify App Store applications at FinalApps — shipping full-stack e-commerce software for merchants worldwide.",
+      "Today, I'm building Shop Minis and Shopify App Store applications at FinalApps, shipping full-stack e-commerce software for merchants worldwide.",
       "Looking back at the student who had to be forced into his first event, the through-line is clear: curiosity, resilience through iteration, and great mentors.",
     ],
   },
@@ -624,7 +659,7 @@ export const story: StoryChapter[] = [
     title: "What's Next",
     body: [
       "More products, built in the open. More open-source contributions, and more honest writing about the messy process of building.",
-      "This story isn't finished — it's just the foundation for whatever comes next.",
+      "This story isn't finished. It's just the foundation for whatever comes next.",
     ],
   },
 ];
@@ -639,15 +674,16 @@ export const now: NowData = {
     {
       label: "Working on",
       items: [
-        "Building Shopify apps, Shop Minis, and upcoming Reddit apps — focused on crafting products with superior user experience",
-        "Diving deep into DevOps & self-hosting: managing custom servers, running cloud infrastructure, and shipping products that matter",
+        "Building Shopify apps, Shop Minis, and iOS apps, focused on getting the user experience right",
+        "Building Inovus Profiles (profile.inovuslabs.org), a profile page for every Inovus Labs fellow that connects their platforms and doubles as a portfolio",
+        "Setting up self-hosted servers with Docker, learning DevOps hands-on, and locking everything down the secure way",
         "Refining queue systems, background workers, and email deliverability for InoMail",
       ],
     },
     {
       label: "Learning",
       items: [
-        "Self-hosted infrastructure orchestration, server hardening, and lean Linux deployments",
+        "Docker orchestration, self-hosted infrastructure, server hardening, and secure-by-default deployments",
         "Deeper systems architecture for reliable background work and low-latency APIs",
         "Writing that reflects intent instead of noise",
       ],
@@ -663,7 +699,7 @@ export const now: NowData = {
       label: "Thinking about",
       items: [
         "How to architect systems in the most inexpensive, hyper-optimized, and resource-efficient way possible",
-        "Where AI and native platform apps genuinely create delightful, high-touch user experiences",
+        "Where AI and native apps actually improve how products feel to use",
       ],
     },
   ],
@@ -682,7 +718,7 @@ export interface Stat {
 export const communityIntro = {
   eyebrow: "Community Leadership",
   heading: "Empowering the next generation of builders.",
-  body: "As CEO of Inovus Labs IEDC, I led innovation-driven technical initiatives, hackathons, and startup programs under the Kerala Startup Mission — focusing on a culture of building, mentoring students, and organising international technical events.",
+  body: "As CEO of Inovus Labs IEDC, I led innovation-driven technical initiatives, hackathons, and startup programs under the Kerala Startup Mission, focusing on a culture of building, mentoring students, and organising international technical events.",
 };
 
 export const stats: Stat[] = [

@@ -90,14 +90,31 @@ function ScrollCard({
   const scale = useTransform(progress, range, [0.85, 1]);
   const opacity = useTransform(progress, [start, start + 0.12], [0, 1]);
 
-  // Mobile: Buttery smooth GPU-accelerated viewport entrance (zero JS scroll-loop overhead)
+  // Mobile scatter-assembly, scrubbed by the card's own scroll position — so
+  // it reads at any flick speed and plays in reverse on the way back up.
+  // (Every hook stays above the branch: an early return before them unmounts
+  // the whole page when isMobile flips post-mount.)
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: cardScrollY } = useScroll({
+    target: cardRef,
+    offset: ["start 105%", "start 70%"],
+  });
+  const cardP = useSpring(cardScrollY, {
+    stiffness: 150,
+    damping: 26,
+    restDelta: 0.001,
+  });
+  const mOpacity = useTransform(cardP, [0, 0.85], [0, 1]);
+  const mX = useTransform(cardP, [0, 1], [s.x * 0.35, 0]);
+  const mY = useTransform(cardP, [0, 1], [44, 0]);
+  const mRotate = useTransform(cardP, [0, 1], [s.r, 0]);
+  const mScale = useTransform(cardP, [0, 1], [0.92, 1]);
+
   if (isMobile && active) {
     return (
       <motion.div
-        initial={{ opacity: 0, x: s.x * 0.3, y: 35, rotate: s.r, scale: 0.9 }}
-        whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
-        viewport={{ once: false, margin: "-40px" }}
-        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+        ref={cardRef}
+        style={{ opacity: mOpacity, x: mX, y: mY, rotate: mRotate, scale: mScale }}
         className={`${CARD_CLASS} will-change-transform`}
       >
         <CardBody group={group} />
@@ -106,7 +123,10 @@ function ScrollCard({
   }
 
   return (
+    // ref stays attached here too — useScroll registers the target on first
+    // render (pre-isMobile flip), and an unattached ref makes it throw.
     <motion.div
+      ref={cardRef}
       style={active ? { x, y, rotate, scale, opacity } : undefined}
       className={CARD_CLASS}
     >
@@ -119,6 +139,7 @@ export function Capabilities() {
   const reduceMotion = useReducedMotion();
   const [mounted, setMounted] = useState(false);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -142,7 +163,7 @@ export function Capabilities() {
       <SectionHeading
         eyebrow="Capabilities"
         title="How I work, and what with."
-        lede="Grouped by intent, not proficiency — the description matters more than the logo list."
+        lede="Grouped by intent, not proficiency - the description matters more than the logo list."
         className="mb-14"
       />
 

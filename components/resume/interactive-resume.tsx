@@ -280,7 +280,7 @@ export function InteractiveResume() {
               <div className="flex items-center justify-between border-b border-border p-4 px-6">
                 <div className="flex items-center gap-2 font-mono text-xs">
                   <FileText className="h-4 w-4 text-burgundy-light" />
-                  <span>Resume Preview — {site.author}</span>
+                  <span>Resume Preview - {site.author}</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <a

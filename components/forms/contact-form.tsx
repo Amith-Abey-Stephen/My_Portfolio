@@ -108,7 +108,7 @@ export function ContactForm() {
             Message sent.
           </h3>
           <p className="mt-2 text-secondary">
-            Thanks for reaching out — I&rsquo;ll get back to you soon.
+            Thanks for reaching out. I&rsquo;ll get back to you soon.
           </p>
           <button
             type="button"

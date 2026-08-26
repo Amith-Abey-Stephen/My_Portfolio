@@ -45,6 +45,84 @@ function Header() {
   );
 }
 
+/**
+ * Mobile: the deck reimagined for touch. Cards pile up beneath the nav as you
+ * scroll — each newcomer slides over the last while the pile recedes, shrinking
+ * and dimming under it. Sticky + scrubbed transforms only: native scroll, zero
+ * touch trapping, fully reversible on the way back up.
+ */
+function StackCard({
+  project,
+  index,
+  count,
+  progress,
+}: {
+  project: Project;
+  index: number;
+  count: number;
+  progress: MotionValue<number>;
+}) {
+  // From the moment the next card starts arriving, this one recedes into the
+  // pile — deeper cards end smaller and darker.
+  const depth = count - 1 - index;
+  const scale = useTransform(progress, [index / count, 1], [1, 1 - depth * 0.045]);
+  const dim = useTransform(
+    progress,
+    [index / count, 1],
+    [0, Math.min(depth * 0.22, 0.6)],
+  );
+
+  return (
+    <div
+      className="sticky mb-[10vh] last:mb-0"
+      style={{ top: `calc(5.5rem + ${index * 0.85}rem)` }}
+    >
+      <motion.div
+        style={{ scale }}
+        className="relative origin-top will-change-transform"
+      >
+        <ProjectCard
+          project={project}
+          className="border-border/80 bg-surface shadow-[0_24px_60px_-28px_rgba(0,0,0,0.75)]"
+        />
+        <motion.div
+          aria-hidden
+          style={{ opacity: dim }}
+          className="pointer-events-none absolute inset-0 rounded-card bg-background"
+        />
+      </motion.div>
+    </div>
+  );
+}
+
+function MobileDeck() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 140,
+    damping: 30,
+    restDelta: 0.001,
+  });
+  const count = featuredProjects.length;
+
+  return (
+    <div ref={ref} className="relative mt-10">
+      {featuredProjects.map((project, i) => (
+        <StackCard
+          key={project.slug}
+          project={project}
+          index={i}
+          count={count}
+          progress={progress}
+        />
+      ))}
+    </div>
+  );
+}
+
 function DeckCard({
   progress,
   index,
@@ -137,20 +215,25 @@ export function SelectedWork() {
         </div>
       </section>
 
-      {/* Mobile: Uninterrupted Natural Vertical Scroll Flow (Zero Touch Trapping) */}
+      {/* Mobile: sticky pile-up deck on native scroll (zero touch trapping);
+          reduced-motion falls back to the plain revealed stack. */}
       <section className="py-12 lg:hidden">
         <Container>
           <Header />
-          <div className="mt-10 flex flex-col gap-6">
-            {featuredProjects.map((project, i) => (
-              <Reveal key={project.slug} delay={i * 0.06}>
-                <ProjectCard
-                  project={project}
-                  className="h-full border-border/80 bg-surface/90 shadow-xl"
-                />
-              </Reveal>
-            ))}
-          </div>
+          {reduceMotion ? (
+            <div className="mt-10 flex flex-col gap-6">
+              {featuredProjects.map((project, i) => (
+                <Reveal key={project.slug} delay={i * 0.06}>
+                  <ProjectCard
+                    project={project}
+                    className="h-full border-border/80 bg-surface/90 shadow-xl"
+                  />
+                </Reveal>
+              ))}
+            </div>
+          ) : (
+            <MobileDeck />
+          )}
         </Container>
       </section>
     </div>
