@@ -23,6 +23,10 @@ import {
   Calendar,
   Globe,
   Trophy,
+  Briefcase,
+  Wallet,
+  Palette,
+  Video,
   type LucideIcon,
 } from "lucide-react";
 import type {
@@ -124,6 +128,56 @@ export const seoKeywords = [
   "Docker",
   "PostgreSQL",
   "Server Security",
+  "Navaneeth C L",
+  "thenavaneeth.com",
+  "Navaneeth C L Portfolio",
+  "Associate Product Manager",
+  "Product Builder",
+  "Product Management Portfolio",
+  "Product Strategy",
+  "0 to 1 Product Development",
+  "ProposalPilot",
+  "UCEK Events",
+  "SpendWay",
+  "FlowMoney",
+  "spendway.thenavaneeth.com",
+  "Payday Protocol",
+  "Daily Spending Limit",
+  "Offline Money Tracker",
+  "Android Budget App",
+  "Cash in Hand Tracker",
+  "Zero Bank Login Budgeting",
+  "50/30/20 Budget App",
+  "Financial Discipline App",
+  "Monson Sunny",
+  "monson-sunny.vercel.app",
+  "Monson Sunny Portfolio",
+  "UI/UX Designer",
+  "UI/UX Designer Portfolio",
+  "Figma Design Systems",
+  "Mobile App Design",
+  "Web and Dashboard Design",
+  "AI-Assisted UX",
+  "Lenis Smooth Scroll",
+  "Caxita Tech Solutions",
+  "Jay4Web",
+  "Abhishek.D",
+  "abhishekd.vercel.app",
+  "Abhishek.D Portfolio",
+  "Video Editor",
+  "Podcast Editor",
+  "Video Editor Portfolio",
+  "Podcast Production",
+  "Short-Form Repurposing",
+  "YouTube Video Editor",
+  "Kerala Product Hunt",
+  "KPH Podcast",
+  "Premiere Pro",
+  "After Effects",
+  "CapCut",
+  "Storytelling Systems",
+  "Portfolio Engineering",
+  "Client Portfolio Developer",
 ];
 
 // ============================================================================
@@ -179,6 +233,157 @@ export const about = {
 // ============================================================================
 
 export const projects: Project[] = [
+  {
+    slug: "spendway",
+    title: "SpendWay",
+    summary:
+      "Offline-first Android budget app turning salary into an honest daily spending limit with zero bank logins and complete privacy.",
+    year: "2026",
+    status: "Released",
+    category: "Product",
+    stack: [
+      "Android",
+      "Kotlin",
+      "SQLite",
+      "Offline-First",
+      "Next.js",
+      "Tailwind CSS",
+    ],
+    icon: Wallet,
+    featured: true,
+    link: "https://spendway.thenavaneeth.com",
+    caseStudy: {
+      problem:
+        "Traditional personal finance and budgeting apps demand intrusive bank account logins, cloud sync credentials, and tedious manual categorizations. Users suffer from categorization fatigue and are left with retroactive monthly graphs that fail to answer the most urgent daily question: \"Know what you can spend today, before you spend it.\"",
+      solution:
+        "Conceived by Navaneeth C L and engineered by Amith Abey Stephen, SpendWay (formerly FlowMoney) is a free, 100% offline Android money tracker. It implements the \"Payday Protocol\" — locking fixed bills and savings targets on payday, then dividing disposable cash across remaining cycle days to give users a transparent, honest daily spending limit with zero bank logins.",
+      research:
+        "Studying personal finance behavior revealed that over 80% of budget app users abandon software within 30 days due to privacy fears, broken bank connections, or guilt from complex charts. A single daily spending allowance, paired with 50/30/20 budget principles, delivers immediate financial discipline.",
+      design:
+        "Minimalist, high-contrast interface designed for sub-three-second interactions: real-time daily spending limit gauge, cash-in-hand vs. bank account split, payday countdown, and home-screen Android widgets for instant visibility.",
+      development:
+        "Developed natively for Android using Kotlin and Room/SQLite for ultra-secure, client-side data isolation. Built a matching marketing landing page at spendway.thenavaneeth.com using Next.js, Tailwind CSS, and semantic structured data (SoftwareApplication, Organization, FAQPage).",
+      challenges:
+        "Formulating an offline daily rollover calculation that dynamically absorbs unexpected over-budget days and adjusts future daily boundaries without ever uploading user balances to external servers.",
+      outcome:
+        "Published on Android and spendway.thenavaneeth.com, giving privacy-minded users complete financial clarity, sustainable savings habits, and stress-free daily discipline.",
+      lessons:
+        "Radical privacy is a supreme product differentiator. Building offline-first creates unbreakable user trust in financial utilities.",
+    },
+  },
+  {
+    slug: "monson-sunny-portfolio",
+    title: "Monson Sunny Portfolio",
+    summary:
+      "Interactive portfolio & design showcase for UI/UX Designer Monson Sunny, featuring Lenis momentum physics and canvas cursor trails.",
+    year: "2026",
+    status: "Released",
+    category: "Client Portfolio",
+    stack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Lenis Scroll",
+      "Framer Motion",
+    ],
+    icon: Palette,
+    featured: true,
+    link: "https://monson-sunny.vercel.app",
+    caseStudy: {
+      problem:
+        "Monson Sunny — a senior UI/UX designer with 4 years of experience across Caxita Tech Solutions and Jay4Web specializing in Figma, design systems, wireframing, and AI-assisted UX workflows — needed a bespoke digital portfolio that matched the precision, craft, and fluid micro-interactions of his design work.",
+      solution:
+        "Designed and engineered a flagship portfolio web application at monson-sunny.vercel.app with Next.js, React, TypeScript, and Tailwind CSS. Integrated Lenis momentum scrolling, interactive HTML5 canvas cursor particle physics, magnetic action buttons, and responsive case study grids tailored for mobile and desktop screens.",
+      research:
+        "Design director and creative agency reviews require instant visual proof of craft. We audited portfolio interactions to ensure fluid 60 FPS transitions, clear typography hierarchy, and developer-ready design system demonstrations.",
+      design:
+        "Atmospheric obsidian theme (#070708) with electric purple and magenta aurora glows (#a855f7, #7c3aed), refined typography (Inter, Inter Tight, Great Vibes script accents), interactive mockups, and client testimonial cards.",
+      development:
+        "Built with Next.js App Router, Framer Motion scrubbed scroll transforms, an optimized canvas cursor trail that deactivates on low-power devices, and structured metadata for search and social sharing.",
+      challenges:
+        "Maintaining 60 FPS rendering while orchestrating complex backdrop-filter glassmorphism, multi-layer blur filters, and continuous canvas particles without triggering touch trapping or mobile gesture lag.",
+      outcome:
+        "Launched at monson-sunny.vercel.app with stellar reception, driving client bookings on Contra, Behance inquiries, and inbound design contracts.",
+      lessons:
+        "When building for top-tier UI/UX designers, the engineering must match the design fidelity. Micro-interactions and fluid physics elevate a portfolio from a resume into a working demonstration of design excellence.",
+    },
+  },
+  {
+    slug: "thenavaneeth",
+    title: "Navaneeth C L Portfolio",
+    summary:
+      "Product portfolio & brand platform for Associate Product Manager Navaneeth C L, with interactive case studies and Supabase CMS.",
+    year: "2026",
+    status: "Released",
+    category: "Product",
+    stack: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "Schema.org",
+      "Framer Motion",
+    ],
+    icon: Briefcase,
+    link: "https://thenavaneeth.com",
+    caseStudy: {
+      problem:
+        "Navaneeth C L — an Associate Product Manager and CS Engineer with track records at Final Apps, iTurn - UC Monks, and Revyne Studio — needed a high-authority personal platform to showcase his 0-to-1 product strategy, user research, problem framing, and case studies (ProposalPilot, UCEK Events). Generic portfolio templates failed to communicate product thinking, business metrics, or provide Answer Engine Optimization (AEO) for AI search engines.",
+      solution:
+        "Architected and developed thenavaneeth.com using Next.js 16 App Router, React 19, TypeScript, and Tailwind CSS. Integrated Supabase headless CMS for agile case study management, bespoke glowing dark UI architecture, and deep Schema.org structured data (Person, WebSite, ProfilePage, ItemList, FAQPage) linking Navaneeth's product expertise with Amith's engineering authorship.",
+      research:
+        "Recruiter and founder eye-tracking data shows product management portfolios have less than 30 seconds to demonstrate strategic prioritization and business impact. We structured case studies around problem framing, user research, metrics definition, and go-to-market execution rather than cosmetic screenshots.",
+      design:
+        "Sleek dark-mode aesthetic (#070708) with radiant amber-orange atmospheric gradients (#ff7a2a, #e8490d), floating capsule glassmorphism dock navigation, interactive metric counters, and accessible typography (Inter and Inter Tight).",
+      development:
+        "Engineered with Next.js 16 and React 19 utilizing Turbopack, Supabase storage buckets for zero-latency asset delivery, and customized llms.txt and JSON-LD graphs optimized for ChatGPT, Claude, Perplexity, and Google AI Overviews.",
+      challenges:
+        "Combining atmospheric multi-stop CSS radial glow gradients and micro-animations with 100/100 Core Web Vitals, zero layout shift (CLS), and sub-second Largest Contentful Paint (LCP).",
+      outcome:
+        "Successfully deployed at thenavaneeth.com, generating top-tier recruiter engagement, indexed across major search engines, and solidifying Navaneeth's authority in product management and growth.",
+      lessons:
+        "In portfolio engineering for product leaders, information architecture and metrics clarity must lead the visual design. When product thinking and frontend precision align, conversion rates soar.",
+    },
+  },
+  {
+    slug: "abhishekd-portfolio",
+    title: "Abhishek.D Portfolio",
+    summary:
+      "Editorial portfolio and content distribution engine for Video & Podcast Editor Abhishek.D, showcasing storytelling systems.",
+    year: "2026",
+    status: "Released",
+    category: "Client Portfolio",
+    stack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Parallax Scroll",
+      "Web Audio",
+    ],
+    icon: Video,
+    link: "https://abhishekd.vercel.app",
+    caseStudy: {
+      problem:
+        "Abhishek.D — a Video Editor and Podcast Editor with 3+ years of experience across long-form YouTube editing, short-form repurposing (Reels/Shorts), and production leadership at Kerala Product Hunt (KPH Podcast) — needed a portfolio that transcended traditional video reels to showcase content distribution systems, pacing, and storytelling.",
+      solution:
+        "Engineered an editorial-grade web portfolio at abhishekd.vercel.app. Built interactive production workflow visualizers emulating Google Meet, Notion hubs, Frame.io review timelines, and YouTube distribution engines, accompanied by an interactive discovery call booking calendar.",
+      research:
+        "High-growth founders and podcast hosts hire editors who understand audience retention, distribution leverage, and multi-platform repurposing rather than isolated software tool operations. We positioned editing through Abhishek's working thesis: \"Distribution is 10 times more valuable than the product itself.\"",
+      design:
+        "Sophisticated editorial publication aesthetic blending Instrument Serif italic headlines, Mona Sans structural type, filmic dark palettes, floating timeline inspection cards, and horizontal marquee strips.",
+      development:
+        "Engineered with Next.js App Router and TypeScript. Developed custom parallax scrolling stages, zero-dependency calendar appointment scheduling UI, and responsive multi-platform badge grids.",
+      challenges:
+        "Simulating authentic video production desktop applications (Notion kanbans, Frame.io review notes, YouTube playback bars) within responsive web containers without compromising mobile readability or page weight.",
+      outcome:
+        "Shipped at abhishekd.vercel.app, establishing Abhishek as a premier podcast production partner for top creators and leading tech founders.",
+      lessons:
+        "Frame technical craft as business outcomes: demonstrating how one raw podcast recording turns into five high-converting distribution channels creates tenfold perceived value.",
+    },
+  },
   {
     slug: "inovus-profiles",
     title: "Inovus Profiles",

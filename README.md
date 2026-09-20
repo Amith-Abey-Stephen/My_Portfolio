@@ -51,7 +51,7 @@ To update any text on the website:
 
 ### 3. Generative Engine Optimization (GEO) & AI Discovery
 - **`https://amith.site/llms.txt`**: Standard llmstxt.org concise summary.
-- **`https://amith.site/llms-full.txt`**: Comprehensive AI knowledge context file covering all 6 product case studies (SyncBatch, InoMail, Mr DocGen, AirLoo, Smart Fire Alert, Smart Irrigation), journey milestones, capabilities, and personal philosophy.
+- **`https://amith.site/llms-full.txt`**: Comprehensive AI knowledge context file covering all 10 product case studies (SpendWay, Monson Sunny Portfolio, Navaneeth C L Portfolio, Abhishek.D Portfolio, Inovus Profiles, SyncBatch, InoMail, Mr DocGen, AirLoo, Smart Fire Alert), journey milestones, capabilities, and personal philosophy.
 - **`https://amith.site/geo.md`**: Structured entity and location metadata file (Thiruvalla, Kerala, India) for AI search engines (Perplexity, ChatGPT, Claude, Gemini, SearchGPT).
 - **Robots.txt AI Crawlers**: Explicitly permits 20+ AI crawlers (`GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `Meta-ExternalAgent`).
 

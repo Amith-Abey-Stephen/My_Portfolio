@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   motion,
   useScroll,
@@ -25,8 +25,9 @@ const ENTER_X = "210%";
 
 function pitchFor(stage: number) {
   if (stage <= 3) return 108;
-  if (stage === 4) return 80;
-  return 60;
+  if (stage === 4) return 85;
+  if (stage <= 6) return 68;
+  return 54;
 }
 
 function slotX(i: number, stage: number) {
@@ -138,6 +139,7 @@ function DeckCard({
   lands: number[];
   project: Project;
 }) {
+  const [isHovered, setIsHovered] = useState(false);
   const inputs = [enters[index], ...lands.slice(index)];
   const positions = [
     ENTER_X,
@@ -156,12 +158,16 @@ function DeckCard({
 
   return (
     <motion.div
-      style={{ x, opacity, zIndex: index }}
-      className="absolute inset-0"
+      style={{ x, opacity, zIndex: isHovered ? 40 : index }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      whileHover={{ y: -10, scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 300, damping: 25 }}
+      className="absolute inset-0 cursor-pointer"
     >
       <ProjectCard
         project={project}
-        className="h-full shadow-[0_24px_60px_-28px_rgba(0,0,0,0.75)]"
+        className="h-full shadow-[0_24px_60px_-28px_rgba(0,0,0,0.85)] hover:border-border-strong hover:shadow-[0_30px_70px_-20px_rgba(0,0,0,0.95)]"
       />
     </motion.div>
   );
@@ -198,7 +204,7 @@ export function SelectedWork() {
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
           <Container className="w-full">
             <Header />
-            <div className="relative mx-auto mt-12 h-[26rem] w-[22rem] xl:w-[25rem]">
+            <div className="relative mx-auto mt-12 h-[28.5rem] w-[22.5rem] xl:h-[29.5rem] xl:w-[25.5rem]">
               {featuredProjects.map((project, i) => (
                 <DeckCard
                   key={project.slug}
