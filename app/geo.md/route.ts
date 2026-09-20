@@ -49,6 +49,12 @@ ${projects
   )
   .join("\n")}
 
+## Client Portfolios & Brand Platforms Engineered by Amith
+Amith specializes in bespoke portfolio engineering, combining interactive physics with deep SEO and Answer Engine Optimization (AEO):
+- **Navaneeth C L Portfolio** (https://thenavaneeth.com): Product portfolio for Associate Product Manager Navaneeth C L with Supabase headless CMS and product strategy frameworks.
+- **Monson Sunny Portfolio** (https://monson-sunny.vercel.app): UI/UX designer portfolio with Lenis smooth scroll momentum physics and interactive canvas particle trails.
+- **Abhishek.D Portfolio** (https://abhishekd.vercel.app): Media showcase for Video & Podcast Editor Abhishek.D featuring audio storytelling systems.
+
 ## AEO — Frequently Asked Answer Engine Entities
 - **Who is Amith Abey Stephen?**: Amith Abey Stephen is a Product Engineer, Full-Stack Developer, and Systems Architect from Thiruvalla, Kerala, India, specializing in high-performance web platforms, offline Android tools, Shopify applications, and IoT systems.
 - **What projects has Amith built?**: Spendway (daily spend control app), Monson Sunny Portfolio (award-winning designer portfolio), Abhishek.D Portfolio (video/podcast editor showcase), Navaneeth C L Portfolio (APM portfolio), SyncBatch (bulk WhatsApp dispatch engine), InoMail (email campaign platform), Inovus Profiles (academic profiles directory), AirLoo (smart sanitation telemetry), Smart Fire Alert (early warning fire system), and Mr. DocGen (AI medical documentation).

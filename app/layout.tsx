@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     canonical: "/",
     languages: { "en-US": "/", "x-default": "/" },
     types: {
-      "application/rss+xml": `${site.blogUrl}/rss/`,
+      "application/rss+xml": `${siteUrl}/writing/rss.xml`,
     },
   },
   openGraph: {
@@ -66,11 +66,14 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-touch-icon.png",
   },
-  manifest: "/site.webmanifest",
+  manifest: "/manifest.webmanifest",
   robots: {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
 };
 

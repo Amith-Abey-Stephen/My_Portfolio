@@ -2,7 +2,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { PageHeader } from "@/components/layout/page-header";
 import { ContactCTA } from "@/components/sections/contact-cta";
 import { AllWorksView } from "@/components/work/all-works-view";
-import { BreadcrumbJsonLd } from "@/components/seo/json-ld";
+import { CollectionPageJsonLd } from "@/components/seo/json-ld";
 
 export const metadata = pageMetadata({
   title: "Works — All Projects & Products",
@@ -14,12 +14,7 @@ export const metadata = pageMetadata({
 export default function WorkPage() {
   return (
     <>
-      <BreadcrumbJsonLd
-        items={[
-          { name: "Home", path: "/" },
-          { name: "Works", path: "/works" },
-        ]}
-      />
+      <CollectionPageJsonLd />
 
       <PageHeader
         eyebrow="Works"

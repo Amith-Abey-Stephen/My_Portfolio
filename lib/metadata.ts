@@ -1,25 +1,46 @@
 import type { Metadata } from "next";
+import { site, seoKeywords } from "@/content/site";
 
-/** Build consistent per-page metadata with canonical + OpenGraph. */
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+
+interface PageMetadataOptions {
+  title: string;
+  description: string;
+  path: string;
+  keywords?: string[];
+  type?: "website" | "article" | "profile";
+}
+
+/** Build consistent per-page metadata with canonical, OpenGraph, and Twitter cards. */
 export function pageMetadata({
   title,
   description,
   path,
-}: {
-  title: string;
-  description: string;
-  path: string;
-}): Metadata {
+  keywords,
+  type = "website",
+}: PageMetadataOptions): Metadata {
+  const fullTitle = `${title} — ${site.author}`;
+  const canonicalUrl = `${siteUrl}${path}`;
+
   return {
     title,
     description,
-    alternates: { canonical: path },
-    openGraph: {
-      title,
-      description,
-      url: path,
-      type: "website",
+    keywords: keywords ?? seoKeywords,
+    alternates: {
+      canonical: canonicalUrl,
     },
-    twitter: { title, description },
+    openGraph: {
+      title: fullTitle,
+      description,
+      url: canonicalUrl,
+      siteName: site.name,
+      locale: "en_US",
+      type,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description,
+    },
   };
 }

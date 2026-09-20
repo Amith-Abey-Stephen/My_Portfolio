@@ -3,6 +3,8 @@ import { PageHeader } from "@/components/layout/page-header";
 import { ContactCTA } from "@/components/sections/contact-cta";
 import { InteractiveResume } from "@/components/resume/interactive-resume";
 
+import { ResumePageJsonLd } from "@/components/seo/json-ld";
+
 export const metadata = pageMetadata({
   title: "Resume",
   description:
@@ -13,6 +15,7 @@ export const metadata = pageMetadata({
 export default function ResumePage() {
   return (
     <>
+      <ResumePageJsonLd />
       <PageHeader
         eyebrow="Resume"
         title="Interactive Track Record"

@@ -182,21 +182,42 @@ export function ProjectJsonLd({ project }: { project: Project }) {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
+          "@type": ["SoftwareApplication", "CreativeWork"],
           "@id": `${url}#software`,
           name: project.title,
+          headline: project.title,
           description: project.caseStudy.problem
             ? `${project.summary} ${project.caseStudy.solution}`
             : project.summary,
           abstract: project.summary,
           url,
+          image: `${siteUrl}/work/${project.slug}/opengraph-image`,
+          screenshot: `${siteUrl}/work/${project.slug}/opengraph-image`,
           applicationCategory: project.category,
-          operatingSystem: project.category === "IoT" ? "IoT / ESP32" : "Web",
+          operatingSystem: project.category === "IoT" ? "IoT / ESP32" : "Web / Cross-Platform",
           datePublished: project.year,
           author: { "@id": personId },
           creator: { "@id": personId },
+          publisher: { "@id": personId },
           keywords: project.stack.join(", "),
+          programmingLanguage: project.stack,
           about: project.caseStudy.problem,
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+          },
+          ...(project.link
+            ? {
+                sameAs: [project.link],
+                isRelatedTo: {
+                  "@type": "WebSite",
+                  name: project.title,
+                  url: project.link,
+                },
+              }
+            : {}),
         }}
       />
       <BreadcrumbJsonLd
@@ -229,5 +250,136 @@ export function BreadcrumbJsonLd({
         })),
       }}
     />
+  );
+}
+
+/** CollectionPage JSON-LD for the /work & /works project catalogue. */
+export function CollectionPageJsonLd() {
+  return (
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "@id": `${siteUrl}/works#collection`,
+          url: `${siteUrl}/works`,
+          name: `Works & Engineering Products by ${site.author}`,
+          description:
+            "Complete catalog of software products, client platforms, offline mobile applications, and IoT systems engineered by Amith Abey Stephen.",
+          isPartOf: { "@id": `${siteUrl}/#website` },
+          author: { "@id": personId },
+          creator: { "@id": personId },
+          about: { "@id": personId },
+          inLanguage: "en",
+          mainEntity: {
+            "@type": "ItemList",
+            name: `All Works by ${site.author}`,
+            numberOfItems: projects.length,
+            itemListElement: projects.map((p, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              item: {
+                "@type": "SoftwareApplication",
+                name: p.title,
+                description: p.summary,
+                url: `${siteUrl}/work/${p.slug}`,
+                applicationCategory: p.category,
+                operatingSystem: p.category === "IoT" ? "IoT / ESP32" : "Web / Cross-Platform",
+                datePublished: p.year,
+                keywords: p.stack.join(", "),
+              },
+            })),
+          },
+        }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Works", path: "/works" },
+        ]}
+      />
+    </>
+  );
+}
+
+/** AboutPage JSON-LD for /about */
+export function AboutPageJsonLd() {
+  return (
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "@id": `${siteUrl}/about#webpage`,
+          url: `${siteUrl}/about`,
+          name: `About ${site.author} — Product Engineer & Systems Architect`,
+          description: bio,
+          isPartOf: { "@id": `${siteUrl}/#website` },
+          mainEntity: { "@id": personId },
+          inLanguage: "en",
+        }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ]}
+      />
+    </>
+  );
+}
+
+/** ProfilePage JSON-LD for /resume */
+export function ResumePageJsonLd() {
+  return (
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          "@id": `${siteUrl}/resume#webpage`,
+          url: `${siteUrl}/resume`,
+          name: `Interactive Track Record & Resume — ${site.author}`,
+          description: `Interactive career timeline, leadership roles, education, and technical capabilities of ${site.author}.`,
+          isPartOf: { "@id": `${siteUrl}/#website` },
+          mainEntity: { "@id": personId },
+          inLanguage: "en",
+        }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Resume", path: "/resume" },
+        ]}
+      />
+    </>
+  );
+}
+
+/** Story Page JSON-LD for /story */
+export function StoryPageJsonLd() {
+  return (
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ItemPage",
+          "@id": `${siteUrl}/story#webpage`,
+          url: `${siteUrl}/story`,
+          name: `The Story of ${site.author} — How I Got Here`,
+          description:
+            "The moments that turned a curious kid taking things apart into a builder shipping products.",
+          isPartOf: { "@id": `${siteUrl}/#website` },
+          mainEntity: { "@id": personId },
+          inLanguage: "en",
+        }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Story", path: "/story" },
+        ]}
+      />
+    </>
   );
 }

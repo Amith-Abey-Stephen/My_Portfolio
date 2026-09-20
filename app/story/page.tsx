@@ -4,6 +4,8 @@ import { PageHeader } from "@/components/layout/page-header";
 import { ContactCTA } from "@/components/sections/contact-cta";
 import { StoryView } from "@/components/story/story-view";
 
+import { StoryPageJsonLd } from "@/components/seo/json-ld";
+
 export const metadata = pageMetadata({
   title: "Story",
   description:
@@ -14,6 +16,7 @@ export const metadata = pageMetadata({
 export default function StoryPage() {
   return (
     <>
+      <StoryPageJsonLd />
       <PageHeader eyebrow="Story" title="How I got here." lede={storyIntro} />
 
       <StoryView chapters={story} />

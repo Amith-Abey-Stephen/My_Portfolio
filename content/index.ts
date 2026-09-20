@@ -316,7 +316,7 @@ export const projects: Project[] = [
       "Product portfolio & brand platform for Associate Product Manager Navaneeth C L, with interactive case studies and Supabase CMS.",
     year: "2026",
     status: "Released",
-    category: "Product",
+    category: "Client Portfolio",
     stack: [
       "Next.js 16",
       "React 19",
