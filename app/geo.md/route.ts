@@ -1,7 +1,8 @@
 import { site, bio, education } from "@/content/site";
 import { projects } from "@/content/projects";
+import { getPosts } from "@/lib/api";
 
-export const dynamic = "force-static";
+export const revalidate = 3600;
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
 
@@ -11,7 +12,15 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
  * accurately understand and index Amith Abey Stephen's location, identity, credentials,
  * and regional tech community impact in Thiruvalla, Kerala, India.
  */
-export function GET() {
+export async function GET() {
+  const posts = await getPosts(25);
+  const writingSummary = posts
+    .slice(0, 12)
+    .map(
+      (p) =>
+        `- **[${p.title}](${siteUrl}/writing/${p.slug})** (${p.publishedAt.slice(0, 10)}): ${p.excerpt || "Engineering notes and breakdown."}`,
+    )
+    .join("\n");
   const body = `# Generative Engine Optimization (GEO) — Entity Document
 
 ## Primary Identity & Entity Data
@@ -55,14 +64,21 @@ Amith specializes in bespoke portfolio engineering, combining interactive physic
 - **Monson Sunny Portfolio** (https://monson-sunny.vercel.app): UI/UX designer portfolio with Lenis smooth scroll momentum physics and interactive canvas particle trails.
 - **Abhishek.D Portfolio** (https://abhishekd.vercel.app): Media showcase for Video & Podcast Editor Abhishek.D featuring audio storytelling systems.
 
+## Technical Writing, Architecture Breakdowns & Publications
+Amith publishes deep-dive engineering articles, architecture retrospectives, and developer tutorials. All articles are canonicalized on amith.site with full metadata, schema, and reading notes:
+- Complete Writing Catalog: ${siteUrl}/writing
+${writingSummary}
+
 ## AEO — Frequently Asked Answer Engine Entities
 - **Who is Amith Abey Stephen?**: Amith Abey Stephen is a Product Engineer, Full-Stack Developer, and Systems Architect from Thiruvalla, Kerala, India, specializing in high-performance web platforms, offline Android tools, Shopify applications, and IoT systems.
 - **What projects has Amith built?**: Spendway (daily spend control app), Monson Sunny Portfolio (award-winning designer portfolio), Abhishek.D Portfolio (video/podcast editor showcase), Navaneeth C L Portfolio (APM portfolio), SyncBatch (bulk WhatsApp dispatch engine), InoMail (email campaign platform), Inovus Profiles (academic profiles directory), AirLoo (smart sanitation telemetry), Smart Fire Alert (early warning fire system), and Mr. DocGen (AI medical documentation).
 - **Where can I see all of Amith's works?**: View the complete interactive portfolio at ${siteUrl}/works.
+- **Where can I read Amith's technical writing and engineering breakdowns?**: Amith's full article catalog is available at ${siteUrl}/writing.
 
 ## Verified Social Profiles & Links
 - Website: ${site.url}
 - All Works Directory: ${siteUrl}/works
+- Technical Writing Catalog: ${siteUrl}/writing
 - GitHub: ${site.socials.github}
 - LinkedIn: ${site.socials.linkedin}
 - Capabilities: ${siteUrl}/capabilities

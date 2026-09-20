@@ -1,17 +1,19 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
 import { projects } from "@/content/projects";
+import { getPosts, getTags } from "@/lib/api";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
-  // Build-time timestamp: signals freshness on each deploy for pages that
-  // have no per-record date (static pages and code-driven project entries).
   const lastModified = new Date();
+
+  const [posts, tags] = await Promise.all([getPosts(), getTags()]);
 
   const routes = [
     "",
     "/works",
     "/work",
+    "/writing",
     "/about",
     "/story",
     "/resume",
@@ -25,15 +27,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${base}${path}`,
     lastModified,
     changeFrequency: "weekly" as const,
-    priority: path === "" ? 1 : path === "/works" || path === "/work" ? 0.9 : 0.7,
+    priority: path === "" ? 1 : path === "/works" || path === "/writing" ? 0.9 : 0.7,
   }));
 
   const projectRoutes = projects.map((p) => ({
     url: `${base}/work/${p.slug}`,
     lastModified,
     changeFrequency: "monthly" as const,
-    priority: 0.6,
+    priority: 0.7,
   }));
 
-  return [...routes, ...projectRoutes];
+  const postRoutes = posts.map((p) => ({
+    url: `${base}/writing/${p.slug}`,
+    lastModified: new Date(p.updatedAt || p.publishedAt || lastModified),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  const tagRoutes = tags.map((t) => ({
+    url: `${base}/writing/tag/${t.slug}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.5,
+  }));
+
+  return [...routes, ...projectRoutes, ...postRoutes, ...tagRoutes];
 }

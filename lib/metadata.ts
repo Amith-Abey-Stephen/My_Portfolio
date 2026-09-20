@@ -9,6 +9,9 @@ interface PageMetadataOptions {
   path: string;
   keywords?: string[];
   type?: "website" | "article" | "profile";
+  publishedTime?: string;
+  modifiedTime?: string;
+  authors?: string[];
 }
 
 /** Build consistent per-page metadata with canonical, OpenGraph, and Twitter cards. */
@@ -18,6 +21,9 @@ export function pageMetadata({
   path,
   keywords,
   type = "website",
+  publishedTime,
+  modifiedTime,
+  authors,
 }: PageMetadataOptions): Metadata {
   const fullTitle = `${title} — ${site.author}`;
   const canonicalUrl = `${siteUrl}${path}`;
@@ -36,6 +42,13 @@ export function pageMetadata({
       siteName: site.name,
       locale: "en_US",
       type,
+      ...(type === "article"
+        ? {
+            publishedTime,
+            modifiedTime,
+            authors: authors ?? [site.author],
+          }
+        : {}),
     },
     twitter: {
       card: "summary_large_image",

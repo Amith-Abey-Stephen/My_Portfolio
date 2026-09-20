@@ -122,6 +122,7 @@ ${nowDetails}
 ## Verified Links & Navigation
 - Website: ${site.url}
 - All Works Directory: ${siteUrl}/works
+- Writing Catalog: ${siteUrl}/writing
 - Resume: ${site.resumeUrl}
 - Capabilities Matrix: ${siteUrl}/capabilities
 - GitHub: ${site.socials.github}

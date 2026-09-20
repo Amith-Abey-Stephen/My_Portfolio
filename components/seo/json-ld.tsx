@@ -2,7 +2,7 @@ import { site, bio, education } from "@/content/site";
 import { projects } from "@/content/projects";
 import { capabilities } from "@/content/capabilities";
 import { faqs } from "@/content/faq";
-import type { Project } from "@/types";
+import type { Project, Post } from "@/types";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
 const personId = `${siteUrl}/#person`;
@@ -378,6 +378,85 @@ export function StoryPageJsonLd() {
         items={[
           { name: "Home", path: "/" },
           { name: "Story", path: "/story" },
+        ]}
+      />
+    </>
+  );
+}
+
+/** TechArticle / BlogPosting JSON-LD for /writing/[slug] */
+export function ArticleJsonLd({ post }: { post: Post }) {
+  const url = `${siteUrl}/writing/${post.slug}`;
+  return (
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": ["TechArticle", "BlogPosting"],
+          "@id": `${url}#article`,
+          url,
+          headline: post.title,
+          description: post.excerpt,
+          abstract: post.excerpt,
+          datePublished: post.publishedAt,
+          dateModified: post.updatedAt || post.publishedAt,
+          author: { "@id": personId },
+          publisher: { "@id": personId },
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": url,
+          },
+          keywords: post.tags.map((t) => t.name).join(", "),
+          articleSection: post.primaryTag?.name || "Technology",
+          isBasedOn: post.url,
+          isPartOf: {
+            "@type": "Blog",
+            "@id": `${siteUrl}/writing#blog`,
+            name: `${site.author} — Writing`,
+            url: `${siteUrl}/writing`,
+          },
+        }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Writing", path: "/writing" },
+          { name: post.title, path: `/writing/${post.slug}` },
+        ]}
+      />
+    </>
+  );
+}
+
+/** Blog CollectionPage JSON-LD for /writing */
+export function BlogJsonLd({ posts }: { posts: Post[] }) {
+  return (
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "@id": `${siteUrl}/writing#blog`,
+          url: `${siteUrl}/writing`,
+          name: `Writing & Technical Notes by ${site.author}`,
+          description:
+            "Notes from the build: reflections on product engineering, systems architecture, lessons, and the messy middle of building.",
+          author: { "@id": personId },
+          publisher: { "@id": personId },
+          blogPost: posts.slice(0, 30).map((p) => ({
+            "@type": "BlogPosting",
+            headline: p.title,
+            description: p.excerpt,
+            url: `${siteUrl}/writing/${p.slug}`,
+            datePublished: p.publishedAt,
+            keywords: p.tags.map((t) => t.name).join(", "),
+          })),
+        }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Writing", path: "/writing" },
         ]}
       />
     </>

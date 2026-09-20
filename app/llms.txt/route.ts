@@ -39,7 +39,8 @@ ${products}
 - Home: ${site.url}
 - Works (all projects): ${siteUrl}/works
 - Work / case studies: ${siteUrl}/#work
-- Writing (blog): ${siteUrl}/#writing
+- Writing (full articles catalog): ${siteUrl}/writing
+- Writing (featured section): ${siteUrl}/#writing
 - About: ${siteUrl}/about
 - Story: ${siteUrl}/story
 - Capabilities: ${siteUrl}/capabilities
