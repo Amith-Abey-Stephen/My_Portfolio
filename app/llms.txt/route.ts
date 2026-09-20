@@ -37,12 +37,15 @@ ${products}
 
 ## Key pages
 - Home: ${site.url}
+- Works (all projects): ${siteUrl}/works
 - Work / case studies: ${siteUrl}/#work
 - Writing (blog): ${siteUrl}/#writing
 - About: ${siteUrl}/about
 - Story: ${siteUrl}/story
+- Capabilities: ${siteUrl}/capabilities
 - Journey: ${siteUrl}/#journey
-- Resume: ${site.resumeUrl}
+- Resume: ${siteUrl}/resume
+- Contact: ${siteUrl}/contact
 
 ## Contact
 - Email: ${site.email}

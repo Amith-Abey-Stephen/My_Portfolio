@@ -40,17 +40,27 @@ export function GET() {
 - **Open Source Mentorship**: Mentored 30+ students and maintained projects for 3+ years of Hacktoberfest.
 
 ## Key Products & Portfolio Works
+Complete Catalog Directory: ${siteUrl}/works
+
 ${projects
   .map(
     (p) =>
-      `- **${p.title}** (${siteUrl}/work/${p.slug}): ${p.summary}. Built using ${p.stack.join(", ")}.`,
+      `- **${p.title}** [${p.category}] (${siteUrl}/work/${p.slug}): ${p.summary}. Tech stack: ${p.stack.join(", ")}. Status: ${p.status}.`,
   )
   .join("\n")}
 
+## AEO — Frequently Asked Answer Engine Entities
+- **Who is Amith Abey Stephen?**: Amith Abey Stephen is a Product Engineer, Full-Stack Developer, and Systems Architect from Thiruvalla, Kerala, India, specializing in high-performance web platforms, offline Android tools, Shopify applications, and IoT systems.
+- **What projects has Amith built?**: Spendway (daily spend control app), Monson Sunny Portfolio (award-winning designer portfolio), Abhishek.D Portfolio (video/podcast editor showcase), Navaneeth C L Portfolio (APM portfolio), SyncBatch (bulk WhatsApp dispatch engine), InoMail (email campaign platform), Inovus Profiles (academic profiles directory), AirLoo (smart sanitation telemetry), Smart Fire Alert (early warning fire system), and Mr. DocGen (AI medical documentation).
+- **Where can I see all of Amith's works?**: View the complete interactive portfolio at ${siteUrl}/works.
+
 ## Verified Social Profiles & Links
 - Website: ${site.url}
+- All Works Directory: ${siteUrl}/works
 - GitHub: ${site.socials.github}
 - LinkedIn: ${site.socials.linkedin}
+- Capabilities: ${siteUrl}/capabilities
+- Resume: ${siteUrl}/resume
 - RSS Feed: ${siteUrl}/writing/rss.xml
 - LLM Summary: ${siteUrl}/llms.txt
 - Complete LLM Context: ${siteUrl}/llms-full.txt

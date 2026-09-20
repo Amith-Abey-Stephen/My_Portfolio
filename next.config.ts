@@ -52,12 +52,14 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // The /work index page was removed — bounce it (and any old or external
-      // links) to the Selected Work section on the homepage. Project detail
-      // pages at /work/<slug> are unaffected.
-      { source: "/work", destination: "/#work", permanent: false },
-      // Likewise, /journey was folded into the homepage Journey section.
+      // /journey was folded into the homepage Journey section.
       { source: "/journey", destination: "/#journey", permanent: false },
+    ];
+  },
+  async rewrites() {
+    return [
+      // Proxy /works directly to the canonical /work index page
+      { source: "/works", destination: "/work" },
     ];
   },
 };

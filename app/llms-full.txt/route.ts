@@ -119,9 +119,11 @@ ${nowDetails}
 
 ---
 
-## Verified Contact Links
+## Verified Links & Navigation
 - Website: ${site.url}
+- All Works Directory: ${siteUrl}/works
 - Resume: ${site.resumeUrl}
+- Capabilities Matrix: ${siteUrl}/capabilities
 - GitHub: ${site.socials.github}
 - LinkedIn: ${site.socials.linkedin}
 - Email: ${site.email}
