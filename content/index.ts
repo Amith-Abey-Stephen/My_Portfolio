@@ -514,7 +514,6 @@ export const projects: Project[] = [
     category: "IoT",
     stack: ["ESP32", "Firebase Firestore", "Vue.js", "C++"],
     icon: Activity,
-    featured: true,
     link: "https://airloo.amith.site",
     repo: "https://github.com/Amith-Abey-Stephen/AirLoo",
     caseStudy: {
@@ -544,7 +543,6 @@ export const projects: Project[] = [
     category: "IoT",
     stack: ["ESP32", "C++", "Sensors", "Emergency Telemetry"],
     icon: Flame,
-    featured: true,
     link: "https://fire-alert.amith.site",
     repo: "https://github.com/Amith-Abey-Stephen/Smart-Fire-Alert",
     caseStudy: {

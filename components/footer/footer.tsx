@@ -11,7 +11,7 @@ const groups: { title: string; links: FooterLink[] }[] = [
   {
     title: "Explore",
     links: [
-      { label: "Work", href: "/#work" },
+      { label: "Works", href: "/works" },
       { label: "About", href: "/about" },
       { label: "Story", href: "/story" },
       { label: "Writing", href: "/#writing" },
