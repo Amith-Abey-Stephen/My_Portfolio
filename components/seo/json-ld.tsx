@@ -488,6 +488,7 @@ export function ArticleJsonLd({ post }: { post: Post }) {
             name: site.author,
             jobTitle: site.role,
             url: site.url,
+            image: `${siteUrl}/portrait.png`,
             sameAs: [site.socials.github, site.socials.linkedin],
           },
           publisher: {

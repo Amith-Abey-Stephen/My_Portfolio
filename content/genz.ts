@@ -422,7 +422,8 @@ export const genzDictionary: Record<string, string> = {
   "← Newer Post": "← fresher yap",
   "Older Post →": "older yap →",
   "Writing Tag": "yap tag",
-  "View all articles": "view all hot takes",
+  "Written by": "cooked by",
+  "More about Amith": "who is amith fr",
   Article: "hot take",
 
   // --- 404 Not Found (/not-found) ---
