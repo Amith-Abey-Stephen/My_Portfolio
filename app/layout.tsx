@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: `%s — ${site.author}`,
   },
   description:
-    "amith.site: Amith Abey Stephen, a Product Engineer from Kerala building software that solves real problems.",
+    "Amith Abey Stephen is a Product Engineer from Kerala building web products, Shopify apps, self-hosted developer tools, and connected IoT systems.",
   keywords: seoKeywords,
   authors: [{ name: site.author, url: site.url }],
   creator: site.author,

@@ -8,6 +8,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { genzDictionary } from "@/content/genz";
 
@@ -19,7 +20,7 @@ import { genzDictionary } from "@/content/genz";
  */
 
 const STORAGE_KEY = "amith:genz";
-const SWAP_ATTRS = ["placeholder", "aria-label"] as const;
+const SWAP_ATTRS = ["placeholder", "aria-label", "title"] as const;
 const SKIP_SELECTOR = "script,style,[data-genz-skip]";
 
 type Dict = Map<string, string>;
@@ -81,6 +82,7 @@ export function useGenZ() {
 export function GenZProvider({ children }: { children: React.ReactNode }) {
   const [enabled, setEnabled] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  const pathname = usePathname();
   // Distinguishes a click from the initial localStorage restore, so reloading
   // with the mode on doesn't flash the "activated" toast.
   const userToggled = useRef(false);
@@ -114,6 +116,16 @@ export function GenZProvider({ children }: { children: React.ReactNode }) {
     });
     return () => observer.disconnect();
   }, [enabled]);
+
+  // Ensure DOM is swapped cleanly on client-side route transitions
+  useEffect(() => {
+    if (!enabled) return;
+    swapTree(document.body, toGenz);
+    const frame = requestAnimationFrame(() => {
+      swapTree(document.body, toGenz);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [pathname, enabled]);
 
   useEffect(() => {
     if (!userToggled.current) return;

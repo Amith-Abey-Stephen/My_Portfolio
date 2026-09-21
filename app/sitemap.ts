@@ -11,7 +11,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const routes = [
     "",
-    "/works",
     "/work",
     "/writing",
     "/about",
@@ -27,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${base}${path}`,
     lastModified,
     changeFrequency: "weekly" as const,
-    priority: path === "" ? 1 : path === "/works" || path === "/writing" ? 0.9 : 0.7,
+    priority: path === "" ? 1 : path === "/work" || path === "/writing" ? 0.9 : 0.7,
   }));
 
   const projectRoutes = projects.map((p) => ({
