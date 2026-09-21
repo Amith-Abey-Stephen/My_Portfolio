@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { PageHeader } from "@/components/layout/page-header";
 import { ContactCTA } from "@/components/sections/contact-cta";
 import { AllWritingView } from "@/components/writing/all-writing-view";
-import { BreadcrumbJsonLd } from "@/components/seo/json-ld";
+import { BreadcrumbJsonLd, BlogJsonLd } from "@/components/seo/json-ld";
 
 export const revalidate = 3600;
 
@@ -33,8 +33,13 @@ export async function generateMetadata({
     keywords: [
       tagName,
       `${tagName} articles`,
-      `${tagName} blog`,
-      "Amith Abey Stephen writing",
+      `${tagName} engineering`,
+      `${tagName} tutorials`,
+      `${tagName} guides`,
+      `${tagName} best practices`,
+      `${site.author} ${tagName}`,
+      `${site.author} writing`,
+      `Inovus Labs Blog ${tagName}`,
     ],
   });
 }
@@ -62,6 +67,12 @@ export default async function TagPage({
           { name: "Writing", path: "/writing" },
           { name: `Tag: ${tag.name}`, path: `/writing/tag/${slug}` },
         ]}
+      />
+      <BlogJsonLd
+        posts={filteredPosts}
+        url={`https://www.amith.site/writing/tag/${slug}`}
+        name={`Articles Tagged "${tag.name}" — Amith Abey Stephen`}
+        description={`Curated technical articles and engineering notes tagged "${tag.name}" by Amith Abey Stephen.`}
       />
 
       <PageHeader

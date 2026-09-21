@@ -26,11 +26,11 @@ export async function WritingPreview() {
         />
         <Reveal delay={0.1}>
           <ButtonLink
-            href={site.blogUrl}
+            href="/writing"
             variant="secondary"
             className="shrink-0"
           >
-            Read the full blog
+            {posts.length > 0 ? `Browse all writing (${posts.length})` : "Browse all writing"}
             <ArrowRight className="h-4 w-4" />
           </ButtonLink>
         </Reveal>

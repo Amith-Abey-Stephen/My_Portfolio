@@ -4,8 +4,9 @@ import { projects } from "@/content/projects";
 import { journey } from "@/content/journey";
 import { capabilities } from "@/content/capabilities";
 import { now } from "@/content/now";
+import { getPosts } from "@/lib/api";
 
-export const dynamic = "force-static";
+export const revalidate = 3600;
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
 
@@ -14,7 +15,19 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
  * Provides deep entity details, products, journey milestones, capabilities,
  * design philosophy, current focus, and contact info for AI models.
  */
-export function GET() {
+export async function GET() {
+  const [posts] = await Promise.all([getPosts(30)]);
+
+  const articleDetails = posts
+    .map(
+      (p) => `### ${p.title}
+- **URL**: ${siteUrl}/writing/${p.slug}
+- **Topic**: ${p.primaryTag?.name || "General"}
+- **Published**: ${p.publishedAt.slice(0, 10)}
+- **Tags**: ${p.tags.map((t) => t.name).join(", ")}
+- **Summary**: ${p.excerpt || "Engineering notes and reflections."}`,
+    )
+    .join("\n\n");
   const productDetails = projects
     .map((p) => {
       const caseStudyText = p.caseStudy
@@ -116,6 +129,13 @@ ${journeyDetails}
 
 ## What I'm Focused On Now (Updated ${now.updated})
 ${nowDetails}
+
+---
+
+## Published Technical Writing & Architecture Breakdowns
+Amith publishes in-depth engineering breakdowns, infrastructure post-mortems, and developer tutorials. All articles are canonicalized on amith.site with full metadata, table of contents, and discussion links:
+
+${articleDetails}
 
 ---
 

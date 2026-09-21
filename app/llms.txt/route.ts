@@ -1,7 +1,8 @@
 import { site, bio, education } from "@/content/site";
 import { projects } from "@/content/projects";
+import { getPosts } from "@/lib/api";
 
-export const dynamic = "force-static";
+export const revalidate = 3600;
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
 
@@ -9,7 +10,16 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
  * /llms.txt — a concise, LLM-readable summary of the site (llmstxt.org).
  * Helps ChatGPT, Claude, Perplexity, and Google AI describe Amith accurately.
  */
-export function GET() {
+export async function GET() {
+  const [posts] = await Promise.all([getPosts(25)]);
+  const articles = posts
+    .slice(0, 15)
+    .map(
+      (p) =>
+        `- [${p.title}](${siteUrl}/writing/${p.slug}) (${p.primaryTag?.name || "Tech"}): ${p.excerpt || "Engineering notes."}`,
+    )
+    .join("\n");
+
   const products = projects
     .map(
       (p) =>
@@ -34,6 +44,10 @@ ${bio}
 
 ## Products
 ${products}
+
+## Technical Writing & Engineering Breakdowns
+Complete catalog of 29 articles available at ${siteUrl}/writing:
+${articles}
 
 ## Key pages
 - Home: ${site.url}

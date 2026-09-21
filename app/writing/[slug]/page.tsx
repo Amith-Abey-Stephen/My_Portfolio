@@ -14,6 +14,7 @@ import { ArticleByline } from "@/components/writing/article-byline";
 import { ContactCTA } from "@/components/sections/contact-cta";
 import { processArticleHtml } from "@/lib/toc";
 import { formatDate } from "@/lib/utils";
+import { generateArticleKeywords } from "@/lib/blog-seo";
 
 export const revalidate = 3600;
 
@@ -33,16 +34,7 @@ export async function generateMetadata({
   const post = await getPost(slug);
   if (!post) return {};
 
-  const articleKeywords = [
-    post.title,
-    `${post.title} article`,
-    `${post.title} Amith Abey Stephen`,
-    ...post.tags.map((t) => t.name),
-    ...post.tags.map((t) => `${t.name} tutorial`),
-    "Amith Abey Stephen writing",
-    "Product Engineer Kerala",
-    "Inovus Labs Blog",
-  ];
+  const articleKeywords = generateArticleKeywords(post);
 
   return pageMetadata({
     title: post.title,

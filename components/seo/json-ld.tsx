@@ -2,6 +2,11 @@ import { site, bio, education } from "@/content/site";
 import { projects } from "@/content/projects";
 import { capabilities } from "@/content/capabilities";
 import { faqs } from "@/content/faq";
+import {
+  generateArticleKeywords,
+  calculateWordCount,
+  formatIsoDuration,
+} from "@/lib/blog-seo";
 import type { Project, Post } from "@/types";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
@@ -28,6 +33,16 @@ export function PersonJsonLd() {
       "AI tools",
       "SaaS",
       "Community building",
+      "PostgreSQL Database Security",
+      "Docker Containerization",
+      "Cloudflare R2 Object Storage",
+      "Linux Server Administration",
+      "Self-Hosting & Homelab DevOps",
+      "Astro Web Framework",
+      "AI-Assisted UI Generation",
+      "Shopify App Development",
+      "Git Version Control",
+      "Hardware Prototyping & ESP32",
       ...capabilities.flatMap((c) => c.items),
       ...projects.map((p) => p.title),
     ]),
@@ -387,6 +402,11 @@ export function StoryPageJsonLd() {
 /** TechArticle / BlogPosting JSON-LD for /writing/[slug] */
 export function ArticleJsonLd({ post }: { post: Post }) {
   const url = `${siteUrl}/writing/${post.slug}`;
+  const ogImage = `${siteUrl}/writing/${post.slug}/opengraph-image`;
+  const keywords = generateArticleKeywords(post).join(", ");
+  const wordCount = calculateWordCount(post.html || post.excerpt);
+  const timeRequired = formatIsoDuration(post.readingTime);
+
   return (
     <>
       <JsonLd
@@ -400,13 +420,31 @@ export function ArticleJsonLd({ post }: { post: Post }) {
           abstract: post.excerpt,
           datePublished: post.publishedAt,
           dateModified: post.updatedAt || post.publishedAt,
-          author: { "@id": personId },
-          publisher: { "@id": personId },
+          image: ogImage,
+          thumbnailUrl: post.featureImage || ogImage,
+          inLanguage: "en",
+          wordCount: wordCount > 0 ? wordCount : undefined,
+          timeRequired,
+          creativeWorkStatus: "Published",
+          author: {
+            "@type": "Person",
+            "@id": personId,
+            name: site.author,
+            jobTitle: site.role,
+            url: site.url,
+            sameAs: [site.socials.github, site.socials.linkedin],
+          },
+          publisher: {
+            "@type": "Person",
+            "@id": personId,
+            name: site.author,
+            url: site.url,
+          },
           mainEntityOfPage: {
             "@type": "WebPage",
             "@id": url,
           },
-          keywords: post.tags.map((t) => t.name).join(", "),
+          keywords,
           articleSection: post.primaryTag?.name || "Technology",
           isBasedOn: post.url,
           isPartOf: {
@@ -429,18 +467,27 @@ export function ArticleJsonLd({ post }: { post: Post }) {
 }
 
 /** Blog CollectionPage JSON-LD for /writing */
-export function BlogJsonLd({ posts }: { posts: Post[] }) {
+export function BlogJsonLd({
+  posts,
+  url = `${siteUrl}/writing`,
+  name = `Writing & Technical Notes by ${site.author}`,
+  description = "Notes from the build: reflections on product engineering, systems architecture, lessons, and the messy middle of building.",
+}: {
+  posts: Post[];
+  url?: string;
+  name?: string;
+  description?: string;
+}) {
   return (
     <>
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "Blog",
-          "@id": `${siteUrl}/writing#blog`,
-          url: `${siteUrl}/writing`,
-          name: `Writing & Technical Notes by ${site.author}`,
-          description:
-            "Notes from the build: reflections on product engineering, systems architecture, lessons, and the messy middle of building.",
+          "@id": `${url}#blog`,
+          url,
+          name,
+          description,
           author: { "@id": personId },
           publisher: { "@id": personId },
           blogPost: posts.slice(0, 30).map((p) => ({

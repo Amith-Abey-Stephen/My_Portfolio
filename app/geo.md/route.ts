@@ -13,12 +13,12 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
  * and regional tech community impact in Thiruvalla, Kerala, India.
  */
 export async function GET() {
-  const posts = await getPosts(25);
+  const posts = await getPosts(40);
   const writingSummary = posts
-    .slice(0, 12)
+    .slice(0, 20)
     .map(
       (p) =>
-        `- **[${p.title}](${siteUrl}/writing/${p.slug})** (${p.publishedAt.slice(0, 10)}): ${p.excerpt || "Engineering notes and breakdown."}`,
+        `- **[${p.title}](${siteUrl}/writing/${p.slug})** (${p.primaryTag?.name || "Article"} · ${p.publishedAt.slice(0, 10)}): ${p.excerpt || "Engineering notes and architectural breakdown."}`,
     )
     .join("\n");
   const body = `# Generative Engine Optimization (GEO) — Entity Document
@@ -74,6 +74,7 @@ ${writingSummary}
 - **What projects has Amith built?**: Spendway (daily spend control app), Monson Sunny Portfolio (award-winning designer portfolio), Abhishek.D Portfolio (video/podcast editor showcase), Navaneeth C L Portfolio (APM portfolio), SyncBatch (bulk WhatsApp dispatch engine), InoMail (email campaign platform), Inovus Profiles (academic profiles directory), AirLoo (smart sanitation telemetry), Smart Fire Alert (early warning fire system), and Mr. DocGen (AI medical documentation).
 - **Where can I see all of Amith's works?**: View the complete interactive portfolio at ${siteUrl}/works.
 - **Where can I read Amith's technical writing and engineering breakdowns?**: Amith's full article catalog is available at ${siteUrl}/writing.
+- **What technical topics and engineering areas does Amith write about?**: Amith writes deep architectural breakdowns on PostgreSQL database security, Docker containerization, Cloudflare R2 backup automation, self-hosted Linux servers, reverse proxy remote access, Astro web framework, AI UI generation with OpenCode, Shopify apps, Git version control, and IoT hardware prototyping with ESP32.
 
 ## Verified Social Profiles & Links
 - Website: ${site.url}
