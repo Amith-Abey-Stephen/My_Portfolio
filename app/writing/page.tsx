@@ -10,9 +10,9 @@ import { ArrowUpRight } from "lucide-react";
 export const revalidate = 3600;
 
 export const metadata = pageMetadata({
-  title: "Writing — Notes from the build",
+  title: "Writing",
   description:
-    "Reflections on product engineering, PostgreSQL server security, modern frontend architecture, and lessons from building software products by Amith Abey Stephen.",
+    "Honest reflections on product engineering, backend systems, security, frontend craft, and lessons from the messy middle by Amith Abey Stephen.",
   path: "/writing",
   keywords: [
     "Amith Abey Stephen blog",

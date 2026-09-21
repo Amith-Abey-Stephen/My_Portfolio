@@ -9,7 +9,7 @@ import { StoryPageJsonLd } from "@/components/seo/json-ld";
 export const metadata = pageMetadata({
   title: "Story",
   description:
-    "The long version: the moments that turned a curious kid taking things apart into a builder shipping products.",
+    "The complete story of Amith Abey Stephen: from curious beginnings at Kristu Jyoti to CEO of Inovus Labs, building real products and community.",
   path: "/story",
 });
 

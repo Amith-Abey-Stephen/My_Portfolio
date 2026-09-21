@@ -7,7 +7,7 @@ import { Reveal } from "@/components/motion/reveal";
 export const metadata = pageMetadata({
   title: "Now",
   description:
-    "What I am focused on right now is: working on, learning, reading, and thinking about.",
+    "A monthly snapshot of what Amith Abey Stephen is currently building, learning, reading, and thinking about across software and systems engineering.",
   path: "/now",
 });
 

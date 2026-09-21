@@ -26,10 +26,12 @@ export function processArticleHtml(html: string): {
   html: string;
   toc: TocItem[];
 } {
+  // Normalize any article body <h1> tags to <h2> to maintain single-H1 semantic hierarchy
+  const normalizedHtml = html.replace(/<h1(\s[^>]*)?>([\s\S]*?)<\/h1>/gi, "<h2$1>$2</h2>");
   const toc: TocItem[] = [];
   const used = new Set<string>();
 
-  const out = html.replace(
+  const out = normalizedHtml.replace(
     /<h([23])([^>]*)>([\s\S]*?)<\/h\1>/gi,
     (match, lvl: string, attrs: string, inner: string) => {
       const text = inner

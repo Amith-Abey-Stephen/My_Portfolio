@@ -9,7 +9,7 @@ import { AboutPageJsonLd } from "@/components/seo/json-ld";
 export const metadata = pageMetadata({
   title: "About",
   description:
-    "Who Amith is today: a builder from Kerala who turns ideas into products across software, hardware, and community.",
+    "Explore the background of Amith Abey Stephen, a Product Engineer from Kerala building software tools, hardware systems, and open developer communities.",
   path: "/about",
 });
 

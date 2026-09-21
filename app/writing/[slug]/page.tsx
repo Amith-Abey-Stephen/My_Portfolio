@@ -11,6 +11,7 @@ import { ReadingProgress } from "@/components/writing/reading-progress";
 import { TableOfContents } from "@/components/writing/table-of-contents";
 import { ShareRow } from "@/components/writing/share-row";
 import { ArticleByline } from "@/components/writing/article-byline";
+import { ArticleAuthorCard } from "@/components/writing/article-author-card";
 import { ContactCTA } from "@/components/sections/contact-cta";
 import { processArticleHtml } from "@/lib/toc";
 import { formatDate } from "@/lib/utils";
@@ -188,6 +189,9 @@ export default async function ArticlePage({
                   )}
                 </div>
               )}
+
+              {/* End-of-article Author Box (E-E-A-T & AEO entity attribution) */}
+              <ArticleAuthorCard />
 
               {/* End of article discussion CTA */}
               {post.url && (

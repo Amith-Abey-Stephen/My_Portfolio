@@ -11,6 +11,7 @@
 export const genzDictionary: Record<string, string> = {
   // --- Navigation & global chrome ---
   Work: "the bangers",
+  Works: "certified bangers",
   About: "the lore",
   Story: "storytime",
   Resume: "rizzumé",
@@ -24,6 +25,12 @@ export const genzDictionary: Record<string, string> = {
   More: "extra lore",
   Connect: "link up",
   "PDF Resume": "rizzumé (pdf)",
+  "RSS Feed": "rss drops",
+  Language: "slang level",
+  "Switch back to english": "back to boring english",
+  "Switch to gen z mode": "switch to gen z rizz",
+  "Desktop Experience": "desktop hits different",
+  "Best viewed on Web↗": "it's giving web ↗",
 
   // --- Hero ---
   "Building products with": "cooking up products with",
@@ -41,10 +48,13 @@ export const genzDictionary: Record<string, string> = {
   "Best viewed on Web ↗": "it's giving web ↗",
   "Kerala, India": "kerala, india 🌴",
 
-  // --- Selected work ---
+  // --- Selected work & Projects ---
   "Selected Work": "certified bangers",
   "A few things I've built.": "stuff i cooked fr.",
+  "A few things I’ve built.": "stuff i cooked fr.",
   "Most started as a small problem I couldn't stop thinking about.":
+    "most of these started as a lil problem living in my head rent-free.",
+  "Most started as a small problem I couldn’t stop thinking about.":
     "most of these started as a lil problem living in my head rent-free.",
   Released: "shipped ✅ no cap",
   "In Progress": "cooking rn 🍳",
@@ -52,8 +62,23 @@ export const genzDictionary: Record<string, string> = {
   "Open Now": "run it rn",
   "Source Code": "peep the sauce",
   Product: "certified product",
+  "Client Portfolio": "client bags",
+  "Mobile App": "phone apps",
+  Communication: "yap engines",
+  "Internal Tool": "secret sauce tools",
+  "IoT System": "irl hardware",
   "AI Tool": "AI tool (scary smart)",
   IoT: "IoT (beep boop)",
+  "Offline-first Android budget app turning salary into an honest daily spending limit with zero bank logins and complete privacy.":
+    "offline android budget app turning salary into an honest daily limit with zero bank logins and complete privacy. no cap.",
+  "Interactive portfolio & design showcase for UI/UX Designer Monson Sunny, featuring Lenis momentum physics and canvas cursor trails.":
+    "interactive portfolio & design flex for UI/UX designer monson sunny, with buttery physics and cursor trails that eat.",
+  "Product portfolio & brand platform for Associate Product Manager Navaneeth C L, with interactive case studies and Supabase CMS.":
+    "product portfolio & brand platform for APM navaneeth c l, interactive case studies and supabase cms.",
+  "Editorial portfolio and content distribution engine for Video & Podcast Editor Abhishek.D, showcasing storytelling systems.":
+    "editorial portfolio & content distribution engine for video/podcast editor abhishek.d, peak storytelling systems.",
+  "A profile page for every Inovus Labs fellow that connects their platforms in one place and doubles as a portfolio.":
+    "one profile page for every inovus labs fellow, all their platforms linked in one spot, lowkey a whole portfolio.",
   "A profile page for every Inovusfellow that connects their platforms in one place and doubles as a portfolio.":
     "one profile page for every inovus labs fellow, all their platforms linked in one spot, lowkey a whole portfolio.",
   "Convert spreadsheet contact lists into phone-ready VCF files and Google Contacts in seconds without manual entry.":
@@ -308,4 +333,115 @@ export const genzDictionary: Record<string, string> = {
     "more products, built in the open. more open source, and more honest writing about the messy process of building.",
   "This story isn't finished. It's just the foundation for whatever comes next.":
     "this story isn't finished, it's just the foundation for whatever's next. stay tuned bestie.",
+
+  // --- Works Page (/work & /works) ---
+  "Everything I've built.": "everything i cooked fr.",
+  "Everything I’ve built.": "everything i cooked fr.",
+  "From offline-first Android apps and high-performance client platforms to bulk communication engines and connected IoT systems.":
+    "offline android apps, client platforms that eat, bulk email engines, and real-life iot systems.",
+  "Search by tech or title...": "search by stack or name...",
+  "Search projects by keyword, technology, or title":
+    "search projects by vibes, stack, or name",
+  Clear: "yeet search",
+  "Reset filter": "reset vibe check",
+  "Clear filters": "clear the board",
+  "No matching works found": "no builds found bestie 💀",
+  All: "all of 'em",
+
+  // --- Project Case Studies (/work/[slug]) ---
+  "Back to Selected Work": "back to the bangers",
+  "Back to Selected Work section": "back to the bangers",
+  "Case Study Index": "the lore index",
+  "The Problem": "the beef (problem)",
+  "The Solution": "how we cooked it",
+  Research: "the homework",
+  Design: "the drip & UI",
+  Development: "in the trenches (coding)",
+  Challenges: "the boss fights",
+  Outcome: "the W / results",
+  Lessons: "what we learned fr",
+  STATUS: "VIBE CHECK",
+  YEAR: "ERA",
+  CATEGORY: "LANE",
+  "Still in development": "let him cook",
+  "← PREVIOUS PROJECT": "← PREVIOUS BANGER",
+  "NEXT PROJECT →": "NEXT BANGER →",
+
+  // --- Resume Page (/resume) ---
+  "Interactive Track Record": "interactive lore & rizzumé",
+  "A live overview of experience, leadership roles, education, and technical capabilities, condensed for fast reading.":
+    "live overview of the grind, leadership arcs, education, and cracked skill tree. tl;dr friendly.",
+  "Track Record": "the track record (unbeaten)",
+  "Experience & Roles.": "the grind & roles.",
+  "Building scalable web products, leading communities, and shipping software for real users.":
+    "shipping scalable products, leading the squad, and dropping code for real ones.",
+  LOCATION: "POSTED UP",
+  DEGREE: "ACADEMIC BADGE",
+  INSTITUTION: "COLLEGE ERA",
+  "Preview PDF": "peep the pdf",
+  "Full PDF": "full pdf rizz",
+  Print: "hit print",
+  Copied: "copied, u good",
+  "Current Role": "current grind 🔥",
+  "What I bring to a team.": "what i bring to the squad.",
+  "Core engineering skills and operational focus areas.":
+    "cracked engineering loadout & focus areas.",
+  "Resume Preview": "rizzumé preview",
+  "Resume Preview - Amith Abey Stephen": "Rizzumé Preview - Amith Abey Stephen",
+  "Open in tab": "open in new tab",
+  "BCA (Bachelor of Computer Applications)": "BCA (computer nerd degree)",
+
+  // --- Writing Pages (/writing, /writing/[slug], /writing/tag/[slug]) ---
+  "Honest reflections on products, systems architecture, security, and lessons from the messy middle of product engineering.":
+    "honest yapping on products, backend arch, security, and the messy middle of shipping.",
+  "Read on Inovus Labs Blog": "peep on inovus labs blog",
+  "Filter writing by tag": "filter takes by vibe",
+  "Search articles & topics...": "search yaps & topics...",
+  "Search articles by keyword or topic": "search articles by keyword or vibe",
+  "Read article": "peep article",
+  Original: "OG source",
+  "No matching articles found": "no yaps found bestie 💀",
+  "Back to all writing": "back to all hot takes",
+  "Original Publication · Inovus Labs": "OG Drop · Inovus Labs",
+  "Published and syndicated from the Inovus Labs engineering publication by Amith Abey Stephen.":
+    "published and syndicated from the inovus labs publication by amith. certified classic.",
+  "Read on Inovus Labs": "peep on inovus labs",
+  "Full article text is available on the original publication.":
+    "full yap is waiting on the OG site.",
+  "Read full story on Inovus Labs": "read full story on inovus labs",
+  "Enjoyed this reflection?": "this yap hit?",
+  "Read community comments, responses, and join the discussion directly on Inovus Labs.":
+    "read the replies, comments, and join the discourse on inovus labs.",
+  "Discuss on Inovus Labs Blog": "yap in the comments on inovus labs",
+  "Table of Contents": "the agenda",
+  Tags: "vibes & tags",
+  Share: "pass the aux",
+  "Copy link": "copy link",
+  "Share on X": "post on X",
+  "Share on LinkedIn": "flex on linkedin",
+  "← Newer Post": "← fresher yap",
+  "Older Post →": "older yap →",
+  "Writing Tag": "yap tag",
+  "Written by": "cooked by",
+  "More about Amith": "who is amith fr",
+  Article: "hot take",
+
+  // --- 404 Not Found (/not-found) ---
+  "Looks like this page hasn’t been built yet.":
+    "this page is not giving anything (it's gone bestie 💀)",
+  "Looks like this page hasn't been built yet.":
+    "this page is not giving anything (it's gone bestie 💀)",
+  "The link may be old, or the page is still in the workshop. Let’s get you back to solid ground.":
+    "the link is giving prehistoric or we haven't cooked it yet. let's get you back home.",
+  "The link may be old, or the page is still in the workshop. Let's get you back to solid ground.":
+    "the link is giving prehistoric or we haven't cooked it yet. let's get you back home.",
+  "Return home": "take me home fr",
+
+  // --- Story Tags & Chapter Chrome ---
+  "Figma & Design": "figma & design era",
+  "The Open Web": "the open web (hooked)",
+  "IoT Tinkering": "iot tinkering (hardware arc)",
+  "Inovus CEO": "inovus CEO speedrun",
+  "Mentors & Growth": "mentors & glow-up",
+  "Google & AI": "google & AI era",
 };
