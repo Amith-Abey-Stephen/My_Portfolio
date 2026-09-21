@@ -8,7 +8,7 @@ import { ResumePageJsonLd } from "@/components/seo/json-ld";
 export const metadata = pageMetadata({
   title: "Resume",
   description:
-    "The resume of Amith Abey Stephen: an interactive role timeline, technical capabilities matrix, and downloadable PDF.",
+    "Interactive resume and track record of Amith Abey Stephen: engineering roles, technical capabilities matrix, project achievements, and PDF download.",
   path: "/resume",
 });
 

@@ -5,10 +5,10 @@ import { AllWorksView } from "@/components/work/all-works-view";
 import { CollectionPageJsonLd } from "@/components/seo/json-ld";
 
 export const metadata = pageMetadata({
-  title: "Works — All Projects & Products",
+  title: "Works",
   description:
     "Explore the complete portfolio of software products, client platforms, offline mobile applications, and IoT systems engineered by Amith Abey Stephen.",
-  path: "/works",
+  path: "/work",
 });
 
 export default function WorkPage() {

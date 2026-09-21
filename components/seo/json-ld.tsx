@@ -238,7 +238,7 @@ export function ProjectJsonLd({ project }: { project: Project }) {
       <BreadcrumbJsonLd
         items={[
           { name: "Home", path: "/" },
-          { name: "Works", path: "/works" },
+          { name: "Works", path: "/work" },
           { name: project.title, path: `/work/${project.slug}` },
         ]}
       />
@@ -268,7 +268,7 @@ export function BreadcrumbJsonLd({
   );
 }
 
-/** CollectionPage JSON-LD for the /work & /works project catalogue. */
+/** CollectionPage JSON-LD for the /work project catalogue. */
 export function CollectionPageJsonLd() {
   return (
     <>
@@ -276,8 +276,8 @@ export function CollectionPageJsonLd() {
         data={{
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          "@id": `${siteUrl}/works#collection`,
-          url: `${siteUrl}/works`,
+          "@id": `${siteUrl}/work#collection`,
+          url: `${siteUrl}/work`,
           name: `Works & Engineering Products by ${site.author}`,
           description:
             "Complete catalog of software products, client platforms, offline mobile applications, and IoT systems engineered by Amith Abey Stephen.",
@@ -310,7 +310,63 @@ export function CollectionPageJsonLd() {
       <BreadcrumbJsonLd
         items={[
           { name: "Home", path: "/" },
-          { name: "Works", path: "/works" },
+          { name: "Works", path: "/work" },
+        ]}
+      />
+    </>
+  );
+}
+
+/** ContactPage JSON-LD for /contact */
+export function ContactPageJsonLd() {
+  return (
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "@id": `${siteUrl}/contact#webpage`,
+          url: `${siteUrl}/contact`,
+          name: `Contact ${site.author} — Get in Touch`,
+          description:
+            "Get in touch with Amith Abey Stephen for product engineering, software development, consulting, and collaborations.",
+          isPartOf: { "@id": `${siteUrl}/#website` },
+          mainEntity: { "@id": personId },
+          inLanguage: "en",
+        }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ]}
+      />
+    </>
+  );
+}
+
+/** ItemPage / WebPage JSON-LD for /capabilities */
+export function CapabilitiesPageJsonLd() {
+  return (
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ItemPage",
+          "@id": `${siteUrl}/capabilities#webpage`,
+          url: `${siteUrl}/capabilities`,
+          name: `Technical Capabilities & Engineering Stack — ${site.author}`,
+          description:
+            "Core technical capabilities, engineering stack, and systems architecture skills of Amith Abey Stephen.",
+          isPartOf: { "@id": `${siteUrl}/#website` },
+          mainEntity: { "@id": personId },
+          inLanguage: "en",
+        }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Capabilities", path: "/capabilities" },
         ]}
       />
     </>
@@ -432,6 +488,7 @@ export function ArticleJsonLd({ post }: { post: Post }) {
             name: site.author,
             jobTitle: site.role,
             url: site.url,
+            image: `${siteUrl}/portrait.png`,
             sameAs: [site.socials.github, site.socials.linkedin],
           },
           publisher: {

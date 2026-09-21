@@ -36,7 +36,7 @@ export function ArticleTile({
       {post.featureImage ? (
         <Image
           src={post.featureImage}
-          alt=""
+          alt={post.title}
           fill
           unoptimized
           sizes={isFeatured ? "(max-width: 1024px) 100vw, 640px" : "(max-width: 1024px) 100vw, 360px"}
