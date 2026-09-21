@@ -197,8 +197,8 @@ ${site.purpose}
 - **LinkedIn**: ${site.socials.linkedin}
 - **Website**: ${siteUrl}
 `;
-  } else if (path === "/work") {
-    title = `Work & Case Studies — ${site.author}`;
+  } else if (path === "/work" || path === "/works") {
+    title = `Works & Products — ${site.author}`;
     const allProjects = projects
       .map(
         (p) => `### [${p.title}](${siteUrl}/work/${p.slug})

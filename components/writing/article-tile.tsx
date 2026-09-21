@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Post } from "@/types";
 import { formatDate } from "@/lib/utils";
@@ -23,10 +24,8 @@ export function ArticleTile({
   const showExcerpt = variant !== "normal";
 
   return (
-    <a
-      href={post.url}
-      target="_blank"
-      rel="noopener noreferrer"
+    <Link
+      href={`/writing/${post.slug}`}
       className={cn(
         "group relative flex h-full flex-col justify-end overflow-hidden rounded-card border border-border bg-surface transition-[border-color,transform] duration-300 ease-out hover:-translate-y-1 hover:border-border-strong",
         className,
@@ -93,6 +92,6 @@ export function ArticleTile({
           </p>
         )}
       </div>
-    </a>
+    </Link>
   );
 }

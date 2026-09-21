@@ -40,7 +40,7 @@ const nextConfig: NextConfig = {
           {
             key: "Content-Security-Policy",
             value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https:; frame-ancestors 'none';",
+              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.clarity.ms https://scripts.clarity.ms https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https: https://*.clarity.ms https://c.bing.com https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https: https://*.clarity.ms https://c.bing.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-ancestors 'none';",
           },
           {
             key: "Permissions-Policy",
@@ -52,12 +52,14 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // The /work index page was removed — bounce it (and any old or external
-      // links) to the Selected Work section on the homepage. Project detail
-      // pages at /work/<slug> are unaffected.
-      { source: "/work", destination: "/#work", permanent: false },
-      // Likewise, /journey was folded into the homepage Journey section.
+      // /journey was folded into the homepage Journey section.
       { source: "/journey", destination: "/#journey", permanent: false },
+    ];
+  },
+  async rewrites() {
+    return [
+      // Proxy /works directly to the canonical /work index page
+      { source: "/works", destination: "/work" },
     ];
   },
 };

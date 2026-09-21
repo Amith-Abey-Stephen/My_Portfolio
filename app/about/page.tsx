@@ -4,6 +4,8 @@ import { PageHeader } from "@/components/layout/page-header";
 import { ContactCTA } from "@/components/sections/contact-cta";
 import { AboutView } from "@/components/about/about-view";
 
+import { AboutPageJsonLd } from "@/components/seo/json-ld";
+
 export const metadata = pageMetadata({
   title: "About",
   description:
@@ -14,6 +16,7 @@ export const metadata = pageMetadata({
 export default function AboutPage() {
   return (
     <>
+      <AboutPageJsonLd />
       <PageHeader
         eyebrow="About"
         title="A builder, in his own words."

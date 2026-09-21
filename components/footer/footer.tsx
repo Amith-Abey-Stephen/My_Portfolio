@@ -11,10 +11,10 @@ const groups: { title: string; links: FooterLink[] }[] = [
   {
     title: "Explore",
     links: [
-      { label: "Work", href: "/#work" },
+      { label: "Works", href: "/works" },
       { label: "About", href: "/about" },
       { label: "Story", href: "/story" },
-      { label: "Writing", href: "/#writing" },
+      { label: "Writing", href: "/writing" },
     ],
   },
   {
@@ -31,7 +31,7 @@ const groups: { title: string; links: FooterLink[] }[] = [
       { label: "Contact", href: "/#contact" },
       { label: "Resume", href: "/resume" },
       { label: "PDF Resume", href: site.resumeUrl, external: true },
-      { label: "RSS Feed", href: `${site.blogUrl}/rss/`, external: true },
+      { label: "RSS Feed", href: "/writing/rss.xml" },
     ],
   },
 ];

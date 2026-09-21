@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     canonical: "/",
     languages: { "en-US": "/", "x-default": "/" },
     types: {
-      "application/rss+xml": `${site.blogUrl}/rss/`,
+      "application/rss+xml": `${siteUrl}/writing/rss.xml`,
     },
   },
   openGraph: {
@@ -66,11 +66,25 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-touch-icon.png",
   },
-  manifest: "/site.webmanifest",
+  manifest: "/manifest.webmanifest",
   robots: {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+  verification: {
+    google:
+      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+      process.env.GOOGLE_SITE_VERIFICATION,
+    other:
+      process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ||
+      process.env.BING_SITE_VERIFICATION
+        ? {
+            "msvalidate.01":
+              (process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ||
+                process.env.BING_SITE_VERIFICATION)!,
+          }
+        : undefined,
   },
 };
 
@@ -104,6 +118,7 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        <Analytics />
       </head>
       <body className="min-h-screen bg-background text-foreground antialiased">
         {/* Runs before paint: on a repeat visit this session, flag <html> so the
@@ -116,7 +131,6 @@ export default function RootLayout({
         />
         <PersonJsonLd />
         <WebsiteJsonLd />
-        <Analytics />
         <WebMCPProvider />
         <GenZProvider>
           <MotionProvider>
