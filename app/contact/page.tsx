@@ -7,6 +7,8 @@ import { ContactChannels } from "@/components/sections/contact-channels";
 import { StatusDot } from "@/components/ui/status-dot";
 import { Reveal } from "@/components/motion/reveal";
 
+import { ContactPageJsonLd } from "@/components/seo/json-ld";
+
 export const metadata = pageMetadata({
   title: "Contact",
   description:
@@ -17,6 +19,7 @@ export const metadata = pageMetadata({
 export default function ContactPage() {
   return (
     <>
+      <ContactPageJsonLd />
       <PageHeader
         eyebrow="Contact"
         title="Let's build something worth remembering."

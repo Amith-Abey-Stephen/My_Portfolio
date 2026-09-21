@@ -6,6 +6,8 @@ import { capabilities } from "@/content/capabilities";
 import { RepelCard } from "@/components/ui/repel-card";
 import { Reveal } from "@/components/motion/reveal";
 
+import { CapabilitiesPageJsonLd } from "@/components/seo/json-ld";
+
 export const metadata = pageMetadata({
   title: "Capabilities",
   description:
@@ -16,6 +18,7 @@ export const metadata = pageMetadata({
 export default function CapabilitiesPage() {
   return (
     <>
+      <CapabilitiesPageJsonLd />
       <PageHeader
         eyebrow="Capabilities"
         title="How I work, and what with."

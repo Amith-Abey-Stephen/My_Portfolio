@@ -16,7 +16,7 @@ export function ArticleCard({ post }: { post: Post }) {
         <div className="relative aspect-[16/9] overflow-hidden bg-elevated">
           <Image
             src={post.featureImage}
-            alt=""
+            alt={post.title}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             // Blog feature images come from arbitrary CDNs; skip the optimizer
