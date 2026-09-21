@@ -6,8 +6,8 @@
  */
 
 const KEY = "a3b8e91f0c2d4e5a8f7b6c5d4e3a2b1f";
-const HOST = "www.amith.site";
-const BASE_URL = `https://${HOST}`;
+// Submit for apex domain (canonical on Vercel) and www subdomain
+const HOSTS = ["amith.site", "www.amith.site"];
 
 // Primary static routes
 const staticRoutes = [
@@ -37,15 +37,15 @@ const projectSlugs = [
   "smart-irrigation",
 ];
 
-async function run() {
-  console.log("🚀 Preparing IndexNow URL submission for", HOST);
+async function submitForHost(host) {
+  const baseUrl = `https://${host}`;
+  console.log(`\n🚀 Preparing IndexNow URL submission for ${host}...`);
 
   const urlList = [
-    ...staticRoutes.map((p) => `${BASE_URL}${p}`),
-    ...projectSlugs.map((s) => `${BASE_URL}/work/${s}`),
+    ...staticRoutes.map((p) => `${baseUrl}${p}`),
+    ...projectSlugs.map((s) => `${baseUrl}/work/${s}`),
   ];
 
-  // Try to fetch latest blog articles from Ghost CMS if available
   try {
     const ghostUrl = process.env.GHOST_URL || "https://blog.inovuslabs.org";
     const ghostKey = process.env.GHOST_CONTENT_KEY;
@@ -56,7 +56,7 @@ async function run() {
       if (res.ok) {
         const data = await res.json();
         const postUrls = (data.posts || []).map(
-          (p) => `${BASE_URL}/writing/${p.slug}`,
+          (p) => `${baseUrl}/writing/${p.slug}`,
         );
         urlList.push(...postUrls);
       }
@@ -65,12 +65,12 @@ async function run() {
     // Graceful fallback to static list
   }
 
-  console.log(`📡 Submitting ${urlList.length} URLs to IndexNow (Bing, Yandex, etc.)...`);
+  console.log(`📡 Submitting ${urlList.length} URLs to IndexNow for ${host}...`);
 
   const payload = {
-    host: HOST,
+    host,
     key: KEY,
-    keyLocation: `${BASE_URL}/${KEY}.txt`,
+    keyLocation: `https://amith.site/${KEY}.txt`,
     urlList,
   };
 
@@ -84,15 +84,21 @@ async function run() {
     });
 
     if (res.status === 200 || res.status === 202) {
-      console.log(`✅ Success (${res.status})! ${urlList.length} URLs submitted and accepted.`);
-      console.log("Search engines (Bing, Copilot, Yandex) have queued your pages for indexing.");
+      console.log(`✅ Success (${res.status})! ${urlList.length} URLs submitted and accepted for ${host}.`);
     } else {
       const text = await res.text();
-      console.error(`⚠️ IndexNow responded with HTTP ${res.status}:`, text);
+      console.error(`⚠️ IndexNow responded with HTTP ${res.status} for ${host}:`, text);
     }
   } catch (error) {
-    console.error("❌ Failed to reach IndexNow API:", error.message);
+    console.error(`❌ Failed to reach IndexNow API for ${host}:`, error.message);
   }
+}
+
+async function run() {
+  for (const host of HOSTS) {
+    await submitForHost(host);
+  }
+  console.log("\nSearch engines (Bing, Copilot, Yandex) have queued your pages for indexing.");
 }
 
 run();
