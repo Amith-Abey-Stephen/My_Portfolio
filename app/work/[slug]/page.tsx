@@ -17,10 +17,27 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) return {};
+
+  const projectKeywords = [
+    project.title,
+    `${project.title} case study`,
+    `${project.title} review`,
+    `${project.title} architecture`,
+    project.category,
+    `${project.category} portfolio`,
+    ...project.stack,
+    ...project.stack.map((tech) => `${tech} developer`),
+    "Product Engineer",
+    "Systems Architect",
+    "Amith Abey Stephen",
+  ];
+
   return pageMetadata({
     title: project.title,
     description: project.summary,
     path: `/work/${project.slug}`,
+    keywords: projectKeywords,
+    type: "article",
   });
 }
 

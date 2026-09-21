@@ -8,11 +8,13 @@ export function PageHeader({
   title,
   lede,
   className,
+  children,
 }: {
   eyebrow?: string;
   title: string;
   lede?: string;
   className?: string;
+  children?: React.ReactNode;
 }) {
   return (
     <header className={cn("pt-32 pb-12 md:pt-40 md:pb-16", className)}>
@@ -36,6 +38,11 @@ export function PageHeader({
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-secondary md:text-xl">
                 {lede}
               </p>
+            </Reveal>
+          )}
+          {children && (
+            <Reveal delay={0.15}>
+              <div className="mt-6">{children}</div>
             </Reveal>
           )}
         </div>

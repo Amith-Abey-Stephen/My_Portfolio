@@ -21,6 +21,11 @@ import {
   Flame,
   Sprout,
   FolderGit2,
+  Briefcase,
+  Wallet,
+  Palette,
+  Video,
+  Users,
 } from "lucide-react";
 import type { Project, ProjectCaseStudy } from "@/types";
 import { Container } from "@/components/layout/container";
@@ -71,6 +76,11 @@ function LiveAction({
 }
 
 const PROJECT_ICONS: Record<string, React.ElementType> = {
+  thenavaneeth: Briefcase,
+  spendway: Wallet,
+  "monson-sunny-portfolio": Palette,
+  "abhishekd-portfolio": Video,
+  "inovus-profiles": Users,
   syncbatch: Database,
   inomail: Mail,
   "mr-docgen": FileText,

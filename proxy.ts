@@ -22,9 +22,19 @@ export function proxy(request: NextRequest) {
     if (!isExcluded) {
       const url = request.nextUrl.clone();
       url.pathname = "/api/markdown-negotiation";
-      url.searchParams.set("path", pathname);
+      // Normalize /works to /work for markdown content negotiation
+      url.searchParams.set("path", pathname === "/works" ? "/work" : pathname);
       return NextResponse.rewrite(url);
     }
+  }
+
+  // Rewrite /works to the canonical /work index page
+  if (pathname === "/works") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/work";
+    const response = NextResponse.rewrite(url);
+    response.headers.append("Vary", "Accept");
+    return response;
   }
 
   const response = NextResponse.next();
