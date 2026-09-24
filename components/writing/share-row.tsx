@@ -8,10 +8,11 @@ import { cn } from "@/lib/utils";
 /** Copy-link + social share for an article. */
 export function ShareRow({ title, url }: { title: string; url: string }) {
   const [copied, setCopied] = useState(false);
+  const shareUrl = url.replace(/^https?:\/\/www\./, "https://");
 
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
     } catch {
@@ -19,8 +20,8 @@ export function ShareRow({ title, url }: { title: string; url: string }) {
     }
   };
 
-  const x = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
-  const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+  const x = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(shareUrl)}`;
+  const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
 
   const btn =
     "flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-muted transition-colors hover:border-border-strong hover:text-foreground";

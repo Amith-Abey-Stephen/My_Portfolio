@@ -9,7 +9,7 @@ import {
 } from "@/lib/blog-seo";
 import type { Project, Post } from "@/types";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? site.url).replace(/^https?:\/\/www\./, "https://").replace(/\/$/, "");
 const personId = `${siteUrl}/#person`;
 
 function JsonLd({ data }: { data: object }) {

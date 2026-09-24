@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 import { projects } from "@/content/projects";
 import { getPosts, getTags } from "@/lib/api";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? site.url).replace(/^https?:\/\/www\./, "https://").replace(/\/$/, "");
 
 export async function POST(req: Request) {
   try {
