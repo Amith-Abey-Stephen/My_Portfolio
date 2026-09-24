@@ -24,6 +24,7 @@ const aiBots = [
   "YouBot",
   "DuckAssistBot",
   "Diffbot",
+  "Bravebot",
 ];
 
 export function GET() {
