@@ -3,7 +3,7 @@ import { site } from "@/content/site";
 export const dynamic = "force-static";
 
 export function GET() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? site.url).replace(/^https?:\/\/www\./, "https://").replace(/\/$/, "");
 
   const content = `# auth.md — Agent Authentication & Registration for ${site.name}
 

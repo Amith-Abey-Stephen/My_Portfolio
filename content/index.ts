@@ -62,7 +62,7 @@ export const site = {
   location: "Kerala, India",
   email: "amithabey13@gmail.com",
   phone: "+91 9188550674",
-  url: "https://www.amith.site",
+  url: "https://amith.site",
   resumeUrl: "https://resume.amith.site",
   blogUrl: "https://blog.inovuslabs.org/author/amith",
   socials: {

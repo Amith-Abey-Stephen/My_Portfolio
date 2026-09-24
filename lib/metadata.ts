@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { site, seoKeywords } from "@/content/site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+const siteUrl = rawSiteUrl.replace(/^https?:\/\/www\./, "https://").replace(/\/$/, "");
 
 interface PageMetadataOptions {
   title: string;
@@ -49,6 +50,7 @@ export function pageMetadata({
   }
 
   return {
+    metadataBase: new URL(siteUrl),
     title: pageTitle,
     description: cleanDesc,
     keywords: keywords ?? seoKeywords,
