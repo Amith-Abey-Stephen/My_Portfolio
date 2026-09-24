@@ -5,6 +5,7 @@
  * Usage: npm run indexnow
  */
 
+const KEY = "a3b8e91f0c2d4e5a8f7b6c5d4e3a2b1f";
 // Submit only for canonical apex domain (no www) to avoid indexing redirected URLs
 const HOSTS = ["amith.site"];
 
