@@ -4,7 +4,9 @@ import { projects } from "@/content/projects";
 import { getPosts, getTags } from "@/lib/api";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+  const rawBase = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+  // Strictly enforce non-www canonical URL and remove any trailing slash
+  const base = rawBase.replace(/^https?:\/\/www\./, "https://").replace(/\/$/, "");
   const lastModified = new Date();
 
   const [posts, tags] = await Promise.all([getPosts(), getTags()]);
@@ -50,5 +52,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
-  return [...routes, ...projectRoutes, ...postRoutes, ...tagRoutes];
+  const allEntries = [...routes, ...projectRoutes, ...postRoutes, ...tagRoutes];
+  return allEntries.map((entry) => ({
+    ...entry,
+    url: entry.url.replace(/^https?:\/\/www\./, "https://"),
+  }));
 }

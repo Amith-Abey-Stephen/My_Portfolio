@@ -8,7 +8,7 @@ import { getPosts } from "@/lib/api";
 
 export const revalidate = 3600;
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? site.url).replace(/^https?:\/\/www\./, "https://").replace(/\/$/, "");
 
 /**
  * /llms-full.txt — a comprehensive LLM knowledge context file (llmstxt.org).

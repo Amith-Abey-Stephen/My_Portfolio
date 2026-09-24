@@ -27,7 +27,8 @@ const aiBots = [
 ];
 
 export function GET() {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+  const rawBase = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+  const base = rawBase.replace(/^https?:\/\/www\./, "https://").replace(/\/$/, "");
 
   const aiBotRules = aiBots.map((bot) => `User-agent: ${bot}`).join("\n");
 

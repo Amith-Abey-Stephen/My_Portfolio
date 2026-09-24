@@ -13,7 +13,7 @@ import { GenZProvider } from "@/components/genz/genz-mode";
 import { Analytics } from "@/components/seo/analytics";
 import { WebMCPProvider } from "@/components/webmcp-provider";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? site.url).replace(/^https?:\/\/www\./, "https://").replace(/\/$/, "");
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

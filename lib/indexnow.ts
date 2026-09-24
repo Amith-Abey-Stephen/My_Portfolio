@@ -3,7 +3,7 @@ import { site } from "@/content/site";
 export const INDEXNOW_KEY =
   process.env.INDEXNOW_KEY || "a3b8e91f0c2d4e5a8f7b6c5d4e3a2b1f";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? site.url).replace(/^https?:\/\/www\./, "https://").replace(/\/$/, "");
 const parsedUrl = new URL(siteUrl);
 const host = parsedUrl.host;
 

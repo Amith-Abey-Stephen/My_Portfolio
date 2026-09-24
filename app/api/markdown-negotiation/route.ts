@@ -5,7 +5,7 @@ import type { StoryChapter } from "@/types";
 
 export const dynamic = "force-dynamic";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? site.url).replace(/^https?:\/\/www\./, "https://").replace(/\/$/, "");
 
 function simpleHtmlToMarkdown(html: string): string {
   if (!html) return "";

@@ -1,6 +1,6 @@
 /* TEAM */
   Builder & Product Engineer: Amith Abey Stephen
-  Site: https://www.amith.site
+  Site: https://amith.site
   Location: Kerala, India
   Contact: amithabey13@gmail.com
   GitHub: https://github.com/Amith-Abey-Stephen

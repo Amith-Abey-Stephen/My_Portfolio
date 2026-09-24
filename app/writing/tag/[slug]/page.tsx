@@ -70,7 +70,7 @@ export default async function TagPage({
       />
       <BlogJsonLd
         posts={filteredPosts}
-        url={`https://www.amith.site/writing/tag/${slug}`}
+        url={`${site.url}/writing/tag/${slug}`}
         name={`Articles Tagged "${tag.name}" — Amith Abey Stephen`}
         description={`Curated technical articles and engineering notes tagged "${tag.name}" by Amith Abey Stephen.`}
       />
