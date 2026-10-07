@@ -2,8 +2,14 @@ import { site } from "@/content/site";
 
 export const dynamic = "force-static";
 
-// Answer engines & AI crawlers we explicitly welcome (GEO / AI SEO): being
-// indexable by these is how the content shows up in AI answers.
+// Search engines & AI crawlers we explicitly welcome (GEO / AI SEO): being
+// indexable by these is how the content shows up in web search and AI answers.
+const braveBots = [
+  "Bravebot",
+  "bravebot",
+  "BraveSearch",
+];
+
 const aiBots = [
   "GPTBot",
   "OAI-SearchBot",
@@ -24,20 +30,25 @@ const aiBots = [
   "YouBot",
   "DuckAssistBot",
   "Diffbot",
-  "Bravebot",
 ];
 
 export function GET() {
   const rawBase = process.env.NEXT_PUBLIC_SITE_URL ?? site.url;
   const base = rawBase.replace(/^https?:\/\/www\./, "https://").replace(/\/$/, "");
 
+  const braveBotRules = braveBots.map((bot) => `User-agent: ${bot}`).join("\n");
   const aiBotRules = aiBots.map((bot) => `User-agent: ${bot}`).join("\n");
 
   const body = `User-agent: *
 Allow: /
 Disallow: /api/
-Content-Signal: ai-train=no, search=yes, ai-input=yes
 
+# Brave Search crawler & Brave AI indexing
+${braveBotRules}
+Allow: /
+Disallow: /api/
+
+# AI Answer Engines & Crawlers
 ${aiBotRules}
 Allow: /
 Disallow: /api/

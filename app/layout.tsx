@@ -18,11 +18,11 @@ const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? site.url).replace(/^https?:
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${site.author} — Building products with purpose`,
-    template: `%s — ${site.author}`,
+    default: "Amith — Product Engineer & Freelance Web Developer | amith.site",
+    template: "%s — Amith",
   },
   description:
-    "Amith Abey Stephen is a Product Engineer from Kerala building web products, Shopify apps, self-hosted developer tools, and connected IoT systems.",
+    "Amith (Amith Abey Stephen) is a Product Engineer and Freelance Web Developer from Kerala building high-performance web products, Shopify apps, client platforms, and IoT systems.",
   keywords: seoKeywords,
   authors: [{ name: site.author, url: site.url }],
   creator: site.author,
@@ -97,7 +97,6 @@ export const viewport: Viewport = {
 
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
-import { DesktopHintToast } from "@/components/ui/desktop-hint-toast";
 
 export default function RootLayout({
   children,
@@ -111,16 +110,9 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <Analytics />
-      </head>
+      <head />
       <body className="min-h-screen bg-background text-foreground antialiased">
+        <Analytics />
         {/* Runs before paint: on a repeat visit this session, flag <html> so the
             intro overlay is hidden via CSS instantly — no flash, no hydration
             mismatch (the React tree renders identically on server and client). */}
