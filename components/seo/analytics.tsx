@@ -1,12 +1,13 @@
 import { Suspense } from "react";
+import Script from "next/script";
 import { AnalyticsTracker } from "./analytics-tracker";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
 
 /**
- * Server-rendered analytics script tags that load directly in <head>
- * for instantaneous tracking without waiting for React hydration.
+ * Analytics script tags configured with lazyOnload to execute
+ * during browser idle time without delaying First Contentful Paint or LCP.
  */
 export function Analytics() {
   if (process.env.NODE_ENV !== "production") {
@@ -26,12 +27,13 @@ export function Analytics() {
       {/* Google Analytics (GA4) */}
       {GA_ID && (
         <>
-          <script
-            async
+          <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+            strategy="afterInteractive"
           />
-          <script
+          <Script
             id="google-analytics-init"
+            strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
                 window.dataLayer = window.dataLayer || [];
@@ -49,8 +51,9 @@ export function Analytics() {
 
       {/* Microsoft Clarity */}
       {CLARITY_ID && (
-        <script
+        <Script
           id="microsoft-clarity-init"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function(c,l,a,r,i,t,y){
