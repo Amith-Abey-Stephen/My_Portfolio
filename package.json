@@ -34,5 +34,12 @@
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.8.0"
-  }
+  },
+  "browserslist": [
+    "chrome >= 109",
+    "edge >= 109",
+    "safari >= 16.4",
+    "firefox >= 115",
+    "not dead"
+  ]
 }

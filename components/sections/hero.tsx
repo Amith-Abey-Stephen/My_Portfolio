@@ -103,10 +103,10 @@ export function Hero() {
           </Reveal>
         </div>
 
-        {/* Portrait — reveals naturally, parallaxes with cursor or touch. */}
-        <Reveal delay={0.15} y={0} className="mt-8 flex justify-center lg:mt-0 lg:block">
+        {/* Portrait — renders immediately to optimize LCP, parallaxes with cursor or touch. */}
+        <div className="mt-8 flex justify-center lg:mt-0 lg:block">
           <HeroPortrait />
-        </Reveal>
+        </div>
       </Container>
     </section>
   );

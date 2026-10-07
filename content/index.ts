@@ -49,6 +49,7 @@ export const site = {
   roles: [
     "Product Engineer",
     "Full-Stack Developer",
+    "Freelance Web Developer",
     "Shopify & iOS App Developer",
     "DevOps & Self-Hosting Engineer",
     "IoT Systems Builder",
@@ -96,9 +97,21 @@ export const education = {
 };
 
 export const seoKeywords = [
-  "Amith Abey Stephen",
   "Amith",
   "amith.site",
+  "Amith Abey Stephen",
+  "Amith Developer",
+  "Amith Web Developer",
+  "Amith Portfolio",
+  "Freelance Web Developer",
+  "Freelance Web Developer Kerala",
+  "Best Web Developer",
+  "Best Web Developer Kerala",
+  "Web Dev",
+  "Web Developer",
+  "Freelance Full-Stack Developer",
+  "Freelance Works for Web Developer",
+  "Hire Web Developer",
   "Product Engineer",
   "Full-Stack Developer",
   "Shopify App Developer",
@@ -424,7 +437,6 @@ export const projects: Project[] = [
       "Docker",
     ],
     icon: Users,
-    featured: true,
     link: "https://profile.inovuslabs.org",
     caseStudy: {
       problem:
@@ -509,7 +521,6 @@ export const projects: Project[] = [
     category: "AI Tool",
     stack: ["Next.js", "MongoDB", "Gemini API", "Tailwind CSS"],
     icon: FileText,
-    featured: true,
     link: "https://docgen.amith.site",
     repo: "https://github.com/Amith-Abey-Stephen/Mr-DocGen",
     caseStudy: {

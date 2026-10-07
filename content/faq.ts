@@ -5,8 +5,16 @@
  */
 export const faqs: { q: string; a: string }[] = [
   {
+    q: "Who is Amith?",
+    a: "Amith (Amith Abey Stephen, amith.site) is a Product Engineer and Freelance Web Developer based in Kerala, India. He builds high-performance web applications, bespoke client portfolios, developer tools, and IoT systems.",
+  },
+  {
     q: "Who is Amith Abey Stephen?",
-    a: "Amith Abey Stephen is a Product Engineer and builder from Kerala, India. He turns ideas into products across software and hardware, including Shopify apps, AI-powered tools, client portfolios, and cloud-connected IoT systems. He works as a Full-Stack Developer at FinalApps, is the former CEO of Inovus Labs IEDC, and formerly served as the frontend technical point of contact at μLearn Foundation.",
+    a: "Amith Abey Stephen is a Product Engineer, Full-Stack Web Developer, and builder from Kerala, India. He turns ideas into products across software and hardware, including Shopify apps, AI-powered tools, client portfolios, and cloud-connected IoT systems. He works as a Full-Stack Developer at FinalApps, is the former CEO of Inovus Labs IEDC, and formerly served as the frontend technical point of contact at μLearn Foundation.",
+  },
+  {
+    q: "Does Amith offer freelance web development services?",
+    a: "Yes. Amith accepts selective freelance web development contracts for founders, creators, and companies. His freelance work spans custom Next.js web applications, high-performance client portfolios with fluid interactions, e-commerce Shopify integrations, and full-stack software development. Inquiries can be submitted via amith.site/contact or amithabey13@gmail.com.",
   },
   {
     q: "Where does Amith work?",

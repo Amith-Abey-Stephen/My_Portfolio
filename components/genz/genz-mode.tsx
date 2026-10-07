@@ -10,14 +10,6 @@ import {
 } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { genzDictionary } from "@/content/genz";
-
-/**
- * Gen Z mode — "english (chronically online)", à la Canva. A purely
- * client-side layer: server routes (sitemap, llms.txt, JSON-LD, RSS) and SEO
- * copy stay in normal English; the visible DOM is swapped via an exact-match
- * dictionary once the toggle is on. Nothing upstream of render changes.
- */
 
 const STORAGE_KEY = "amith:genz";
 const SWAP_ATTRS = ["placeholder", "aria-label", "title"] as const;
@@ -25,10 +17,19 @@ const SKIP_SELECTOR = "script,style,[data-genz-skip]";
 
 type Dict = Map<string, string>;
 
-const toGenz: Dict = new Map(Object.entries(genzDictionary));
-const fromGenz: Dict = new Map(
-  Object.entries(genzDictionary).map(([plain, genz]) => [genz, plain]),
-);
+let cachedToGenz: Dict | null = null;
+let cachedFromGenz: Dict | null = null;
+
+async function getDictionaries(): Promise<{ toGenz: Dict; fromGenz: Dict }> {
+  if (!cachedToGenz || !cachedFromGenz) {
+    const { genzDictionary } = await import("@/content/genz");
+    cachedToGenz = new Map(Object.entries(genzDictionary));
+    cachedFromGenz = new Map(
+      Object.entries(genzDictionary).map(([plain, genz]) => [genz, plain]),
+    );
+  }
+  return { toGenz: cachedToGenz, fromGenz: cachedFromGenz };
+}
 
 function swapText(node: Text, dict: Dict) {
   const value = node.nodeValue;
@@ -97,34 +98,44 @@ export function GenZProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     document.documentElement.toggleAttribute("data-genz", enabled);
-    swapTree(document.body, enabled ? toGenz : fromGenz);
-    if (!enabled) return;
-    // React re-renders resurface original copy (rotating headline words,
-    // route changes, form states) — re-swap nodes as they appear. Our own
-    // writes are no-ops on the next pass (translated text is never a
-    // dictionary key), so this cannot loop.
-    const observer = new MutationObserver((records) => {
-      for (const record of records) {
-        if (record.type === "characterData") swapTree(record.target, toGenz);
-        for (const added of record.addedNodes) swapTree(added, toGenz);
-      }
+    let observer: MutationObserver | null = null;
+    let cancelled = false;
+
+    getDictionaries().then(({ toGenz, fromGenz }) => {
+      if (cancelled) return;
+      swapTree(document.body, enabled ? toGenz : fromGenz);
+      if (!enabled) return;
+
+      observer = new MutationObserver((records) => {
+        for (const record of records) {
+          if (record.type === "characterData") swapTree(record.target, toGenz);
+          for (const added of record.addedNodes) swapTree(added, toGenz);
+        }
+      });
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        characterData: true,
+      });
     });
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      characterData: true,
-    });
-    return () => observer.disconnect();
+
+    return () => {
+      cancelled = true;
+      observer?.disconnect();
+    };
   }, [enabled]);
 
   // Ensure DOM is swapped cleanly on client-side route transitions
   useEffect(() => {
     if (!enabled) return;
-    swapTree(document.body, toGenz);
-    const frame = requestAnimationFrame(() => {
+    let cancelled = false;
+    getDictionaries().then(({ toGenz }) => {
+      if (cancelled) return;
       swapTree(document.body, toGenz);
     });
-    return () => cancelAnimationFrame(frame);
+    return () => {
+      cancelled = true;
+    };
   }, [pathname, enabled]);
 
   useEffect(() => {
