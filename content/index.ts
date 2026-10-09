@@ -70,6 +70,7 @@ export const site = {
     github: "https://github.com/Amith-Abey-Stephen",
     linkedin: "https://linkedin.com/in/Amith-Abey-Stephen",
     email: "mailto:amithabey13@gmail.com",
+    coffee: "https://buymeacoffee.com/amithabey13",
   },
   nav: [
     { label: "Work", href: "/#work" },

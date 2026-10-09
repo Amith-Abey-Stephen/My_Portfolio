@@ -12,6 +12,7 @@ import { TableOfContents } from "@/components/writing/table-of-contents";
 import { ShareRow } from "@/components/writing/share-row";
 import { ArticleByline } from "@/components/writing/article-byline";
 import { ArticleAuthorCard } from "@/components/writing/article-author-card";
+import { SupportCard } from "@/components/ui/support-button";
 import { ContactCTA } from "@/components/sections/contact-cta";
 import { processArticleHtml } from "@/lib/toc";
 import { formatDate } from "@/lib/utils";
@@ -192,6 +193,8 @@ export default async function ArticlePage({
 
               {/* End-of-article Author Box (E-E-A-T & AEO entity attribution) */}
               <ArticleAuthorCard />
+
+              <SupportCard location="article" />
 
               {/* End of article discussion CTA */}
               {post.url && (

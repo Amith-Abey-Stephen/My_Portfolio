@@ -147,6 +147,7 @@ ${articleDetails}
 - Capabilities Matrix: ${siteUrl}/capabilities
 - GitHub: ${site.socials.github}
 - LinkedIn: ${site.socials.linkedin}
+- Support (Buy Me a Coffee): ${site.socials.coffee}
 - Email: ${site.email}
 - RSS Feed: ${siteUrl}/writing/rss.xml
 - Geo Entity Doc: ${siteUrl}/geo.md

@@ -5,6 +5,7 @@
   Contact: amithabey13@gmail.com
   GitHub: https://github.com/Amith-Abey-Stephen
   LinkedIn: https://linkedin.com/in/Amith-Abey-Stephen
+  Buy me a coffee: https://buymeacoffee.com/amithabey13
 
 /* SITE */
   Last update: 2026

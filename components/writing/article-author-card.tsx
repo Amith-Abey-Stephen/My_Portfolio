@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { Github, Linkedin } from "@/components/ui/icons";
+import { BuyMeACoffee } from "@/components/ui/bmc-icon";
 import { site } from "@/content/site";
 
 /**
@@ -97,6 +98,18 @@ export function ArticleAuthorCard() {
             >
               <Mail className="h-3.5 w-3.5" />
               <span>Email</span>
+            </a>
+            <a
+              href={site.socials.coffee}
+              target="_blank"
+              rel="me noopener noreferrer"
+              data-track="support_click"
+              data-track-location="author-card"
+              aria-label="Buy Amith a coffee"
+              className="inline-flex items-center gap-1.5 font-mono text-muted transition-colors hover:text-foreground"
+            >
+              <BuyMeACoffee className="h-3.5 w-3.5" />
+              <span>Coffee</span>
             </a>
           </div>
         </div>

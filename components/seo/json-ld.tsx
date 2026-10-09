@@ -109,9 +109,18 @@ export function PersonJsonLd() {
         sameAs: [
           site.socials.github,
           site.socials.linkedin,
+          site.socials.coffee,
           site.resumeUrl,
           site.blogUrl,
         ],
+        potentialAction: {
+          "@type": "DonateAction",
+          name: "Buy me a coffee",
+          description:
+            "Support Amith's writing, open-source work and side projects.",
+          target: site.socials.coffee,
+          recipient: { "@id": personId },
+        },
       }}
     />
   );
