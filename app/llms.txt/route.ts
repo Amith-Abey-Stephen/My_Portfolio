@@ -66,6 +66,7 @@ ${articles}
 - Email: ${site.email}
 - GitHub: ${site.socials.github}
 - LinkedIn: ${site.socials.linkedin}
+- Support (Buy Me a Coffee): ${site.socials.coffee}
 - Blog: ${site.blogUrl}
 - Feed: ${siteUrl}/writing/rss.xml
 

@@ -61,5 +61,38 @@ export function AnalyticsTracker({
     }
   }, [pathname, searchParams, gaId, clarityId]);
 
+  // Outbound CTA clicks: any link marked `data-track="<event>"` reports that
+  // event (plus `data-track-location`) — works from server components too.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const el = (e.target as Element | null)?.closest<HTMLElement>(
+        "[data-track]",
+      );
+      if (!el) return;
+      const event = el.dataset.track!;
+      const location = el.dataset.trackLocation ?? "unknown";
+
+      if (typeof window.gtag === "function" && gaId) {
+        window.gtag("event", event, {
+          location,
+          page_path: window.location.pathname,
+          link_url: el.getAttribute("href") ?? undefined,
+          transport_type: "beacon",
+        });
+      }
+      if (typeof window.clarity === "function" && clarityId) {
+        try {
+          window.clarity("event", event);
+          window.clarity("set", `${event}_location`, location);
+        } catch {
+          // ignore
+        }
+      }
+    };
+    document.addEventListener("click", onClick, { capture: true });
+    return () =>
+      document.removeEventListener("click", onClick, { capture: true });
+  }, [gaId, clarityId]);
+
   return null;
 }

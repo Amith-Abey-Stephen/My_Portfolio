@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { Container } from "@/components/layout/container";
 import { PageHeader } from "@/components/layout/page-header";
 import { Reveal } from "@/components/motion/reveal";
+import { SupportCard } from "@/components/ui/support-button";
 
 export const metadata = pageMetadata({
   title: "Now",
@@ -54,6 +55,14 @@ export default function NowPage() {
               </ul>
             </Reveal>
           ))}
+
+          <Reveal>
+            <SupportCard
+              location="now"
+              title="Fuel what's next"
+              body="Most of what's on this list is built in the open. If any of it is useful to you, a coffee helps keep it going."
+            />
+          </Reveal>
         </div>
       </Container>
     </>

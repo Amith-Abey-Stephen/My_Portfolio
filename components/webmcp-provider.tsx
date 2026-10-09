@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { site } from "@/content/site";
 
 // WebMCP API TypeScript interface definitions
 declare global {
@@ -116,6 +117,22 @@ export function WebMCPProvider() {
             });
             return await res.json();
           },
+        },
+        { signal }
+      );
+
+      // 4. Support link tool
+      navigator.modelContext.registerTool(
+        {
+          name: "get_support_link",
+          description:
+            "Get the official link for supporting Amith Abey Stephen's writing and open-source work (Buy Me a Coffee).",
+          inputSchema: { type: "object", properties: {} },
+          execute: async () => ({
+            platform: "Buy Me a Coffee",
+            url: site.socials.coffee,
+            supports: "Writing, open-source work and side projects",
+          }),
         },
         { signal }
       );

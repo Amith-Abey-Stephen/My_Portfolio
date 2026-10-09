@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Check, Copy, Mail } from "lucide-react";
 import { Github, Linkedin } from "@/components/ui/icons";
+import { BuyMeACoffee } from "@/components/ui/bmc-icon";
 import { site } from "@/content/site";
 
 const channels = [
@@ -18,6 +19,12 @@ const channels = [
     value: "Amith-Abey-Stephen",
     href: site.socials.linkedin,
     icon: Linkedin,
+  },
+  {
+    label: "Buy me a coffee",
+    value: "buymeacoffee.com/amithabey13",
+    href: site.socials.coffee,
+    icon: BuyMeACoffee,
   },
 ];
 
@@ -48,7 +55,13 @@ export function ContactChannels() {
             <a
               href={href}
               {...(external
-                ? { target: "_blank", rel: "noopener noreferrer" }
+                ? { target: "_blank", rel: "me noopener noreferrer" }
+                : {})}
+              {...(href === site.socials.coffee
+                ? {
+                    "data-track": "support_click",
+                    "data-track-location": "contact",
+                  }
                 : {})}
               className="flex min-w-0 flex-1 items-center gap-4 px-6 py-5"
             >
