@@ -97,6 +97,7 @@ export const viewport: Viewport = {
 
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { CoffeeWidget } from "@/components/ui/coffee-widget";
 
 export default function RootLayout({
   children,
@@ -134,6 +135,7 @@ export default function RootLayout({
               <Nav />
               <main id="main">{children}</main>
               <Footer />
+              <CoffeeWidget />
             </SmoothScroll>
           </MotionProvider>
         </GenZProvider>

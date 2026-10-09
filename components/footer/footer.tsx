@@ -4,6 +4,8 @@ import { Github, Linkedin } from "@/components/ui/icons";
 import { site } from "@/content/site";
 import { Container } from "@/components/layout/container";
 import { Wordmark } from "@/components/brand/wordmark";
+import { BuyMeACoffee } from "@/components/ui/bmc-icon";
+import { SupportButton } from "@/components/ui/support-button";
 
 type FooterLink = { label: string; href: string; external?: boolean };
 
@@ -45,6 +47,13 @@ const socialLinks = [
     external: true,
   },
   { label: "Email", href: site.socials.email, icon: Mail, external: false },
+  {
+    label: "Buy me a coffee",
+    href: site.socials.coffee,
+    icon: BuyMeACoffee,
+    external: true,
+    track: "footer-icon",
+  },
 ];
 
 function FooterLinkItem({ link }: { link: FooterLink }) {
@@ -92,6 +101,7 @@ export function Footer() {
               </span>
               Available for work
             </span>
+            <SupportButton size="sm" location="footer" className="mt-3 flex w-fit" />
           </div>
 
           {/* Link groups */}
@@ -114,12 +124,18 @@ export function Footer() {
             © {year} {site.author}. Built with intention.
           </p>
           <div className="flex items-center gap-1">
-            {socialLinks.map(({ label, href, icon: Icon, external }) => (
+            {socialLinks.map(({ label, href, icon: Icon, external, track }) => (
               <a
                 key={label}
                 href={href}
                 {...(external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  ? { target: "_blank", rel: "me noopener noreferrer" }
+                  : {})}
+                {...(track
+                  ? {
+                      "data-track": "support_click",
+                      "data-track-location": track,
+                    }
                   : {})}
                 aria-label={label}
                 className="flex h-10 w-10 items-center justify-center rounded-full text-muted transition-colors hover:bg-elevated hover:text-foreground"
